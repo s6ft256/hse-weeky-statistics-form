@@ -56,20 +56,39 @@ DASHBOARD_HTML = """
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HSE Statistics Report - Trojan Construction Group</title>
     <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --container-bg: white;
+            --text-color: #2c3e50;
+            --section-bg: #f8f9fa;
+            --border-color: #e9ecef;
+            --input-bg: white;
+        }
+        [data-theme="dark"] {
+            --bg-gradient: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            --container-bg: #34495e;
+            --text-color: #ecf0f1;
+            --section-bg: #2c3e50;
+            --border-color: #34495e;
+            --input-bg: #2c3e50;
+        }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--bg-gradient);
             min-height: 100vh;
+            transition: all 0.3s ease;
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            background: white;
+            background: var(--container-bg);
+            color: var(--text-color);
             border-radius: 15px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             overflow: hidden;
+            transition: all 0.3s ease;
         }
         .header {
             background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
@@ -88,9 +107,10 @@ DASHBOARD_HTML = """
         .form-section {
             margin-bottom: 40px;
             padding: 30px;
-            background: #f8f9fa;
+            background: var(--section-bg);
             border-radius: 10px;
             border-left: 5px solid #007bff;
+            transition: all 0.3s ease;
         }
         .form-section h2 {
             color: #2c3e50;
@@ -109,10 +129,12 @@ DASHBOARD_HTML = """
         .form-group input, .form-group select, .form-group textarea {
             width: 100%;
             padding: 12px;
-            border: 2px solid #e9ecef;
+            border: 2px solid var(--border-color);
             border-radius: 8px;
             font-size: 16px;
-            transition: border-color 0.3s;
+            background: var(--input-bg);
+            color: var(--text-color);
+            transition: all 0.3s ease;
             box-sizing: border-box;
         }
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
@@ -191,6 +213,28 @@ DASHBOARD_HTML = """
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,123,255,0.3);
         }
+        .theme-btn, .about-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+            padding: 10px 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        .theme-btn:hover, .about-btn:hover {
+            background: rgba(255,255,255,0.3);
+            border-color: rgba(255,255,255,0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .about-btn.active {
+            background: rgba(255,255,255,0.4);
+            border-color: rgba(255,255,255,0.6);
+        }
         @media (max-width: 768px) {
             .content { padding: 20px; }
             .form-section { padding: 20px; }
@@ -201,6 +245,10 @@ DASHBOARD_HTML = """
 <body>
     <div class="container">
         <div class="header">
+            <div style="position: absolute; top: 20px; right: 20px; display: flex; align-items: center; gap: 15px;">
+                <button onclick="toggleTheme()" class="theme-btn" title="Toggle Dark/Light Theme">🌓</button>
+                <button onclick="showAbout()" class="about-btn" title="About HSE Statistics Report">📚 About</button>
+            </div>
             <img src="https://trojanconstruction.group/storage/subsidiaries/August2022/PG0Hzw1iVnUOQAiyYYuS.png" alt="Trojan Construction Group" style="height: 120px; margin-bottom: 20px; max-width: 90%; object-fit: contain;">
             <h1>HSE STATISTICS REPORT</h1>
             <p>Streamlined Data Management Interface</p>
@@ -261,8 +309,9 @@ DASHBOARD_HTML = """
         let currentTable = '';
         let tableSchemas = {};
 
-        // Load tables on page load
+        // Load tables and theme on page load
         document.addEventListener('DOMContentLoaded', function() {
+            loadTheme();
             loadTables();
         });
 
@@ -312,17 +361,16 @@ DASHBOARD_HTML = """
                 return `<a href="#" class="table-btn" onclick="loadTable('${escapedId}', '${escapedName}')">${table.name}</a>`;
             }).join('');
             
-            const aboutButton = `<a href="#" class="table-btn" onclick="showAbout()">📚 About</a>`;
-            
-            selector.innerHTML = tableButtons + aboutButton;
+            selector.innerHTML = tableButtons;
         }
 
         async function loadTable(tableId, tableName) {
             currentTable = tableId;
             showLoading(true);
             
-            // Update active button
+            // Update active button states
             document.querySelectorAll('.table-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.about-btn').forEach(btn => btn.classList.remove('active'));
             if (window.event && window.event.target) {
                 window.event.target.classList.add('active');
             }
@@ -364,12 +412,24 @@ DASHBOARD_HTML = """
             `;
         }
 
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+        
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.body.setAttribute('data-theme', savedTheme);
+        }
+
         function showAbout() {
-            // Update active button
+            // Update active button states
             document.querySelectorAll('.table-btn').forEach(btn => btn.classList.remove('active'));
-            if (event && event.target) {
-                event.target.classList.add('active');
-            }
+            document.querySelectorAll('.about-btn').forEach(btn => btn.classList.add('active'));
             
             // Hide form and show about section
             document.getElementById('formContainer').style.display = 'none';

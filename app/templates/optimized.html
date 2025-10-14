@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airtable Dashboard - Optimized</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Optimized font loading -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/optimized.css') }}">
+    
+    <!-- Meta tags for better UX -->
+    <meta name="theme-color" content="#3b82f6">
+    <meta name="description" content="Optimized Airtable Dashboard for efficient data management">
+</head>
+<body class="h-full">
+    <!-- Main Dashboard Container -->
+    <div class="dashboard" id="dashboard">
+        
+        <!-- Header - Command Center -->
+        <header class="header" id="header">
+            <div class="header-left">
+                <button class="sidebar-toggle" id="sidebar-toggle" title="Toggle Sidebar">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </button>
+                
+                <h1 class="header-title">Airtable Dashboard</h1>
+                
+                <nav class="breadcrumb" id="breadcrumb">
+                    <span>Dashboard</span>
+                </nav>
+            </div>
+            
+            <div class="header-right">
+                <!-- Global Search -->
+                <div class="global-search">
+                    <svg class="search-icon" width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                    <input 
+                        type="search" 
+                        id="global-search" 
+                        placeholder="Search tables, records, fields..."
+                        autocomplete="off"
+                        spellcheck="false"
+                    >
+                </div>
+                
+                <!-- Header Actions -->
+                <button class="btn btn-outline btn-sm" id="notifications-btn" title="Notifications">
+                    🔔
+                </button>
+                
+                <button class="btn btn-outline btn-sm" id="settings-btn" title="Settings">
+                    ⚙️
+                </button>
+                
+                <button class="btn btn-primary btn-sm" onclick="dashboard.showAddRecordForm()" title="Quick Add Record">
+                    ➕ Add
+                </button>
+            </div>
+        </header>
+
+        <!-- Sidebar - Navigation Hub -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2 class="sidebar-title">📋 Tables</h2>
+                <span class="table-count" id="table-count">Loading...</span>
+            </div>
+            
+            <nav class="sidebar-nav" id="sidebar-nav">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    Loading navigation...
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main" id="main">
+            <div id="main-content">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    Select a table to get started...
+                </div>
+            </div>
+        </main>
+
+        <!-- Side Panel - Contextual Details -->
+        <aside class="panel hidden" id="panel">
+            <div class="panel-header">
+                <h3 class="panel-title" id="panel-title">Details</h3>
+                <button class="panel-close" id="panel-close" title="Close Panel">
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="panel-content" id="panel-content">
+                <!-- Dynamic panel content -->
+            </div>
+        </aside>
+    </div>
+
+    <!-- Modals Container -->
+    <div id="modals-container"></div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay hidden" id="loading-overlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p id="loading-message">Loading...</p>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/optimized.js') }}"></script>
+    
+    <!-- Additional inline optimizations -->
+    <script>
+        // Performance monitoring
+        window.addEventListener('load', () => {
+            if ('serviceWorker' in navigator) {
+                // Future: Service worker for offline functionality
+            }
+            
+            // Log performance metrics
+            const navigation = performance.getEntriesByType('navigation')[0];
+            console.log('Page load metrics:', {
+                domContentLoaded: navigation.domContentLoadedEventEnd - navigation.domContentLoadedEventStart,
+                loadComplete: navigation.loadEventEnd - navigation.loadEventStart,
+                firstPaint: performance.getEntriesByType('paint')[0]?.startTime
+            });
+        });
+
+        // Error boundary
+        window.addEventListener('error', (event) => {
+            console.error('Global error:', event.error);
+            // Could send to error tracking service
+        });
+
+        // Unhandled promise rejections
+        window.addEventListener('unhandledrejection', (event) => {
+            console.error('Unhandled promise rejection:', event.reason);
+            event.preventDefault();
+        });
+
+        // Connection status monitoring
+        window.addEventListener('online', () => {
+            document.body.classList.remove('offline');
+            if (window.dashboard) {
+                dashboard.resumePeriodicSync();
+            }
+        });
+
+        window.addEventListener('offline', () => {
+            document.body.classList.add('offline');
+            if (window.dashboard) {
+                dashboard.pausePeriodicSync();
+            }
+        });
+    </script>
+
+    <!-- Development helpers (remove in production) -->
+    {% if config.DEBUG %}
+    <script>
+        // Debug helpers
+        window.debugDashboard = () => {
+            console.log('Dashboard State:', window.dashboard?.state);
+            console.log('Cache:', window.dashboard?.cache);
+            console.log('Performance:', performance.getEntries());
+        };
+        
+        // Style injection for debugging
+        const debugStyles = `
+            .debug-mode .nav-item:hover::after {
+                content: attr(data-table);
+                position: absolute;
+                background: black;
+                color: white;
+                padding: 4px 8px;
+                border-radius: 4px;
+                font-size: 12px;
+                white-space: nowrap;
+                z-index: 1000;
+            }
+        `;
+        
+        if (localStorage.getItem('debug-mode')) {
+            document.body.classList.add('debug-mode');
+            const styleSheet = document.createElement('style');
+            styleSheet.textContent = debugStyles;
+            document.head.appendChild(styleSheet);
+        }
+    </script>
+    {% endif %}
+
+    <!-- PWA Meta Tags (Future Enhancement) -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Airtable Dashboard">
+    
+    <!-- Structured Data for Better SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Airtable Dashboard",
+        "description": "Optimized dashboard for Airtable data management",
+        "url": "{{ request.url }}",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web Browser"
+    }
+    </script>
+
+    <style>
+        /* Critical CSS - Inline for performance */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.2s ease;
+        }
+        
+        .loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .loading-content {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .toast-container {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 9998;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .toast {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            padding: 1rem;
+            box-shadow: var(--shadow-lg);
+            min-width: 300px;
+            animation: slideIn 0.2s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .offline-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--warning-500);
+            color: white;
+            padding: 0.5rem;
+            text-align: center;
+            font-size: 0.875rem;
+            z-index: 9997;
+            display: none;
+        }
+        
+        .offline .offline-indicator {
+            display: block;
+        }
+        
+        /* Empty states */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--gray-600);
+        }
+        
+        .empty-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .empty-state h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--gray-900);
+        }
+        
+        .empty-state p {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+
+    <!-- Offline indicator -->
+    <div class="offline-indicator">
+        ⚠️ You're currently offline. Some features may not work as expected.
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,1343 @@
+2025-10-14 10:38:00,031 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 10:38:00,040 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:38:00,041 - __main__ - INFO - Debug mode: False
+2025-10-14 10:38:00,149 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2025-10-14 10:38:00,149 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-14 10:38:00,176 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:38:01,796 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 10:38:01,807 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:38:01,808 - __main__ - INFO - Debug mode: False
+2025-10-14 10:38:01,875 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:38:01,883 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:38:15,715 - __main__ - INFO - Successfully connected to Airtable base: app1t04ZYvX3rWAM1
+2025-10-14 10:38:15,724 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:38:15,724 - __main__ - INFO - Debug mode: False
+2025-10-14 10:38:15,800 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2025-10-14 10:38:15,800 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-14 10:38:15,817 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:38:17,470 - __main__ - INFO - Successfully connected to Airtable base: app1t04ZYvX3rWAM1
+2025-10-14 10:38:17,479 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:38:17,479 - __main__ - INFO - Debug mode: False
+2025-10-14 10:38:17,543 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:38:17,553 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:38:30,206 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\flask\\app.py', reloading
+2025-10-14 10:38:30,207 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\flask\\app.py', reloading
+2025-10-14 10:38:30,211 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\flask\\templating.py', reloading
+2025-10-14 10:38:30,212 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\flask\\templating.py', reloading
+2025-10-14 10:38:30,274 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\jinja2\\environment.py', reloading
+2025-10-14 10:38:30,323 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\jinja2\\loaders.py', reloading
+2025-10-14 10:38:30,325 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\jinja2\\loaders.py', reloading
+2025-10-14 10:38:30,364 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 10:38:30] "[35m[1mGET /?id=16aeb093-ab6e-48bf-b0a3-62fd19324512&vscodeBrowserReqId=1760423909821 HTTP/1.1[0m" 500 -
+2025-10-14 10:38:30,857 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:38:31,120 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:38:32,367 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 10:38:32,377 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:38:32,377 - __main__ - INFO - Debug mode: False
+2025-10-14 10:38:32,424 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:38:32,434 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:38:32,632 - __main__ - INFO - Successfully connected to Airtable base: app1t04ZYvX3rWAM1
+2025-10-14 10:38:32,645 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:38:32,645 - __main__ - INFO - Debug mode: False
+2025-10-14 10:38:32,690 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:38:32,698 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:38:32,710 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 10:38:32] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-10-14 10:38:33,276 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 10:38:33] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=CSDntrDVPaqRpyRZBmMh HTTP/1.1" 200 -
+2025-10-14 10:39:26,609 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 10:39:26] "[35m[1mGET /?id=16aeb093-ab6e-48bf-b0a3-62fd19324512&vscodeBrowserReqId=1760423966243 HTTP/1.1[0m" 500 -
+2025-10-14 10:39:26,816 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 10:39:26] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-10-14 10:39:26,957 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 10:39:26] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-10-14 10:39:26,971 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 10:39:26] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=6BLIfNnMqoJDKXjhcdsP HTTP/1.1" 200 -
+2025-10-14 10:39:41,821 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 10:39:41] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-10-14 10:39:42,091 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 10:39:42] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-10-14 10:39:42,397 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 10:39:42] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-10-14 10:39:42,813 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 10:39:42] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=6BLIfNnMqoJDKXjhcdsP HTTP/1.1" 200 -
+2025-10-14 10:39:43,068 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 10:39:43] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-10-14 10:39:48,058 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 10:39:48] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-10-14 10:40:19,276 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\__init__.py', reloading
+2025-10-14 10:40:19,277 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\__init__.py', reloading
+2025-10-14 10:40:19,283 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\__main__.py', reloading
+2025-10-14 10:40:19,287 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\__init__.py', reloading
+2025-10-14 10:40:19,296 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\utils\\_log.py', reloading
+2025-10-14 10:40:19,296 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\utils\\_log.py', reloading
+2025-10-14 10:40:19,392 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\cli\\__init__.py', reloading
+2025-10-14 10:40:19,395 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\cli\\main.py', reloading
+2025-10-14 10:40:19,404 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\cli\\autocompletion.py', reloading
+2025-10-14 10:40:19,407 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\optparse.py', reloading
+2025-10-14 10:40:19,417 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\cli\\main_parser.py', reloading
+2025-10-14 10:40:19,428 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\build_env.py', reloading
+2025-10-14 10:40:19,459 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\__init__.py', reloading
+2025-10-14 10:40:19,464 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\packaging\\__init__.py', reloading
+2025-10-14 10:40:19,469 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\packaging\\version.py', reloading
+2025-10-14 10:40:19,473 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\packaging\\_structures.py', reloading
+2025-10-14 10:40:19,481 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\cli\\spinners.py', reloading
+2025-10-14 10:40:19,487 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\rich\\__init__.py', reloading
+2025-10-14 10:40:19,493 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\rich\\_extension.py', reloading
+2025-10-14 10:40:19,497 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\rich\\console.py', reloading
+2025-10-14 10:40:19,552 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\rich\\_null_file.py', reloading
+2025-10-14 10:40:19,555 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\rich\\errors.py', reloading
+2025-10-14 10:40:19,558 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\rich\\themes.py', reloading
+2025-10-14 10:40:19,562 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\rich\\default_styles.py', reloading
+2025-10-14 10:40:19,566 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\rich\\style.py', reloading
+2025-10-14 10:40:19,576 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\rich\\color.py', reloading
+2025-10-14 10:40:19,580 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\colorsys.py', reloading
+2025-10-14 10:40:19,584 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\rich\\_palettes.py', reloading
+2025-10-14 10:40:19,587 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\rich\\palette.py', reloading
+2025-10-14 10:40:19,652 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:40:19,894 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:40:21,689 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 10:40:21,711 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:40:21,723 - __main__ - INFO - Debug mode: False
+2025-10-14 10:40:21,810 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:40:21,847 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:40:22,045 - __main__ - INFO - Successfully connected to Airtable base: app1t04ZYvX3rWAM1
+2025-10-14 10:40:22,087 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:40:22,090 - __main__ - INFO - Debug mode: False
+2025-10-14 10:40:22,162 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:40:22,171 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:40:22,262 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\self_outdated_check.py', reloading
+2025-10-14 10:40:22,265 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\index\\__init__.py', reloading
+2025-10-14 10:40:22,271 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\index\\collector.py', reloading
+2025-10-14 10:40:22,273 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\html\\parser.py', reloading
+2025-10-14 10:40:22,283 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\_markupbase.py', reloading
+2025-10-14 10:40:22,288 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\index\\__init__.py', reloading
+2025-10-14 10:40:22,290 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\models\\link.py', reloading
+2025-10-14 10:40:22,293 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\index\\collector.py', reloading
+2025-10-14 10:40:22,299 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\utils\\filetypes.py', reloading
+2025-10-14 10:40:22,305 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\models\\search_scope.py', reloading
+2025-10-14 10:40:22,310 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\network\\__init__.py', reloading
+2025-10-14 10:40:22,315 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\network\\session.py', reloading
+2025-10-14 10:40:22,330 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\cachecontrol\\__init__.py', reloading
+2025-10-14 10:40:22,340 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\cachecontrol\\adapter.py', reloading
+2025-10-14 10:40:22,341 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\cachecontrol\\cache.py', reloading
+2025-10-14 10:40:22,342 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\cachecontrol\\controller.py', reloading
+2025-10-14 10:40:22,343 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\cachecontrol\\serialize.py', reloading
+2025-10-14 10:40:22,344 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\msgpack\\__init__.py', reloading
+2025-10-14 10:40:22,345 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\msgpack\\exceptions.py', reloading
+2025-10-14 10:40:22,346 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\msgpack\\ext.py', reloading
+2025-10-14 10:40:22,351 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\msgpack\\fallback.py', reloading
+2025-10-14 10:40:22,356 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\cachecontrol\\filewrapper.py', reloading
+2025-10-14 10:40:22,359 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\cachecontrol\\wrapper.py', reloading
+2025-10-14 10:40:22,362 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\network\\auth.py', reloading
+2025-10-14 10:40:22,370 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\vcs\\__init__.py', reloading
+2025-10-14 10:40:22,373 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\vcs\\bazaar.py', reloading
+2025-10-14 10:40:22,376 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\vcs\\versioncontrol.py', reloading
+2025-10-14 10:40:22,383 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\vcs\\git.py', reloading
+2025-10-14 10:40:22,388 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\vcs\\mercurial.py', reloading
+2025-10-14 10:40:22,391 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\vcs\\subversion.py', reloading
+2025-10-14 10:40:22,396 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\network\\cache.py', reloading
+2025-10-14 10:40:22,401 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\cachecontrol\\caches\\__init__.py', reloading
+2025-10-14 10:40:22,404 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\cachecontrol\\caches\\file_cache.py', reloading
+2025-10-14 10:40:22,408 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\cachecontrol\\caches\\redis_cache.py', reloading
+2025-10-14 10:40:22,413 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\utils\\glibc.py', reloading
+2025-10-14 10:40:22,417 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\network\\utils.py', reloading
+2025-10-14 10:40:22,421 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\index\\sources.py', reloading
+2025-10-14 10:40:22,423 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\models\\candidate.py', reloading
+2025-10-14 10:40:22,428 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\index\\package_finder.py', reloading
+2025-10-14 10:40:22,438 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\models\\selection_prefs.py', reloading
+2025-10-14 10:40:22,444 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\models\\wheel.py', reloading
+2025-10-14 10:40:22,454 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\req\\__init__.py', reloading
+2025-10-14 10:40:22,457 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\cli\\progress_bars.py', reloading
+2025-10-14 10:40:22,461 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\rich\\progress.py', reloading
+2025-10-14 10:40:22,472 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\rich\\filesize.py', reloading
+2025-10-14 10:40:22,473 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\rich\\progress_bar.py', reloading
+2025-10-14 10:40:22,475 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\rich\\spinner.py', reloading
+2025-10-14 10:40:22,478 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\rich\\_spinners.py', reloading
+2025-10-14 10:40:22,507 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\req\\req_install.py', reloading
+2025-10-14 10:40:22,524 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\operations\\build\\metadata.py', reloading
+2025-10-14 10:40:22,527 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\operations\\build\\metadata_editable.py', reloading
+2025-10-14 10:40:22,529 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\operations\\build\\metadata_legacy.py', reloading
+2025-10-14 10:40:22,536 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\utils\\setuptools_build.py', reloading
+2025-10-14 10:40:22,539 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\operations\\install\\__init__.py', reloading
+2025-10-14 10:40:22,542 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\operations\\install\\editable_legacy.py', reloading
+2025-10-14 10:40:22,545 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\operations\\install\\wheel.py', reloading
+2025-10-14 10:40:22,548 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\compileall.py', reloading
+2025-10-14 10:40:22,554 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\py_compile.py', reloading
+2025-10-14 10:40:22,558 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\filecmp.py', reloading
+2025-10-14 10:40:22,563 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\distlib\\__init__.py', reloading
+2025-10-14 10:40:22,566 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\distlib\\scripts.py', reloading
+2025-10-14 10:40:22,570 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\distlib\\compat.py', reloading
+2025-10-14 10:40:22,575 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\xmlrpc\\__init__.py', reloading
+2025-10-14 10:40:22,579 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\xmlrpc\\client.py', reloading
+2025-10-14 10:40:22,583 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\xml\\__init__.py', reloading
+2025-10-14 10:40:22,588 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\xml\\parsers\\__init__.py', reloading
+2025-10-14 10:40:22,592 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\xml\\parsers\\expat.py', reloading
+2025-10-14 10:40:22,604 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\gzip.py', reloading
+2025-10-14 10:40:22,607 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\distlib\\resources.py', reloading
+2025-10-14 10:40:22,613 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\distlib\\util.py', reloading
+2025-10-14 10:40:22,620 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:40:22,622 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\tarfile.py', reloading
+2025-10-14 10:40:22,654 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\utils\\unpacking.py', reloading
+2025-10-14 10:40:22,657 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\utils\\wheel.py', reloading
+2025-10-14 10:40:22,661 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\pyproject.py', reloading
+2025-10-14 10:40:22,673 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\req\\req_uninstall.py', reloading
+2025-10-14 10:40:22,674 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\req\\req_file.py', reloading
+2025-10-14 10:40:22,678 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\req\\req_set.py', reloading
+2025-10-14 10:40:22,685 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\utils\\entrypoints.py', reloading
+2025-10-14 10:40:22,689 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\cache.py', reloading
+2025-10-14 10:40:22,692 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\cli\\req_command.py', reloading
+2025-10-14 10:40:22,698 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\cli\\index_command.py', reloading
+2025-10-14 10:40:22,703 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\operations\\build\\build_tracker.py', reloading
+2025-10-14 10:40:22,706 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\operations\\prepare.py', reloading
+2025-10-14 10:40:22,712 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\distributions\\__init__.py', reloading
+2025-10-14 10:40:22,719 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\distributions\\base.py', reloading
+2025-10-14 10:40:22,721 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\distributions\\sdist.py', reloading
+2025-10-14 10:40:22,725 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\distributions\\wheel.py', reloading
+2025-10-14 10:40:22,730 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\distributions\\installed.py', reloading
+2025-10-14 10:40:22,735 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\network\\download.py', reloading
+2025-10-14 10:40:22,753 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\network\\lazy_wheel.py', reloading
+2025-10-14 10:40:22,757 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\utils\\direct_url_helpers.py', reloading
+2025-10-14 10:40:22,761 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\req\\constructors.py', reloading
+2025-10-14 10:40:22,772 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\req\\req_dependency_group.py', reloading
+2025-10-14 10:40:22,776 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\dependency_groups\\__init__.py', reloading
+2025-10-14 10:40:22,780 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\dependency_groups\\_implementation.py', reloading
+2025-10-14 10:40:22,787 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\resolution\\base.py', reloading
+2025-10-14 10:40:22,792 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\models\\installation_report.py', reloading
+2025-10-14 10:40:22,795 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\operations\\check.py', reloading
+2025-10-14 10:40:22,803 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\wheel_builder.py', reloading
+2025-10-14 10:40:22,807 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\operations\\build\\wheel.py', reloading
+2025-10-14 10:40:22,812 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\operations\\build\\wheel_editable.py', reloading
+2025-10-14 10:40:22,816 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_internal\\operations\\build\\wheel_legacy.py', reloading
+2025-10-14 10:40:22,822 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\rich\\_windows.py', reloading
+2025-10-14 10:40:22,832 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\rich\\_win32_console.py', reloading
+2025-10-14 10:40:22,854 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\truststore\\__init__.py', reloading
+2025-10-14 10:40:22,858 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\truststore\\_api.py', reloading
+2025-10-14 10:40:22,861 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\site-packages\\pip\\_vendor\\truststore\\_ssl_constants.py', reloading
+2025-10-14 10:40:23,419 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:40:24,490 - __main__ - INFO - Successfully connected to Airtable base: app1t04ZYvX3rWAM1
+2025-10-14 10:40:24,505 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:40:24,507 - __main__ - INFO - Debug mode: False
+2025-10-14 10:40:24,571 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:40:24,579 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:40:25,048 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 10:40:25,058 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:40:25,059 - __main__ - INFO - Debug mode: False
+2025-10-14 10:40:25,116 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:40:25,125 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:40:31,093 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\.venv\\Lib\\site-packages\\_pytest\\fixtures.py', reloading
+2025-10-14 10:40:31,094 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\.venv\\Lib\\site-packages\\_pytest\\fixtures.py', reloading
+2025-10-14 10:40:31,120 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\.venv\\Lib\\site-packages\\_pytest\\config\\__init__.py', reloading
+2025-10-14 10:40:31,121 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\.venv\\Lib\\site-packages\\_pytest\\config\\__init__.py', reloading
+2025-10-14 10:40:31,152 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\.venv\\Lib\\site-packages\\pluggy\\_hooks.py', reloading
+2025-10-14 10:40:31,152 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\.venv\\Lib\\site-packages\\pluggy\\_hooks.py', reloading
+2025-10-14 10:40:31,667 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:40:31,742 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\tests\\test_api_retrying.py', reloading
+2025-10-14 10:40:31,756 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\tests\\test_api_workspace.py', reloading
+2025-10-14 10:40:31,766 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\pyairtable\\cli.py', reloading
+2025-10-14 10:40:31,780 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\tests\\test_cli.py', reloading
+2025-10-14 10:40:31,790 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\pyairtable\\testing.py', reloading
+2025-10-14 10:40:31,808 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\tests\\test_api_base.py', reloading
+2025-10-14 10:40:31,815 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\tests\\test_api_enterprise.py', reloading
+2025-10-14 10:40:31,821 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\tests\\test_api_table.py', reloading
+2025-10-14 10:40:32,135 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:40:34,135 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 10:40:34,173 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:40:34,174 - __main__ - INFO - Debug mode: False
+2025-10-14 10:40:34,254 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:40:34,262 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:40:34,533 - __main__ - INFO - Successfully connected to Airtable base: app1t04ZYvX3rWAM1
+2025-10-14 10:40:34,542 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:40:34,543 - __main__ - INFO - Debug mode: False
+2025-10-14 10:40:34,614 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:40:34,622 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:41:34,661 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\__init__.py', reloading
+2025-10-14 10:41:34,664 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\base_events.py', reloading
+2025-10-14 10:41:34,665 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\base_events.py', reloading
+2025-10-14 10:41:34,672 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\concurrent\\futures\\__init__.py', reloading
+2025-10-14 10:41:34,675 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\concurrent\\futures\\_base.py', reloading
+2025-10-14 10:41:34,721 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\constants.py', reloading
+2025-10-14 10:41:34,721 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\constants.py', reloading
+2025-10-14 10:41:34,724 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\coroutines.py', reloading
+2025-10-14 10:41:34,724 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\coroutines.py', reloading
+2025-10-14 10:41:34,726 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\events.py', reloading
+2025-10-14 10:41:34,726 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\events.py', reloading
+2025-10-14 10:41:34,731 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\format_helpers.py', reloading
+2025-10-14 10:41:34,738 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\base_futures.py', reloading
+2025-10-14 10:41:34,738 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\base_futures.py', reloading
+2025-10-14 10:41:34,741 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\exceptions.py', reloading
+2025-10-14 10:41:34,741 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\exceptions.py', reloading
+2025-10-14 10:41:34,743 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\base_tasks.py', reloading
+2025-10-14 10:41:34,743 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\base_tasks.py', reloading
+2025-10-14 10:41:34,745 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\futures.py', reloading
+2025-10-14 10:41:34,746 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\futures.py', reloading
+2025-10-14 10:41:34,750 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\protocols.py', reloading
+2025-10-14 10:41:34,753 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\sslproto.py', reloading
+2025-10-14 10:41:34,756 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\transports.py', reloading
+2025-10-14 10:41:34,758 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\log.py', reloading
+2025-10-14 10:41:34,770 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\staggered.py', reloading
+2025-10-14 10:41:34,772 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\locks.py', reloading
+2025-10-14 10:41:34,775 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\mixins.py', reloading
+2025-10-14 10:41:34,775 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\mixins.py', reloading
+2025-10-14 10:41:34,780 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\tasks.py', reloading
+2025-10-14 10:41:34,783 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\queues.py', reloading
+2025-10-14 10:41:34,786 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\timeouts.py', reloading
+2025-10-14 10:41:34,786 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\timeouts.py', reloading
+2025-10-14 10:41:34,797 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\trsock.py', reloading
+2025-10-14 10:41:34,797 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\trsock.py', reloading
+2025-10-14 10:41:34,800 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\runners.py', reloading
+2025-10-14 10:41:34,804 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\streams.py', reloading
+2025-10-14 10:41:34,807 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\subprocess.py', reloading
+2025-10-14 10:41:34,810 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\taskgroups.py', reloading
+2025-10-14 10:41:34,814 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\threads.py', reloading
+2025-10-14 10:41:34,816 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\windows_events.py', reloading
+2025-10-14 10:41:34,826 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\base_subprocess.py', reloading
+2025-10-14 10:41:34,829 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\proactor_events.py', reloading
+2025-10-14 10:41:34,834 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\selector_events.py', reloading
+2025-10-14 10:41:34,837 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\windows_utils.py', reloading
+2025-10-14 10:41:34,861 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\concurrent\\futures\\thread.py', reloading
+2025-10-14 10:41:35,065 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:41:35,348 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:41:36,690 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 10:41:36,699 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:41:36,700 - __main__ - INFO - Debug mode: False
+2025-10-14 10:41:36,752 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:41:36,761 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:41:36,809 - __main__ - INFO - Successfully connected to Airtable base: app1t04ZYvX3rWAM1
+2025-10-14 10:41:36,821 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:41:36,821 - __main__ - INFO - Debug mode: False
+2025-10-14 10:41:36,867 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:41:36,875 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:41:37,129 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\graphlib.py', reloading
+2025-10-14 10:41:37,129 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\graphlib.py', reloading
+2025-10-14 10:41:38,047 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:41:38,181 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:41:39,655 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 10:41:39,676 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:41:39,676 - __main__ - INFO - Debug mode: False
+2025-10-14 10:41:39,726 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:41:39,736 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:41:39,810 - __main__ - INFO - Successfully connected to Airtable base: app1t04ZYvX3rWAM1
+2025-10-14 10:41:39,824 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:41:39,825 - __main__ - INFO - Debug mode: False
+2025-10-14 10:41:39,872 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:41:39,881 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:41:41,067 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\generator.py', reloading
+2025-10-14 10:41:41,067 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\generator.py', reloading
+2025-10-14 10:41:41,070 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\headerregistry.py', reloading
+2025-10-14 10:41:41,070 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\headerregistry.py', reloading
+2025-10-14 10:41:41,074 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\_header_value_parser.py', reloading
+2025-10-14 10:41:41,085 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\mime\\base.py', reloading
+2025-10-14 10:41:41,085 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\mime\\base.py', reloading
+2025-10-14 10:41:41,088 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\policy.py', reloading
+2025-10-14 10:41:41,088 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\policy.py', reloading
+2025-10-14 10:41:41,090 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\contentmanager.py', reloading
+2025-10-14 10:41:41,091 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\contentmanager.py', reloading
+2025-10-14 10:41:41,094 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\mime\\message.py', reloading
+2025-10-14 10:41:41,094 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\mime\\message.py', reloading
+2025-10-14 10:41:41,098 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\mime\\nonmultipart.py', reloading
+2025-10-14 10:41:41,099 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\mime\\nonmultipart.py', reloading
+2025-10-14 10:41:41,101 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\mime\\multipart.py', reloading
+2025-10-14 10:41:41,102 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\mime\\multipart.py', reloading
+2025-10-14 10:41:41,104 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\mime\\text.py', reloading
+2025-10-14 10:41:42,107 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:41:42,274 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:41:43,901 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 10:41:43,910 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:41:43,910 - __main__ - INFO - Debug mode: False
+2025-10-14 10:41:43,963 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:41:43,975 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:41:43,977 - __main__ - INFO - Successfully connected to Airtable base: app1t04ZYvX3rWAM1
+2025-10-14 10:41:43,990 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:41:43,990 - __main__ - INFO - Debug mode: False
+2025-10-14 10:41:44,034 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:41:44,043 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:41:44,199 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\wsgiref\\__init__.py', reloading
+2025-10-14 10:41:44,200 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\wsgiref\\__init__.py', reloading
+2025-10-14 10:41:44,201 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\wsgiref\\headers.py', reloading
+2025-10-14 10:41:44,201 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\wsgiref\\headers.py', reloading
+2025-10-14 10:41:44,204 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\wsgiref\\util.py', reloading
+2025-10-14 10:41:44,204 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\wsgiref\\util.py', reloading
+2025-10-14 10:41:44,557 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\django\\__init__.py', reloading
+2025-10-14 10:41:44,557 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\django\\__init__.py', reloading
+2025-10-14 10:41:44,602 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\django\\apps\\registry.py', reloading
+2025-10-14 10:41:44,651 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\django\\apps\\config.py', reloading
+2025-10-14 10:41:45,301 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:41:45,385 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:41:46,785 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 10:41:46,795 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:41:46,795 - __main__ - INFO - Debug mode: False
+2025-10-14 10:41:46,842 - __main__ - INFO - Successfully connected to Airtable base: app1t04ZYvX3rWAM1
+2025-10-14 10:41:46,845 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:41:46,853 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:41:46,853 - __main__ - INFO - Debug mode: False
+2025-10-14 10:41:46,856 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:41:46,903 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:41:46,913 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:44:06,572 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\getpass.py', reloading
+2025-10-14 10:44:06,572 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\getpass.py', reloading
+2025-10-14 10:44:06,573 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\html\\__init__.py', reloading
+2025-10-14 10:44:06,573 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\html\\__init__.py', reloading
+2025-10-14 10:44:06,575 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\html\\entities.py', reloading
+2025-10-14 10:44:06,576 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\html\\entities.py', reloading
+2025-10-14 10:44:06,774 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\fractions.py', reloading
+2025-10-14 10:44:06,774 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\fractions.py', reloading
+2025-10-14 10:44:06,776 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\decimal.py', reloading
+2025-10-14 10:44:06,776 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\decimal.py', reloading
+2025-10-14 10:44:06,781 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\numbers.py', reloading
+2025-10-14 10:44:06,781 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\numbers.py', reloading
+2025-10-14 10:44:06,850 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\pickle.py', reloading
+2025-10-14 10:44:06,854 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\_compat_pickle.py', reloading
+2025-10-14 10:44:06,854 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\_compat_pickle.py', reloading
+2025-10-14 10:44:07,076 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\ctypes\\__init__.py', reloading
+2025-10-14 10:44:07,076 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\ctypes\\__init__.py', reloading
+2025-10-14 10:44:07,083 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\ctypes\\_endian.py', reloading
+2025-10-14 10:44:07,405 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:44:07,410 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:44:09,105 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 10:44:09,112 - __main__ - INFO - Successfully connected to Airtable base: app1t04ZYvX3rWAM1
+2025-10-14 10:44:09,115 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:44:09,115 - __main__ - INFO - Debug mode: False
+2025-10-14 10:44:09,121 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:44:09,122 - __main__ - INFO - Debug mode: False
+2025-10-14 10:44:09,191 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:44:09,201 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:44:09,214 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:44:09,222 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:44:09,403 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\netrc.py', reloading
+2025-10-14 10:44:09,404 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\netrc.py', reloading
+2025-10-14 10:44:10,544 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:44:12,093 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 10:44:12,093 - __main__ - INFO - Successfully connected to Airtable base: app1t04ZYvX3rWAM1
+2025-10-14 10:44:12,102 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:44:12,103 - __main__ - INFO - Debug mode: False
+2025-10-14 10:44:12,104 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:44:12,104 - __main__ - INFO - Debug mode: False
+2025-10-14 10:44:12,154 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:44:12,154 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:44:12,163 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:44:12,164 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:45:09,501 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\sqlite3\\__init__.py', reloading
+2025-10-14 10:45:09,501 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\sqlite3\\__init__.py', reloading
+2025-10-14 10:45:09,504 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\sqlite3\\dbapi2.py', reloading
+2025-10-14 10:45:09,504 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\sqlite3\\dbapi2.py', reloading
+2025-10-14 10:45:09,687 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\statistics.py', reloading
+2025-10-14 10:45:09,879 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:45:09,931 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:45:11,321 - __main__ - INFO - Successfully connected to Airtable base: app1t04ZYvX3rWAM1
+2025-10-14 10:45:11,329 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:45:11,329 - __main__ - INFO - Debug mode: False
+2025-10-14 10:45:11,349 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 10:45:11,358 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:45:11,358 - __main__ - INFO - Debug mode: False
+2025-10-14 10:45:11,379 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:45:11,387 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:45:11,404 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:45:11,413 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:45:14,549 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\xml\\etree\\__init__.py', reloading
+2025-10-14 10:45:14,549 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\xml\\etree\\__init__.py', reloading
+2025-10-14 10:45:14,552 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\xml\\etree\\ElementTree.py', reloading
+2025-10-14 10:45:14,556 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\xml\\etree\\ElementPath.py', reloading
+2025-10-14 10:45:15,760 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:45:15,787 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:45:17,254 - __main__ - INFO - Successfully connected to Airtable base: app1t04ZYvX3rWAM1
+2025-10-14 10:45:17,263 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:45:17,263 - __main__ - INFO - Debug mode: False
+2025-10-14 10:45:17,275 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 10:45:17,283 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:45:17,283 - __main__ - INFO - Debug mode: False
+2025-10-14 10:45:17,309 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:45:17,320 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:45:17,330 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:45:17,340 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:58:04,896 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_optimized.py', reloading
+2025-10-14 10:58:04,897 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_optimized.py', reloading
+2025-10-14 10:58:04,898 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_optimized.py', reloading
+2025-10-14 10:58:05,858 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:58:06,059 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:58:07,839 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 10:58:07,854 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:58:07,854 - __main__ - INFO - Debug mode: False
+2025-10-14 10:58:07,949 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:58:07,961 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:58:42,780 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\wsgiref\\simple_server.py', reloading
+2025-10-14 10:58:42,785 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\wsgiref\\handlers.py', reloading
+2025-10-14 10:58:43,147 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:58:44,653 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 10:58:44,674 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:58:44,674 - __main__ - INFO - Debug mode: False
+2025-10-14 10:58:44,731 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:58:44,742 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:58:45,576 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\django\\utils\\autoreload.py', reloading
+2025-10-14 10:58:45,593 - __main__ - INFO - Successfully connected to Airtable base: app1t04ZYvX3rWAM1
+2025-10-14 10:58:45,600 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:58:45,601 - __main__ - INFO - Debug mode: False
+2025-10-14 10:58:45,621 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\django\\core\\management\\commands\\runserver.py', reloading
+2025-10-14 10:58:45,663 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\django\\core\\management\\base.py', reloading
+2025-10-14 10:58:45,691 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2025-10-14 10:58:45,692 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-14 10:58:45,702 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\django\\core\\checks\\registry.py', reloading
+2025-10-14 10:58:45,710 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:58:45,743 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\django\\core\\checks\\urls.py', reloading
+2025-10-14 10:58:45,786 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\django\\utils\\functional.py', reloading
+2025-10-14 10:58:46,107 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:58:47,479 - __main__ - INFO - Successfully connected to Airtable base: app1t04ZYvX3rWAM1
+2025-10-14 10:58:47,490 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:58:47,491 - __main__ - INFO - Debug mode: False
+2025-10-14 10:58:47,553 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:58:47,563 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:58:47,777 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 10:58:47,792 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:58:47,792 - __main__ - INFO - Debug mode: False
+2025-10-14 10:58:47,848 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:58:47,859 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:58:56,769 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\encodings\\unicode_escape.py', reloading
+2025-10-14 10:58:56,776 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 10:58:56] "GET /?id=16aeb093-ab6e-48bf-b0a3-62fd19324512&vscodeBrowserReqId=1760425136437 HTTP/1.1" 200 -
+2025-10-14 10:58:56,777 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\encodings\\unicode_escape.py', reloading
+2025-10-14 10:58:57,041 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:58:57,347 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 10:58:58,611 - __main__ - INFO - Successfully connected to Airtable base: app1t04ZYvX3rWAM1
+2025-10-14 10:58:58,623 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:58:58,624 - __main__ - INFO - Debug mode: False
+2025-10-14 10:58:58,679 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:58:58,688 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:58:58,863 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 10:58:58,873 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 10:58:58,874 - __main__ - INFO - Debug mode: False
+2025-10-14 10:58:58,923 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 10:58:58,932 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 10:59:59,158 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 10:59:59] "GET /?id=16aeb093-ab6e-48bf-b0a3-62fd19324512&vscodeBrowserReqId=1760425198826 HTTP/1.1" 200 -
+2025-10-14 11:00:51,330 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\_strptime.py', reloading
+2025-10-14 11:00:51,330 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\_strptime.py', reloading
+2025-10-14 11:00:51,728 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:00:51,970 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:00:53,295 - __main__ - INFO - Successfully connected to Airtable base: app1t04ZYvX3rWAM1
+2025-10-14 11:00:53,304 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:00:53,304 - __main__ - INFO - Debug mode: False
+2025-10-14 11:00:53,353 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:00:53,364 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:00:53,434 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:00:53,442 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:00:53,443 - __main__ - INFO - Debug mode: False
+2025-10-14 11:00:53,492 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:00:53,499 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:00:53,580 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\pydoc.py', reloading
+2025-10-14 11:00:53,580 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\pydoc.py', reloading
+2025-10-14 11:00:53,587 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\_pyrepl\\__init__.py', reloading
+2025-10-14 11:00:53,591 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\_pyrepl\\pager.py', reloading
+2025-10-14 11:00:53,591 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\_pyrepl\\pager.py', reloading
+2025-10-14 11:00:54,696 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:00:54,849 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:00:56,296 - __main__ - INFO - Successfully connected to Airtable base: app1t04ZYvX3rWAM1
+2025-10-14 11:00:56,305 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:00:56,305 - __main__ - INFO - Debug mode: False
+2025-10-14 11:00:56,330 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:00:56,341 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:00:56,341 - __main__ - INFO - Debug mode: False
+2025-10-14 11:00:56,353 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:00:56,361 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:00:56,391 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:00:56,401 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:01:08,469 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:01:08] "GET /api/health?id=16aeb093-ab6e-48bf-b0a3-62fd19324512&vscodeBrowserReqId=1760425268143 HTTP/1.1" 200 -
+2025-10-14 11:02:20,749 - __main__ - ERROR - Error fetching tables: Airtable connection not available
+2025-10-14 11:02:20,750 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:02:20] "[35m[1mGET /api/tables?id=16aeb093-ab6e-48bf-b0a3-62fd19324512&vscodeBrowserReqId=1760425340434 HTTP/1.1[0m" 500 -
+2025-10-14 11:03:08,909 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_optimized.py', reloading
+2025-10-14 11:03:08,909 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_optimized.py', reloading
+2025-10-14 11:03:08,910 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_optimized.py', reloading
+2025-10-14 11:03:08,910 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_optimized.py', reloading
+2025-10-14 11:03:09,867 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:03:09,895 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:03:11,661 - __main__ - INFO - Successfully connected to Airtable base: app1t04ZYvX3rWAM1
+2025-10-14 11:03:11,670 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:03:11,671 - __main__ - INFO - Debug mode: False
+2025-10-14 11:03:11,712 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:03:11,723 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:03:11,723 - __main__ - INFO - Debug mode: False
+2025-10-14 11:03:11,730 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:03:11,740 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:03:11,773 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:03:11,782 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:03:23,122 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_optimized.py', reloading
+2025-10-14 11:03:23,122 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_optimized.py', reloading
+2025-10-14 11:03:23,124 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_optimized.py', reloading
+2025-10-14 11:03:23,124 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_optimized.py', reloading
+2025-10-14 11:03:23,126 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_optimized.py', reloading
+2025-10-14 11:03:23,126 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_optimized.py', reloading
+2025-10-14 11:03:24,382 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:03:24,426 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:03:26,050 - __main__ - INFO - Successfully connected to Airtable base: app1t04ZYvX3rWAM1
+2025-10-14 11:03:26,066 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:03:26,068 - __main__ - INFO - Debug mode: False
+2025-10-14 11:03:26,102 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:03:26,123 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:03:26,128 - __main__ - INFO - Debug mode: False
+2025-10-14 11:03:26,135 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:03:26,144 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:03:26,174 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:03:26,182 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:03:26,254 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:03:26] "GET /test?id=16aeb093-ab6e-48bf-b0a3-62fd19324512&vscodeBrowserReqId=1760425404547 HTTP/1.1" 200 -
+2025-10-14 11:04:58,214 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_working.py', reloading
+2025-10-14 11:04:58,215 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_working.py', reloading
+2025-10-14 11:04:58,399 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_working.py', reloading
+2025-10-14 11:04:58,401 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_working.py', reloading
+2025-10-14 11:04:58,401 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_working.py', reloading
+2025-10-14 11:04:58,687 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:04:58,741 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:05:00,883 - __main__ - INFO - Successfully connected to Airtable base: app1t04ZYvX3rWAM1
+2025-10-14 11:05:00,893 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:05:00,918 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:05:00,919 - __main__ - INFO - Debug mode: False
+2025-10-14 11:05:00,930 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:05:00,934 - __main__ - INFO - Debug mode: False
+2025-10-14 11:05:01,004 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:05:01,004 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:05:01,013 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:05:01,014 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:05:12,399 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\webbrowser.py', reloading
+2025-10-14 11:05:12,399 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\webbrowser.py', reloading
+2025-10-14 11:05:12,693 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:05:12,707 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:05:14,353 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:05:14,377 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:05:14,380 - __main__ - INFO - Debug mode: False
+2025-10-14 11:05:14,405 - __main__ - INFO - Successfully connected to Airtable base: app1t04ZYvX3rWAM1
+2025-10-14 11:05:14,417 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:05:14,417 - __main__ - INFO - Debug mode: False
+2025-10-14 11:05:14,512 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:05:14,514 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:05:14,526 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:05:14,530 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:05:22,064 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:05:22] "GET / HTTP/1.1" 200 -
+2025-10-14 11:05:22,501 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:05:22] "[33mGET /static/css/optimized.css HTTP/1.1[0m" 404 -
+2025-10-14 11:05:22,937 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:05:22] "GET /static/js/optimized.js HTTP/1.1" 200 -
+2025-10-14 11:05:23,305 - __main__ - ERROR - Error fetching tables: Airtable connection not available
+2025-10-14 11:05:23,306 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:05:23] "[35m[1mGET /api/tables HTTP/1.1[0m" 500 -
+2025-10-14 11:05:33,337 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_working.py', reloading
+2025-10-14 11:05:33,341 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_working.py', reloading
+2025-10-14 11:05:33,342 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_working.py', reloading
+2025-10-14 11:05:33,345 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_working.py', reloading
+2025-10-14 11:05:33,345 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_working.py', reloading
+2025-10-14 11:05:34,465 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:05:34,539 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:05:36,213 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:05:36,223 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:05:36,223 - __main__ - INFO - Debug mode: False
+2025-10-14 11:05:36,283 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:05:36,295 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:06:14,662 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:06:14] "GET /?id=16aeb093-ab6e-48bf-b0a3-62fd19324512&vscodeBrowserReqId=1760425574309 HTTP/1.1" 200 -
+2025-10-14 11:06:50,297 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:06:50] "GET / HTTP/1.1" 200 -
+2025-10-14 11:06:50,490 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:06:50] "[33mGET /static/css/optimized.css HTTP/1.1[0m" 404 -
+2025-10-14 11:06:50,686 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:06:50] "[36mGET /static/js/optimized.js HTTP/1.1[0m" 304 -
+2025-10-14 11:06:51,081 - __main__ - ERROR - Error fetching tables: Airtable connection not available
+2025-10-14 11:06:51,082 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:06:51] "[35m[1mGET /api/tables HTTP/1.1[0m" 500 -
+2025-10-14 11:09:19,646 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:09:19] "GET /?id=16aeb093-ab6e-48bf-b0a3-62fd19324512&vscodeBrowserReqId=1760425759329 HTTP/1.1" 200 -
+2025-10-14 11:11:27,888 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server.py', reloading
+2025-10-14 11:11:27,892 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server.py', reloading
+2025-10-14 11:11:28,385 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:11:30,253 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:11:30,262 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:11:30,263 - __main__ - INFO - Debug mode: False
+2025-10-14 11:11:30,330 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:11:30,342 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:12:20,415 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server.py', reloading
+2025-10-14 11:12:20,418 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server.py', reloading
+2025-10-14 11:12:20,419 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server.py', reloading
+2025-10-14 11:12:22,126 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:12:23,876 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:12:23,885 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:12:23,885 - __main__ - INFO - Debug mode: False
+2025-10-14 11:12:23,936 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:12:23,945 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:14:02,926 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_updated.py', reloading
+2025-10-14 11:14:03,167 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_updated.py', reloading
+2025-10-14 11:14:03,169 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_updated.py', reloading
+2025-10-14 11:14:03,170 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_updated.py', reloading
+2025-10-14 11:14:03,956 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:14:06,073 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:14:06,090 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:14:06,091 - __main__ - INFO - Debug mode: False
+2025-10-14 11:14:06,169 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:14:06,178 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:15:00,621 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server.py', reloading
+2025-10-14 11:15:00,624 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server.py', reloading
+2025-10-14 11:15:00,625 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_updated.py', reloading
+2025-10-14 11:15:00,645 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server.py', reloading
+2025-10-14 11:15:00,650 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_updated.py', reloading
+2025-10-14 11:15:01,853 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:15:03,362 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:15:03,375 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:15:03,375 - __main__ - INFO - Debug mode: False
+2025-10-14 11:15:03,429 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:15:03,438 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:16:24,373 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\encodings\\utf_16_le.py', reloading
+2025-10-14 11:16:24,637 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:16:26,204 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:16:26,215 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:16:26,215 - __main__ - INFO - Debug mode: False
+2025-10-14 11:16:26,260 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:16:26,270 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:16:37,138 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:16:37] "GET /?id=16aeb093-ab6e-48bf-b0a3-62fd19324512&vscodeBrowserReqId=1760426196796 HTTP/1.1" 200 -
+2025-10-14 11:20:20,527 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:20:20] "GET / HTTP/1.1" 200 -
+2025-10-14 11:20:20,761 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:20:20] "[33mGET /static/css/optimized.css HTTP/1.1[0m" 404 -
+2025-10-14 11:20:21,058 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:20:21] "[36mGET /static/js/optimized.js HTTP/1.1[0m" 304 -
+2025-10-14 11:20:21,100 - __main__ - ERROR - Error fetching tables: Airtable connection not available
+2025-10-14 11:20:21,101 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:20:21] "[35m[1mGET /api/tables HTTP/1.1[0m" 500 -
+2025-10-14 11:25:46,196 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_updated.py', reloading
+2025-10-14 11:25:46,201 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_updated.py', reloading
+2025-10-14 11:25:47,596 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:25:49,325 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:25:49,336 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:25:49,337 - __main__ - INFO - Debug mode: False
+2025-10-14 11:25:49,387 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:25:49,396 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:26:11,803 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_updated.py', reloading
+2025-10-14 11:26:11,810 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_updated.py', reloading
+2025-10-14 11:26:12,461 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:26:14,159 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:26:14,169 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:26:14,169 - __main__ - INFO - Debug mode: False
+2025-10-14 11:26:14,221 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:26:14,233 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:26:26,489 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_updated.py', reloading
+2025-10-14 11:26:26,492 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_updated.py', reloading
+2025-10-14 11:26:26,813 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:26:28,537 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:26:28,549 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:26:28,550 - __main__ - INFO - Debug mode: False
+2025-10-14 11:26:28,594 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:26:28,603 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:26:55,567 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_updated.py', reloading
+2025-10-14 11:26:56,536 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:26:58,141 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:26:58,151 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:26:58,151 - __main__ - INFO - Debug mode: False
+2025-10-14 11:26:58,216 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:26:58,226 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:27:12,675 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_updated.py', reloading
+2025-10-14 11:27:12,678 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_updated.py', reloading
+2025-10-14 11:27:13,926 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:27:15,535 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:27:15,552 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:27:15,553 - __main__ - INFO - Debug mode: False
+2025-10-14 11:27:15,656 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:27:15,670 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:27:44,206 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_updated.py', reloading
+2025-10-14 11:27:44,207 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_updated.py', reloading
+2025-10-14 11:27:44,208 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_updated.py', reloading
+2025-10-14 11:27:44,618 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:27:46,218 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:27:46,237 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:27:46,238 - __main__ - INFO - Debug mode: False
+2025-10-14 11:27:46,302 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:27:46,310 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:28:15,136 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_updated.py', reloading
+2025-10-14 11:28:15,138 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_updated.py', reloading
+2025-10-14 11:28:16,464 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:28:18,009 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:28:18,022 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:28:18,022 - __main__ - INFO - Debug mode: False
+2025-10-14 11:28:18,073 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:28:18,082 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:28:46,441 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_updated.py', reloading
+2025-10-14 11:28:46,448 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_updated.py', reloading
+2025-10-14 11:28:47,055 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:28:48,563 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:28:48,574 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:28:48,575 - __main__ - INFO - Debug mode: False
+2025-10-14 11:28:48,619 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:28:48,630 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:29:14,895 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_updated.py', reloading
+2025-10-14 11:29:14,896 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_updated.py', reloading
+2025-10-14 11:29:15,650 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:29:17,296 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:29:17,306 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:29:17,307 - __main__ - INFO - Debug mode: False
+2025-10-14 11:29:17,373 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:29:17,382 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:30:17,754 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:30:17] "GET /?id=16aeb093-ab6e-48bf-b0a3-62fd19324512&vscodeBrowserReqId=1760427017416 HTTP/1.1" 200 -
+2025-10-14 11:30:28,082 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:30:28] "GET / HTTP/1.1" 200 -
+2025-10-14 11:30:28,189 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:30:28] "[33mGET /static/css/optimized.css HTTP/1.1[0m" 404 -
+2025-10-14 11:30:28,518 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:30:28] "[36mGET /static/js/optimized.js HTTP/1.1[0m" 304 -
+2025-10-14 11:30:28,845 - __main__ - ERROR - Error fetching tables: Airtable connection not available
+2025-10-14 11:30:28,846 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:30:28] "[35m[1mGET /api/tables HTTP/1.1[0m" 500 -
+2025-10-14 11:30:31,208 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:30:31] "GET / HTTP/1.1" 200 -
+2025-10-14 11:30:31,513 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:30:31] "[33mGET /static/css/optimized.css HTTP/1.1[0m" 404 -
+2025-10-14 11:30:31,549 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:30:31] "[36mGET /static/js/optimized.js HTTP/1.1[0m" 304 -
+2025-10-14 11:30:31,875 - __main__ - ERROR - Error fetching tables: Airtable connection not available
+2025-10-14 11:30:31,877 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:30:31] "[35m[1mGET /api/tables HTTP/1.1[0m" 500 -
+2025-10-14 11:32:27,318 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:32:27] "GET / HTTP/1.1" 200 -
+2025-10-14 11:32:27,627 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:32:27] "[33mGET /static/css/optimized.css HTTP/1.1[0m" 404 -
+2025-10-14 11:32:27,628 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:32:27] "[36mGET /static/js/optimized.js HTTP/1.1[0m" 304 -
+2025-10-14 11:32:28,255 - __main__ - ERROR - Error fetching tables: Airtable connection not available
+2025-10-14 11:32:28,257 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:32:28] "[35m[1mGET /api/tables HTTP/1.1[0m" 500 -
+2025-10-14 11:32:57,292 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:32:57] "GET /?id=16aeb093-ab6e-48bf-b0a3-62fd19324512&vscodeBrowserReqId=1760427176963 HTTP/1.1" 200 -
+2025-10-14 11:34:42,042 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:34:42] "GET / HTTP/1.1" 200 -
+2025-10-14 11:34:42,276 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:34:42] "[33mGET /static/css/optimized.css HTTP/1.1[0m" 404 -
+2025-10-14 11:34:42,293 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:34:42] "[36mGET /static/js/optimized.js HTTP/1.1[0m" 304 -
+2025-10-14 11:34:42,922 - __main__ - ERROR - Error fetching tables: Airtable connection not available
+2025-10-14 11:34:42,922 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:34:42] "[35m[1mGET /api/tables HTTP/1.1[0m" 500 -
+2025-10-14 11:38:24,350 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\encodings\\__init__.py', reloading
+2025-10-14 11:38:24,352 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\encodings\\aliases.py', reloading
+2025-10-14 11:38:24,353 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\encodings\\utf_8.py', reloading
+2025-10-14 11:38:24,354 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\encodings\\cp1252.py', reloading
+2025-10-14 11:38:24,373 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\warnings.py', reloading
+2025-10-14 11:38:24,377 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\linecache.py', reloading
+2025-10-14 11:38:24,379 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\tokenize.py', reloading
+2025-10-14 11:38:24,381 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\collections\\__init__.py', reloading
+2025-10-14 11:38:24,384 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\keyword.py', reloading
+2025-10-14 11:38:24,385 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\operator.py', reloading
+2025-10-14 11:38:24,387 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\reprlib.py', reloading
+2025-10-14 11:38:24,390 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\functools.py', reloading
+2025-10-14 11:38:24,393 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\re\\__init__.py', reloading
+2025-10-14 11:38:24,395 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\enum.py', reloading
+2025-10-14 11:38:24,398 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\types.py', reloading
+2025-10-14 11:38:24,401 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\re\\_compiler.py', reloading
+2025-10-14 11:38:24,404 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\re\\_parser.py', reloading
+2025-10-14 11:38:24,406 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\re\\_constants.py', reloading
+2025-10-14 11:38:24,408 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\re\\_casefix.py', reloading
+2025-10-14 11:38:24,411 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\copyreg.py', reloading
+2025-10-14 11:38:24,413 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\token.py', reloading
+2025-10-14 11:38:24,419 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\datetime.py', reloading
+2025-10-14 11:38:24,422 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\typing.py', reloading
+2025-10-14 11:38:24,432 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\__future__.py', reloading
+2025-10-14 11:38:24,435 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\json\\__init__.py', reloading
+2025-10-14 11:38:24,438 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\json\\decoder.py', reloading
+2025-10-14 11:38:24,440 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\json\\scanner.py', reloading
+2025-10-14 11:38:24,442 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\json\\encoder.py', reloading
+2025-10-14 11:38:24,450 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\selectors.py', reloading
+2025-10-14 11:38:24,455 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\socket.py', reloading
+2025-10-14 11:38:24,466 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\threading.py', reloading
+2025-10-14 11:38:24,468 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\_weakrefset.py', reloading
+2025-10-14 11:38:24,471 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\http\\__init__.py', reloading
+2025-10-14 11:38:24,477 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\copy.py', reloading
+2025-10-14 11:38:24,478 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\weakref.py', reloading
+2025-10-14 11:38:24,482 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\__init__.py', reloading
+2025-10-14 11:38:24,483 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\utils.py', reloading
+2025-10-14 11:38:24,486 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\urllib\\parse.py', reloading
+2025-10-14 11:38:24,488 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\ipaddress.py', reloading
+2025-10-14 11:38:24,494 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\_parseaddr.py', reloading
+2025-10-14 11:38:24,503 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\http\\client.py', reloading
+2025-10-14 11:38:24,504 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\parser.py', reloading
+2025-10-14 11:38:24,505 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\feedparser.py', reloading
+2025-10-14 11:38:24,507 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\errors.py', reloading
+2025-10-14 11:38:24,510 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\_policybase.py', reloading
+2025-10-14 11:38:24,513 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\header.py', reloading
+2025-10-14 11:38:24,517 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\quoprimime.py', reloading
+2025-10-14 11:38:24,518 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\string.py', reloading
+2025-10-14 11:38:24,520 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\base64mime.py', reloading
+2025-10-14 11:38:24,522 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\base64.py', reloading
+2025-10-14 11:38:24,523 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\struct.py', reloading
+2025-10-14 11:38:24,525 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\charset.py', reloading
+2025-10-14 11:38:24,526 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\encoders.py', reloading
+2025-10-14 11:38:24,528 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\quopri.py', reloading
+2025-10-14 11:38:24,533 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\message.py', reloading
+2025-10-14 11:38:24,534 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\_encoded_words.py', reloading
+2025-10-14 11:38:24,536 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\iterators.py', reloading
+2025-10-14 11:38:24,538 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\ssl.py', reloading
+2025-10-14 11:38:24,552 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\mimetypes.py', reloading
+2025-10-14 11:38:24,557 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\shutil.py', reloading
+2025-10-14 11:38:24,558 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\fnmatch.py', reloading
+2025-10-14 11:38:24,559 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\bz2.py', reloading
+2025-10-14 11:38:24,561 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\_compression.py', reloading
+2025-10-14 11:38:24,565 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\lzma.py', reloading
+2025-10-14 11:38:24,571 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\logging\\__init__.py', reloading
+2025-10-14 11:38:24,574 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\traceback.py', reloading
+2025-10-14 11:38:24,579 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\textwrap.py', reloading
+2025-10-14 11:38:24,581 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\contextlib.py', reloading
+2025-10-14 11:38:24,584 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\_colorize.py', reloading
+2025-10-14 11:38:24,608 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\hashlib.py', reloading
+2025-10-14 11:38:24,614 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\urllib\\request.py', reloading
+2025-10-14 11:38:24,617 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\bisect.py', reloading
+2025-10-14 11:38:24,618 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\tempfile.py', reloading
+2025-10-14 11:38:24,626 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\random.py', reloading
+2025-10-14 11:38:24,630 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\urllib\\error.py', reloading
+2025-10-14 11:38:24,631 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\urllib\\response.py', reloading
+2025-10-14 11:38:24,633 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\nturl2path.py', reloading
+2025-10-14 11:38:24,647 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\inspect.py', reloading
+2025-10-14 11:38:24,651 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\ast.py', reloading
+2025-10-14 11:38:24,655 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\dis.py', reloading
+2025-10-14 11:38:24,657 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\opcode.py', reloading
+2025-10-14 11:38:24,659 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\_opcode_metadata.py', reloading
+2025-10-14 11:38:24,665 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\importlib\\__init__.py', reloading
+2025-10-14 11:38:24,704 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\dataclasses.py', reloading
+2025-10-14 11:38:24,719 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\importlib\\_abc.py', reloading
+2025-10-14 11:38:24,725 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\hmac.py', reloading
+2025-10-14 11:38:25,067 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:38:26,753 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:38:26,766 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:38:26,767 - __main__ - INFO - Debug mode: False
+2025-10-14 11:38:26,821 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:38:26,833 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:38:29,029 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:38:29] "GET /?id=16aeb093-ab6e-48bf-b0a3-62fd19324512&vscodeBrowserReqId=1760427508697 HTTP/1.1" 200 -
+2025-10-14 11:38:44,681 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_updated.py', reloading
+2025-10-14 11:38:44,683 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_updated.py', reloading
+2025-10-14 11:38:45,729 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:38:47,482 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:38:47,489 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:38:47,490 - __main__ - INFO - Debug mode: False
+2025-10-14 11:38:47,539 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:38:47,547 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:39:33,120 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_simple.py', reloading
+2025-10-14 11:39:33,333 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_simple.py', reloading
+2025-10-14 11:39:33,334 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_simple.py', reloading
+2025-10-14 11:39:33,335 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_simple.py', reloading
+2025-10-14 11:39:33,914 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:39:35,632 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:39:35,644 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:39:35,646 - __main__ - INFO - Debug mode: False
+2025-10-14 11:39:35,709 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:39:35,718 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:40:04,228 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_updated.py', reloading
+2025-10-14 11:40:04,235 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_updated.py', reloading
+2025-10-14 11:40:04,237 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_simple.py', reloading
+2025-10-14 11:40:04,245 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_updated.py', reloading
+2025-10-14 11:40:04,247 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_simple.py', reloading
+2025-10-14 11:40:04,743 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:40:06,262 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:40:06,269 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:40:06,270 - __main__ - INFO - Debug mode: False
+2025-10-14 11:40:06,317 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:40:06,327 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:40:37,826 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:40:37] "GET /?id=16aeb093-ab6e-48bf-b0a3-62fd19324512&vscodeBrowserReqId=1760427637460 HTTP/1.1" 200 -
+2025-10-14 11:42:42,677 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:42:42,832 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:42:42,834 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:42:43,742 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:42:45,699 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:42:45,707 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:42:45,708 - __main__ - INFO - Debug mode: False
+2025-10-14 11:42:45,758 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:42:45,770 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:43:55,465 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:43:55,468 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:43:56,178 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:43:57,678 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:43:57,688 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:43:57,688 - __main__ - INFO - Debug mode: False
+2025-10-14 11:43:57,752 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:43:57,764 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:44:12,704 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\contextvars.py', reloading
+2025-10-14 11:44:12,711 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\socketserver.py', reloading
+2025-10-14 11:44:12,718 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\http\\server.py', reloading
+2025-10-14 11:44:12,728 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\html\\__init__.py', reloading
+2025-10-14 11:44:12,732 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\html\\entities.py', reloading
+2025-10-14 11:44:12,834 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\ctypes\\__init__.py', reloading
+2025-10-14 11:44:12,847 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\ctypes\\_endian.py', reloading
+2025-10-14 11:44:12,852 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\ctypes\\wintypes.py', reloading
+2025-10-14 11:44:12,883 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\pkgutil.py', reloading
+2025-10-14 11:44:12,889 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\secrets.py', reloading
+2025-10-14 11:44:12,916 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\decimal.py', reloading
+2025-10-14 11:44:12,919 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\numbers.py', reloading
+2025-10-14 11:44:12,924 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\uuid.py', reloading
+2025-10-14 11:44:12,990 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\difflib.py', reloading
+2025-10-14 11:44:13,000 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\pprint.py', reloading
+2025-10-14 11:44:13,100 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\pickle.py', reloading
+2025-10-14 11:44:13,108 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\_compat_pickle.py', reloading
+2025-10-14 11:44:13,453 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:44:15,260 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:44:15,273 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:44:15,274 - __main__ - INFO - Debug mode: False
+2025-10-14 11:44:15,321 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:44:15,334 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:44:19,751 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:44:19] "GET /?id=16aeb093-ab6e-48bf-b0a3-62fd19324512&vscodeBrowserReqId=1760427859413 HTTP/1.1" 200 -
+2025-10-14 11:49:27,970 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:49:27] "GET /?id=16aeb093-ab6e-48bf-b0a3-62fd19324512&vscodeBrowserReqId=1760428167632 HTTP/1.1" 200 -
+2025-10-14 11:49:29,698 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:49:29] "GET / HTTP/1.1" 200 -
+2025-10-14 11:49:29,916 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:49:29] "[33mGET /static/css/optimized.css HTTP/1.1[0m" 404 -
+2025-10-14 11:49:30,254 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:49:30] "[36mGET /static/js/optimized.js HTTP/1.1[0m" 304 -
+2025-10-14 11:49:30,588 - __main__ - ERROR - Error fetching tables: Airtable connection not available
+2025-10-14 11:49:30,589 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:49:30] "[35m[1mGET /api/tables HTTP/1.1[0m" 500 -
+2025-10-14 11:51:14,048 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:51:14,062 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:51:15,213 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:51:16,776 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:51:16,787 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:51:16,788 - __main__ - INFO - Debug mode: False
+2025-10-14 11:51:16,845 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:51:16,854 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:51:34,396 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:51:34,399 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:51:34,400 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:51:35,588 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:51:37,044 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:51:37,052 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:51:37,052 - __main__ - INFO - Debug mode: False
+2025-10-14 11:51:37,094 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:51:37,103 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:51:53,641 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:51:53,644 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:51:54,835 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:51:56,566 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:51:56,578 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:51:56,580 - __main__ - INFO - Debug mode: False
+2025-10-14 11:51:56,650 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:51:56,658 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:52:15,047 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:52:15,066 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:52:15,481 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:52:17,585 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:52:17,593 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:52:17,594 - __main__ - INFO - Debug mode: False
+2025-10-14 11:52:17,643 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:52:17,653 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:52:32,179 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:52:32,180 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:52:32,181 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:52:33,326 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:52:34,804 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:52:34,813 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:52:34,813 - __main__ - INFO - Debug mode: False
+2025-10-14 11:52:34,859 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:52:34,869 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:52:54,685 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:52:54,689 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:52:55,891 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:52:57,715 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:52:57,726 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:52:57,726 - __main__ - INFO - Debug mode: False
+2025-10-14 11:52:57,777 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:52:57,788 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:53:17,946 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:53:17] "GET / HTTP/1.1" 200 -
+2025-10-14 11:53:17,983 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:53:17] "[33mGET /static/css/optimized.css HTTP/1.1[0m" 404 -
+2025-10-14 11:53:18,406 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:53:18] "[36mGET /static/js/optimized.js HTTP/1.1[0m" 304 -
+2025-10-14 11:53:18,737 - __main__ - ERROR - Error fetching tables: Airtable connection not available
+2025-10-14 11:53:18,738 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:53:18] "[35m[1mGET /api/tables HTTP/1.1[0m" 500 -
+2025-10-14 11:53:20,280 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:53:20,299 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:53:20,303 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:53:20,800 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:53:22,567 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:53:22,579 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:53:22,580 - __main__ - INFO - Debug mode: False
+2025-10-14 11:53:22,628 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:53:22,639 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:53:37,944 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:53:37,946 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:53:38,332 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:53:40,152 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:53:40,173 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:53:40,173 - __main__ - INFO - Debug mode: False
+2025-10-14 11:53:40,231 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:53:40,242 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:53:59,895 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:53:59,896 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:54:01,195 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:54:03,458 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:54:03,475 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:54:03,476 - __main__ - INFO - Debug mode: False
+2025-10-14 11:54:03,547 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:54:03,560 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:54:21,733 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:54:21,736 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:54:22,655 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:54:24,700 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:54:24,709 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:54:24,710 - __main__ - INFO - Debug mode: False
+2025-10-14 11:54:24,756 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:54:24,767 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:54:47,031 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:54:47,032 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:54:47,035 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 11:54:47,536 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 11:54:49,087 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 11:54:49,096 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 11:54:49,096 - __main__ - INFO - Debug mode: False
+2025-10-14 11:54:49,144 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 11:54:49,153 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 11:55:43,704 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:55:43] "GET / HTTP/1.1" 200 -
+2025-10-14 11:55:44,038 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:55:44] "[33mGET /static/css/optimized.css HTTP/1.1[0m" 404 -
+2025-10-14 11:55:44,288 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:55:44] "[36mGET /static/js/optimized.js HTTP/1.1[0m" 304 -
+2025-10-14 11:55:44,724 - __main__ - ERROR - Error fetching tables: Airtable connection not available
+2025-10-14 11:55:44,725 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:55:44] "[35m[1mGET /api/tables HTTP/1.1[0m" 500 -
+2025-10-14 11:55:44,991 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 11:55:44] "GET /?id=16aeb093-ab6e-48bf-b0a3-62fd19324512&vscodeBrowserReqId=1760428544674 HTTP/1.1" 200 -
+2025-10-14 12:01:43,060 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:01:43,062 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:01:43,925 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 12:01:46,594 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 12:01:46,612 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 12:01:46,612 - __main__ - INFO - Debug mode: False
+2025-10-14 12:01:46,693 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 12:01:46,702 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 12:02:21,881 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:02:21,883 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:02:21,884 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:02:22,938 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 12:02:24,560 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 12:02:24,573 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 12:02:24,574 - __main__ - INFO - Debug mode: False
+2025-10-14 12:02:24,630 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 12:02:24,639 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 12:02:44,795 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:02:44,796 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:02:45,490 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 12:02:47,028 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 12:02:47,040 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 12:02:47,040 - __main__ - INFO - Debug mode: False
+2025-10-14 12:02:47,090 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 12:02:47,103 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 12:03:14,302 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:03:14,303 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:03:15,040 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 12:03:16,705 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 12:03:16,714 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 12:03:16,714 - __main__ - INFO - Debug mode: False
+2025-10-14 12:03:16,761 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 12:03:16,769 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 12:03:45,019 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:03:45,627 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 12:03:47,200 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 12:03:47,209 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 12:03:47,210 - __main__ - INFO - Debug mode: False
+2025-10-14 12:03:47,256 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 12:03:47,266 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 12:05:05,873 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:05:05,875 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:05:05,879 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:05:07,034 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 12:05:08,557 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 12:05:08,566 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 12:05:08,566 - __main__ - INFO - Debug mode: False
+2025-10-14 12:05:08,616 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 12:05:08,624 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 12:06:09,923 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:06:09] "GET /?id=16aeb093-ab6e-48bf-b0a3-62fd19324512&vscodeBrowserReqId=1760429169600 HTTP/1.1" 200 -
+2025-10-14 12:06:09,923 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\encodings\\unicode_escape.py', reloading
+2025-10-14 12:06:11,146 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 12:06:12,165 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 12:06:12,179 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 12:06:12,179 - __main__ - INFO - Debug mode: False
+2025-10-14 12:06:12,228 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 12:06:12,232 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 12:07:10,713 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\tests\\test_api_api.py', reloading
+2025-10-14 12:07:10,721 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\tests\\test_models.py', reloading
+2025-10-14 12:07:10,727 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\tests\\test_models_collaborator.py', reloading
+2025-10-14 12:07:10,730 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\tests\\test_models_webhook.py', reloading
+2025-10-14 12:07:10,731 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\tests\\test_params.py', reloading
+2025-10-14 12:07:10,734 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\tests\\test_request_errors.py', reloading
+2025-10-14 12:07:10,736 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\tests\\test_url_escape.py', reloading
+2025-10-14 12:07:10,739 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\tests\\integration\\conftest.py', reloading
+2025-10-14 12:07:10,741 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\tests\\integration\\test_high_volume.py', reloading
+2025-10-14 12:07:10,743 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\tests\\integration\\test_integration_enterprise.py', reloading
+2025-10-14 12:07:10,745 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\tests\\integration\\test_integration_metadata.py', reloading
+2025-10-14 12:07:10,746 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\tests\\integration\\test_integration_webhooks.py', reloading
+2025-10-14 12:07:10,755 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\.venv\\Lib\\site-packages\\_pytest\\main.py', reloading
+2025-10-14 12:07:10,767 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\.venv\\Lib\\site-packages\\_pytest\\python.py', reloading
+2025-10-14 12:07:10,775 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\.venv\\Lib\\site-packages\\_pytest\\runner.py', reloading
+2025-10-14 12:07:11,786 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 12:07:13,495 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 12:07:13,510 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 12:07:13,510 - __main__ - INFO - Debug mode: False
+2025-10-14 12:07:13,562 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 12:07:13,571 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 12:07:55,948 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:07:55] "GET / HTTP/1.1" 200 -
+2025-10-14 12:07:56,504 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:07:56] "[33mGET /static/css/optimized.css HTTP/1.1[0m" 404 -
+2025-10-14 12:07:56,744 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:07:56] "[36mGET /static/js/optimized.js HTTP/1.1[0m" 304 -
+2025-10-14 12:07:57,129 - __main__ - ERROR - Error fetching tables: Airtable connection not available
+2025-10-14 12:07:57,130 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:07:57] "[35m[1mGET /api/tables HTTP/1.1[0m" 500 -
+2025-10-14 12:07:58,839 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:07:58] "GET / HTTP/1.1" 200 -
+2025-10-14 12:07:59,177 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:07:59] "[33mGET /static/css/optimized.css HTTP/1.1[0m" 404 -
+2025-10-14 12:07:59,178 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:07:59] "[36mGET /static/js/optimized.js HTTP/1.1[0m" 304 -
+2025-10-14 12:07:59,572 - __main__ - ERROR - Error fetching tables: Airtable connection not available
+2025-10-14 12:07:59,573 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:07:59] "[35m[1mGET /api/tables HTTP/1.1[0m" 500 -
+2025-10-14 12:08:01,185 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:08:01] "GET / HTTP/1.1" 200 -
+2025-10-14 12:08:01,491 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:08:01] "[33mGET /static/css/optimized.css HTTP/1.1[0m" 404 -
+2025-10-14 12:08:01,525 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:08:01] "[36mGET /static/js/optimized.js HTTP/1.1[0m" 304 -
+2025-10-14 12:08:01,860 - __main__ - ERROR - Error fetching tables: Airtable connection not available
+2025-10-14 12:08:01,861 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:08:01] "[35m[1mGET /api/tables HTTP/1.1[0m" 500 -
+2025-10-14 12:08:02,325 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:08:02] "GET / HTTP/1.1" 200 -
+2025-10-14 12:08:02,627 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:08:02] "[33mGET /static/css/optimized.css HTTP/1.1[0m" 404 -
+2025-10-14 12:08:02,661 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:08:02] "[36mGET /static/js/optimized.js HTTP/1.1[0m" 304 -
+2025-10-14 12:08:02,974 - __main__ - ERROR - Error fetching tables: Airtable connection not available
+2025-10-14 12:08:02,974 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:08:02] "[35m[1mGET /api/tables HTTP/1.1[0m" 500 -
+2025-10-14 12:08:03,342 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:08:03] "GET / HTTP/1.1" 200 -
+2025-10-14 12:08:03,658 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:08:03] "[33mGET /static/css/optimized.css HTTP/1.1[0m" 404 -
+2025-10-14 12:08:03,661 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:08:03] "[36mGET /static/js/optimized.js HTTP/1.1[0m" 304 -
+2025-10-14 12:08:03,974 - __main__ - ERROR - Error fetching tables: Airtable connection not available
+2025-10-14 12:08:03,975 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:08:03] "[35m[1mGET /api/tables HTTP/1.1[0m" 500 -
+2025-10-14 12:08:04,322 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:08:04] "GET / HTTP/1.1" 200 -
+2025-10-14 12:08:04,625 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:08:04] "[33mGET /static/css/optimized.css HTTP/1.1[0m" 404 -
+2025-10-14 12:08:04,661 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:08:04] "[36mGET /static/js/optimized.js HTTP/1.1[0m" 304 -
+2025-10-14 12:08:04,974 - __main__ - ERROR - Error fetching tables: Airtable connection not available
+2025-10-14 12:08:04,974 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:08:04] "[35m[1mGET /api/tables HTTP/1.1[0m" 500 -
+2025-10-14 12:08:05,263 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:08:05] "GET / HTTP/1.1" 200 -
+2025-10-14 12:08:05,569 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:08:05] "[33mGET /static/css/optimized.css HTTP/1.1[0m" 404 -
+2025-10-14 12:08:05,601 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:08:05] "[36mGET /static/js/optimized.js HTTP/1.1[0m" 304 -
+2025-10-14 12:08:05,923 - __main__ - ERROR - Error fetching tables: Airtable connection not available
+2025-10-14 12:08:05,925 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:08:05] "[35m[1mGET /api/tables HTTP/1.1[0m" 500 -
+2025-10-14 12:08:06,197 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:08:06] "GET / HTTP/1.1" 200 -
+2025-10-14 12:08:06,508 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:08:06] "[33mGET /static/css/optimized.css HTTP/1.1[0m" 404 -
+2025-10-14 12:08:06,526 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:08:06] "[36mGET /static/js/optimized.js HTTP/1.1[0m" 304 -
+2025-10-14 12:08:06,840 - __main__ - ERROR - Error fetching tables: Airtable connection not available
+2025-10-14 12:08:06,841 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:08:06] "[35m[1mGET /api/tables HTTP/1.1[0m" 500 -
+2025-10-14 12:11:12,913 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\argparse.py', reloading
+2025-10-14 12:11:12,970 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\__init__.py', reloading
+2025-10-14 12:11:12,973 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\base_events.py', reloading
+2025-10-14 12:11:12,976 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\concurrent\\__init__.py', reloading
+2025-10-14 12:11:12,978 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\concurrent\\futures\\__init__.py', reloading
+2025-10-14 12:11:12,981 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\concurrent\\futures\\_base.py', reloading
+2025-10-14 12:11:13,017 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\constants.py', reloading
+2025-10-14 12:11:13,019 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\coroutines.py', reloading
+2025-10-14 12:11:13,021 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\events.py', reloading
+2025-10-14 12:11:13,024 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\format_helpers.py', reloading
+2025-10-14 12:11:13,029 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\base_futures.py', reloading
+2025-10-14 12:11:13,030 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\exceptions.py', reloading
+2025-10-14 12:11:13,034 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\base_tasks.py', reloading
+2025-10-14 12:11:13,036 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\futures.py', reloading
+2025-10-14 12:11:13,038 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\protocols.py', reloading
+2025-10-14 12:11:13,040 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\sslproto.py', reloading
+2025-10-14 12:11:13,042 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\transports.py', reloading
+2025-10-14 12:11:13,044 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\log.py', reloading
+2025-10-14 12:11:13,045 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\staggered.py', reloading
+2025-10-14 12:11:13,048 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\locks.py', reloading
+2025-10-14 12:11:13,051 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\mixins.py', reloading
+2025-10-14 12:11:13,053 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\tasks.py', reloading
+2025-10-14 12:11:13,055 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\queues.py', reloading
+2025-10-14 12:11:13,057 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\timeouts.py', reloading
+2025-10-14 12:11:13,059 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\trsock.py', reloading
+2025-10-14 12:11:13,060 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\runners.py', reloading
+2025-10-14 12:11:13,062 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\streams.py', reloading
+2025-10-14 12:11:13,065 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\subprocess.py', reloading
+2025-10-14 12:11:13,068 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\taskgroups.py', reloading
+2025-10-14 12:11:13,069 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\threads.py', reloading
+2025-10-14 12:11:13,072 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\windows_events.py', reloading
+2025-10-14 12:11:13,077 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\base_subprocess.py', reloading
+2025-10-14 12:11:13,081 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\proactor_events.py', reloading
+2025-10-14 12:11:13,085 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\selector_events.py', reloading
+2025-10-14 12:11:13,087 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\windows_utils.py', reloading
+2025-10-14 12:11:13,106 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\concurrent\\futures\\thread.py', reloading
+2025-10-14 12:11:13,225 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\html\\parser.py', reloading
+2025-10-14 12:11:13,227 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\_markupbase.py', reloading
+2025-10-14 12:11:13,237 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\gzip.py', reloading
+2025-10-14 12:11:13,278 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\shlex.py', reloading
+2025-10-14 12:11:13,280 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\configparser.py', reloading
+2025-10-14 12:11:13,351 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\graphlib.py', reloading
+2025-10-14 12:11:13,476 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\logging\\config.py', reloading
+2025-10-14 12:11:13,478 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\logging\\handlers.py', reloading
+2025-10-14 12:11:13,486 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\generator.py', reloading
+2025-10-14 12:11:13,488 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\headerregistry.py', reloading
+2025-10-14 12:11:13,490 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\_header_value_parser.py', reloading
+2025-10-14 12:11:13,496 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\mime\\base.py', reloading
+2025-10-14 12:11:13,497 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\policy.py', reloading
+2025-10-14 12:11:13,501 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\contentmanager.py', reloading
+2025-10-14 12:11:13,508 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\mime\\message.py', reloading
+2025-10-14 12:11:13,510 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\mime\\nonmultipart.py', reloading
+2025-10-14 12:11:13,512 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\mime\\multipart.py', reloading
+2025-10-14 12:11:13,514 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\email\\mime\\text.py', reloading
+2025-10-14 12:11:13,635 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\wsgiref\\__init__.py', reloading
+2025-10-14 12:11:13,636 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\wsgiref\\headers.py', reloading
+2025-10-14 12:11:13,638 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\wsgiref\\util.py', reloading
+2025-10-14 12:11:13,682 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\sqlite3\\__init__.py', reloading
+2025-10-14 12:11:13,688 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\sqlite3\\dbapi2.py', reloading
+2025-10-14 12:11:13,708 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\statistics.py', reloading
+2025-10-14 12:11:14,101 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 12:11:15,465 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 12:11:15,474 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 12:11:15,474 - __main__ - INFO - Debug mode: False
+2025-10-14 12:11:15,521 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 12:11:15,527 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 12:11:16,394 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\_strptime.py', reloading
+2025-10-14 12:11:16,545 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\pydoc.py', reloading
+2025-10-14 12:11:16,549 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\_pyrepl\\__init__.py', reloading
+2025-10-14 12:11:16,552 - werkzeug - INFO -  * Detected change in 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2288.0_x64__qbz5n2kfra8p0\\Lib\\_pyrepl\\pager.py', reloading
+2025-10-14 12:11:16,867 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 12:11:18,216 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 12:11:18,228 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 12:11:18,228 - __main__ - INFO - Debug mode: False
+2025-10-14 12:11:18,291 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 12:11:18,301 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 12:11:54,706 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:11:54] "GET /?id=16aeb093-ab6e-48bf-b0a3-62fd19324512&vscodeBrowserReqId=1760429514377 HTTP/1.1" 200 -
+2025-10-14 12:11:55,547 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:11:55] "GET /?id=16aeb093-ab6e-48bf-b0a3-62fd19324512&vscodeBrowserReqId=1760429515542 HTTP/1.1" 200 -
+2025-10-14 12:12:02,695 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:12:02] "GET /?id=16aeb093-ab6e-48bf-b0a3-62fd19324512&vscodeBrowserReqId=1760429522299 HTTP/1.1" 200 -
+2025-10-14 12:12:28,395 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:12:28] "GET / HTTP/1.1" 200 -
+2025-10-14 12:12:28,796 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:12:28] "[33mGET /static/css/optimized.css HTTP/1.1[0m" 404 -
+2025-10-14 12:12:29,078 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:12:29] "[36mGET /static/js/optimized.js HTTP/1.1[0m" 304 -
+2025-10-14 12:12:29,426 - __main__ - ERROR - Error fetching tables: Airtable connection not available
+2025-10-14 12:12:29,426 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:12:29] "[35m[1mGET /api/tables HTTP/1.1[0m" 500 -
+2025-10-14 12:12:49,941 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:12:49,943 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:12:51,244 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 12:12:53,354 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 12:12:53,367 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 12:12:53,367 - __main__ - INFO - Debug mode: False
+2025-10-14 12:12:53,433 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 12:12:53,442 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 12:13:04,482 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:13:04,485 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:13:05,023 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 12:13:06,523 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 12:13:06,532 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 12:13:06,533 - __main__ - INFO - Debug mode: False
+2025-10-14 12:13:06,577 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 12:13:06,583 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 12:13:29,954 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:13:29,957 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:13:30,364 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 12:13:32,554 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 12:13:32,564 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 12:13:32,564 - __main__ - INFO - Debug mode: False
+2025-10-14 12:13:32,628 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 12:13:32,638 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 12:13:46,070 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:13:46,071 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:13:47,347 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 12:13:48,866 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 12:13:48,875 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 12:13:48,876 - __main__ - INFO - Debug mode: False
+2025-10-14 12:13:48,927 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 12:13:48,940 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 12:14:00,981 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:14:00,983 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:14:01,582 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 12:14:03,228 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 12:14:03,240 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 12:14:03,240 - __main__ - INFO - Debug mode: False
+2025-10-14 12:14:03,300 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 12:14:03,307 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 12:14:15,144 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:14:15,146 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:14:15,889 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 12:14:17,477 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 12:14:17,485 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 12:14:17,486 - __main__ - INFO - Debug mode: False
+2025-10-14 12:14:17,527 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 12:14:17,533 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 12:14:43,255 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:14:43,256 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:14:44,375 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 12:14:45,807 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 12:14:45,817 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 12:14:45,817 - __main__ - INFO - Debug mode: False
+2025-10-14 12:14:45,864 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 12:14:45,872 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 12:15:51,468 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:15:51] "GET /?v=2&id=16aeb093-ab6e-48bf-b0a3-62fd19324512&vscodeBrowserReqId=1760429751144 HTTP/1.1" 200 -
+2025-10-14 12:16:06,987 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:16:06] "GET /?v=2 HTTP/1.1" 200 -
+2025-10-14 12:16:07,158 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:16:07] "[33mGET /static/css/optimized.css HTTP/1.1[0m" 404 -
+2025-10-14 12:16:07,385 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:16:07] "[36mGET /static/js/optimized.js HTTP/1.1[0m" 304 -
+2025-10-14 12:16:07,726 - __main__ - ERROR - Error fetching tables: Airtable connection not available
+2025-10-14 12:16:07,727 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:16:07] "[35m[1mGET /api/tables HTTP/1.1[0m" 500 -
+2025-10-14 12:16:12,585 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:16:12] "GET /?v=2 HTTP/1.1" 200 -
+2025-10-14 12:16:12,606 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:16:12] "[33mGET /static/css/optimized.css HTTP/1.1[0m" 404 -
+2025-10-14 12:16:12,804 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:16:12] "[36mGET /static/js/optimized.js HTTP/1.1[0m" 304 -
+2025-10-14 12:16:13,146 - __main__ - ERROR - Error fetching tables: Airtable connection not available
+2025-10-14 12:16:13,149 - werkzeug - INFO - 127.0.0.1 - - [14/Oct/2025 12:16:13] "[35m[1mGET /api/tables HTTP/1.1[0m" 500 -
+2025-10-14 12:17:19,067 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:17:19,069 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:17:19,552 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 12:17:21,197 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 12:17:21,207 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 12:17:21,208 - __main__ - INFO - Debug mode: False
+2025-10-14 12:17:21,261 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 12:17:21,270 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 12:17:33,765 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:17:33,768 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:17:34,825 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 12:17:36,180 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 12:17:36,195 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 12:17:36,195 - __main__ - INFO - Debug mode: False
+2025-10-14 12:17:36,246 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 12:17:36,254 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 12:17:46,143 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:17:46,145 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:17:46,146 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:17:46,795 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 12:17:48,148 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 12:17:48,157 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 12:17:48,157 - __main__ - INFO - Debug mode: False
+2025-10-14 12:17:48,208 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 12:17:48,215 - werkzeug - INFO -  * Debugger PIN: 502-436-691
+2025-10-14 12:18:31,544 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:18:31,545 - werkzeug - INFO -  * Detected change in 'C:\\Users\\izhar.ullah\\OneDrive - Trojan Construction Group - Sole Proprietorship L.L.C\\Documents\\Eli_Proj\\airtablepy3\\server_clean.py', reloading
+2025-10-14 12:18:32,419 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-14 12:18:34,171 - __main__ - ERROR - AIRTABLE_API_TOKEN not found in environment variables
+2025-10-14 12:18:34,189 - __main__ - INFO - Starting Optimized Airtable Dashboard on localhost:5000
+2025-10-14 12:18:34,190 - __main__ - INFO - Debug mode: False
+2025-10-14 12:18:34,248 - werkzeug - WARNING -  * Debugger is active!
+2025-10-14 12:18:34,259 - werkzeug - INFO -  * Debugger PIN: 502-436-691

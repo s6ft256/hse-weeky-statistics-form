@@ -1,4 +1,5 @@
 import inspect
+import logging
 import re
 import textwrap
 import urllib.parse
@@ -28,6 +29,9 @@ from pyairtable.api.types import AnyRecordDict, CreateAttachmentByUrl, FieldValu
 
 if TYPE_CHECKING:
     from pyairtable.api.api import Api
+
+# Logger for API request tracking
+logger = logging.getLogger(__name__)
 
 
 P = ParamSpec("P")
@@ -523,6 +527,75 @@ class UrlBuilder:
         raise TypeError("context must be an instance of Api or have an 'api' attribute")
 
 
+def log_api_request(
+    method: str,
+    url: str,
+    status_code: Optional[int] = None,
+    response_time: Optional[float] = None,
+    error: Optional[Exception] = None,
+) -> None:
+    """
+    Log API requests for debugging and monitoring.
+    
+    This utility function provides consistent logging for all API requests,
+    including method, URL, status code, response time, and any errors.
+    
+    Args:
+        method: HTTP method (GET, POST, PUT, PATCH, DELETE).
+        url: The URL being requested.
+        status_code: HTTP status code of the response.
+        response_time: Time taken for the request in seconds.
+        error: Any exception that occurred during the request.
+    
+    Example:
+        >>> log_api_request("GET", "https://api.airtable.com/v0/appXXX/Table", 200, 0.5)
+        INFO: GET https://api.airtable.com/v0/appXXX/Table -> 200 (0.50s)
+        
+        >>> log_api_request("POST", "https://api.airtable.com/v0/appXXX/Table", error=TimeoutError())
+        ERROR: POST https://api.airtable.com/v0/appXXX/Table -> Error: ...
+    """
+    # Sanitize URL to avoid exposing sensitive information
+    parsed_url = urllib.parse.urlparse(url)
+    safe_url = f"{parsed_url.scheme}://{parsed_url.netloc}{parsed_url.path}"
+    
+    if error:
+        logger.error(f"{method} {safe_url} -> Error: {error}")
+    elif status_code and response_time is not None:
+        log_msg = f"{method} {safe_url} -> {status_code} ({response_time:.2f}s)"
+        if status_code >= 400:
+            logger.warning(log_msg)
+        else:
+            logger.info(log_msg)
+    else:
+        logger.debug(f"{method} {safe_url}")
+
+
+def setup_logging(level: Union[int, str] = logging.INFO) -> None:
+    """
+    Configure logging for the pyairtable library.
+    
+    This helper function sets up a basic logging configuration for the library,
+    which is useful for debugging and monitoring API requests.
+    
+    Args:
+        level: Logging level (e.g., logging.DEBUG, logging.INFO, "DEBUG", "INFO").
+    
+    Example:
+        >>> from pyairtable.utils import setup_logging
+        >>> setup_logging("DEBUG")  # Enable debug logging
+        >>> # Now all API requests will be logged with details
+    """
+    if isinstance(level, str):
+        level = getattr(logging, level.upper())
+    
+    logging.basicConfig(
+        level=level,
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S",
+    )
+    logger.setLevel(level)
+
+
 __all__ = [
     "attachment",
     "cache_unless_forced",
@@ -542,6 +615,8 @@ __all__ = [
     "is_record_id",
     "is_table_id",
     "is_user_id",
+    "log_api_request",
+    "setup_logging",
     "Url",
     "UrlBuilder",
 ]

@@ -1,0 +1,12 @@
+﻿{
+  "base_id": "app1t04ZYvX3rWAM1",
+  "error": "Unable to fetch table schemas - token needs 'schema.bases:read' permission",
+  "help": "To see your tables, update your Airtable Personal Access Token with schema.bases:read scope",
+  "steps": [
+    "1. Go to https://airtable.com/create/tokens",
+    "2. Edit your token",
+    "3. Add 'schema.bases:read' scope",
+    "4. Add your base to the token's access list",
+    "5. Restart the server"
+  ]
+}

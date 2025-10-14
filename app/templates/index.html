@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airtable Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h3 class="sidebar-title">📋 Tables</h3>
+                <p class="sidebar-subtitle" id="table-count">Loading...</p>
+            </div>
+            <div class="sidebar-nav" id="sidebar-menu">
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    Loading tables...
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header with Navigation -->
+            <header class="main-header">
+                <div class="header-content">
+                    <div>
+                        <h1 class="header-title">🚀 Airtable Client Server</h1>
+                        <p class="header-subtitle">Modern REST API for Airtable Operations</p>
+                    </div>
+                    <div class="header-actions">
+                        <!-- Mobile sidebar toggle -->
+                        <button class="btn btn-outline" id="sidebar-toggle" style="display: none;">
+                            ☰ Menu
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Tabs Navigation -->
+                <div class="tabs-container" id="tabs-container">
+                    <div class="loading" style="padding: var(--space-3); color: white; opacity: 0.7;">
+                        Loading tables...
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div class="content-area" id="main-content">
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    Select a table from the sidebar or tabs to get started...
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer" style="background: var(--gray-100); padding: var(--space-6); text-align: center; color: var(--gray-600); border-top: 1px solid var(--gray-200);">
+                <p>Airtable Dashboard v3.2.0 | Server started: {{ server_start_time }}</p>
+                <p style="margin-top: var(--space-2); font-size: var(--font-size-sm);">
+                    {% if connected %}
+                        🟢 Connected to Airtable
+                    {% else %}
+                        🔴 Not connected to Airtable
+                    {% endif %}
+                </p>
+            </footer>
+        </main>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+    <!-- Responsive Styles -->
+    <style>
+        @media (max-width: 768px) {
+            #sidebar-toggle {
+                display: inline-flex !important;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: var(--space-4);
+            }
+            
+            .header-title {
+                font-size: var(--font-size-2xl);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header-title {
+                font-size: var(--font-size-xl);
+            }
+            
+            .tabs-container {
+                margin: 0 calc(-1 * var(--space-5));
+                padding: 0 var(--space-3);
+            }
+        }
+    </style>
+</body>
+</html>

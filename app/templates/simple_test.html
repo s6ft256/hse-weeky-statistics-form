@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Airtable Dashboard Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .header {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        .error {
+            background: #fee;
+            border: 1px solid #fcc;
+            color: #c00;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        .table-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .table-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .table-card:hover {
+            background: #e9ecef;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .table-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .table-info {
+            font-size: 0.9em;
+            color: #666;
+        }
+        .records-area {
+            margin-top: 30px;
+            display: none;
+        }
+        .records-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .records-table th,
+        .records-table td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+        .records-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+        .btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Airtable Dashboard - Simple Test</h1>
+            <p>Testing basic functionality with minimal JavaScript</p>
+        </div>
+
+        <div id="status" class="loading">Loading tables...</div>
+        <div id="error" class="error" style="display: none;"></div>
+
+        <div id="tables-section">
+            <h2>📋 Available Tables</h2>
+            <div id="tables-list" class="table-list">
+                <!-- Tables will be loaded here -->
+            </div>
+        </div>
+
+        <div id="records-section" class="records-area">
+            <h2 id="records-title">Table Records</h2>
+            <button class="btn" onclick="loadTables()">← Back to Tables</button>
+            <div id="records-content">
+                <!-- Records will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple JavaScript for basic functionality
+        let currentTable = null;
+
+        // Initialize dashboard
+        async function init() {
+            console.log('Initializing dashboard...');
+            await loadTables();
+        }
+
+        // Load tables from API
+        async function loadTables() {
+            console.log('Loading tables...');
+            
+            try {
+                // Hide records section and show tables
+                document.getElementById('records-section').style.display = 'none';
+                document.getElementById('tables-section').style.display = 'block';
+                
+                const response = await fetch('/api/tables');
+                const data = await response.json();
+                
+                console.log('Tables response:', data);
+                
+                if (data.success) {
+                    displayTables(data.tables);
+                    document.getElementById('status').style.display = 'none';
+                } else {
+                    showError('Failed to load tables: ' + (data.error || 'Unknown error'));
+                }
+            } catch (error) {
+                console.error('Error loading tables:', error);
+                showError('Network error loading tables: ' + error.message);
+            }
+        }
+
+        // Display tables in grid
+        function displayTables(tables) {
+            const tablesList = document.getElementById('tables-list');
+            
+            if (!tables || tables.length === 0) {
+                tablesList.innerHTML = '<p>No tables found.</p>';
+                return;
+            }
+            
+            tablesList.innerHTML = tables.map(table => `
+                <div class="table-card" onclick="loadTableRecords('${table.name}')">
+                    <div class="table-name">${table.name}</div>
+                    <div class="table-info">
+                        ${table.field_count || 0} fields
+                        ${table.error ? '<br><small style="color: red;">⚠️ ' + table.error + '</small>' : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Load records for a specific table
+        async function loadTableRecords(tableName) {
+            console.log('Loading records for table:', tableName);
+            currentTable = tableName;
+            
+            try {
+                // Show records section and hide tables
+                document.getElementById('tables-section').style.display = 'none';
+                document.getElementById('records-section').style.display = 'block';
+                document.getElementById('records-title').textContent = `📊 ${tableName} Records`;
+                document.getElementById('records-content').innerHTML = '<div class="loading">Loading records...</div>';
+                
+                const response = await fetch(`/api/table/${encodeURIComponent(tableName)}/records`);
+                const data = await response.json();
+                
+                console.log('Records response:', data);
+                
+                if (data.success) {
+                    displayRecords(data.data.records);
+                } else {
+                    document.getElementById('records-content').innerHTML = 
+                        `<div class="error">Failed to load records: ${data.error || 'Unknown error'}</div>`;
+                }
+            } catch (error) {
+                console.error('Error loading records:', error);
+                document.getElementById('records-content').innerHTML = 
+                    `<div class="error">Network error loading records: ${error.message}</div>`;
+            }
+        }
+
+        // Display records in table
+        function displayRecords(records) {
+            const recordsContent = document.getElementById('records-content');
+            
+            if (!records || records.length === 0) {
+                recordsContent.innerHTML = '<p>No records found in this table.</p>';
+                return;
+            }
+            
+            // Get all unique field names
+            const allFields = new Set();
+            records.forEach(record => {
+                if (record.fields) {
+                    Object.keys(record.fields).forEach(field => allFields.add(field));
+                }
+            });
+            
+            const fieldNames = Array.from(allFields);
+            
+            if (fieldNames.length === 0) {
+                recordsContent.innerHTML = '<p>No fields found in records.</p>';
+                return;
+            }
+            
+            // Build table HTML
+            let tableHTML = `
+                <table class="records-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            ${fieldNames.map(field => `<th>${field}</th>`).join('')}
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            
+            records.forEach(record => {
+                tableHTML += `
+                    <tr>
+                        <td><small>${record.id}</small></td>
+                        ${fieldNames.map(field => {
+                            const value = record.fields && record.fields[field];
+                            const displayValue = value !== null && value !== undefined ? 
+                                (typeof value === 'object' ? JSON.stringify(value) : String(value)) : '';
+                            return `<td>${displayValue}</td>`;
+                        }).join('')}
+                    </tr>
+                `;
+            });
+            
+            tableHTML += `
+                    </tbody>
+                </table>
+                <p style="color: #666; margin-top: 15px;">
+                    Showing ${records.length} record(s) from ${currentTable}
+                </p>
+            `;
+            
+            recordsContent.innerHTML = tableHTML;
+        }
+
+        // Show error message
+        function showError(message) {
+            const errorDiv = document.getElementById('error');
+            const statusDiv = document.getElementById('status');
+            
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            statusDiv.style.display = 'none';
+            
+            console.error('Dashboard error:', message);
+        }
+
+        // Start the dashboard when page loads
+        document.addEventListener('DOMContentLoaded', init);
+        
+        // Global error handler
+        window.addEventListener('error', function(event) {
+            console.error('Global error:', event.error);
+            showError('JavaScript error: ' + event.error.message);
+        });
+        
+        // Test API connectivity
+        async function testAPI() {
+            try {
+                const response = await fetch('/api/health');
+                const data = await response.json();
+                console.log('API Health Check:', data);
+                return data;
+            } catch (error) {
+                console.error('API test failed:', error);
+                return { error: error.message };
+            }
+        }
+        
+        // Run API test immediately
+        testAPI();
+    </script>
+</body>
+</html>

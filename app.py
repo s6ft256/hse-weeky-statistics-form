@@ -196,17 +196,29 @@ DASHBOARD_HTML = """
         .table-selector {
             margin-bottom: 30px;
             text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            padding: 20px;
+            background: var(--section-bg);
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         .table-btn {
             display: inline-block;
-            margin: 10px;
-            padding: 15px 25px;
+            padding: 12px 20px;
             background: #6c757d;
             color: white;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 25px;
             transition: all 0.3s;
             font-weight: 600;
+            font-size: 14px;
+            white-space: nowrap;
+            min-width: 120px;
+            text-align: center;
+            border: 2px solid transparent;
         }
         .table-btn:hover, .table-btn.active {
             background: #007bff;
@@ -235,10 +247,81 @@ DASHBOARD_HTML = """
             background: rgba(255,255,255,0.4);
             border-color: rgba(255,255,255,0.6);
         }
+        .records-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .record-card {
+            background: var(--container-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .record-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .record-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .record-id {
+            font-family: monospace;
+            background: #007bff;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        .record-time {
+            color: #6c757d;
+            font-size: 12px;
+        }
+        .field-display {
+            margin-bottom: 8px;
+            padding: 4px 0;
+            font-size: 14px;
+        }
+        .field-display strong {
+            color: var(--text-color);
+            margin-right: 8px;
+        }
+        .records-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            background: var(--section-bg);
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        .no-records, .error-records {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--section-bg);
+            border-radius: 10px;
+            color: var(--text-color);
+        }
+        .loading-records {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-color);
+        }
         @media (max-width: 768px) {
             .content { padding: 20px; }
             .form-section { padding: 20px; }
             .header h1 { font-size: 2em; }
+            .records-grid { grid-template-columns: 1fr; }
+            .table-selector { flex-direction: column; }
         }
     </style>
 </head>
@@ -402,14 +485,37 @@ DASHBOARD_HTML = """
             
             document.getElementById('formContainer').innerHTML = `
                 <div class="form-section">
-                    <h2>📝 Add New Record to ${tableName}</h2>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h2>📊 ${tableName} Management</h2>
+                        <button onclick="toggleView()" class="btn" id="viewToggleBtn" style="background: #28a745;">📝 Add New Record</button>
+                    </div>
+                    
                     <div id="message" style="display: none;"></div>
-                    <form onsubmit="submitForm(event)" id="dataForm">
-                        ${formHtml}
-                        <button type="submit" class="btn">💾 Save Record</button>
-                    </form>
+                    
+                    <!-- Records Display Section -->
+                    <div id="recordsSection">
+                        <h3>📋 Existing Records</h3>
+                        <div id="recordsContainer">
+                            <div class="loading-records">Loading records...</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Add New Record Form -->
+                    <div id="formSection" style="display: none;">
+                        <h3>➕ Add New Record</h3>
+                        <form onsubmit="submitForm(event)" id="dataForm">
+                            ${formHtml}
+                            <div style="margin-top: 20px;">
+                                <button type="submit" class="btn">💾 Save Record</button>
+                                <button type="button" onclick="toggleView()" class="btn" style="background: #6c757d; margin-left: 10px;">📋 View Records</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             `;
+            
+            // Load existing records
+            loadTableRecords(currentTable);
         }
 
         function toggleTheme() {
@@ -434,6 +540,77 @@ DASHBOARD_HTML = """
             // Hide form and show about section
             document.getElementById('formContainer').style.display = 'none';
             document.getElementById('aboutContainer').style.display = 'block';
+        }
+
+        async function loadTableRecords(tableId) {
+            try {
+                const response = await fetch(`/api/records/${tableId}`);
+                const data = await response.json();
+                
+                const recordsContainer = document.getElementById('recordsContainer');
+                
+                if (data.success && data.records.length > 0) {
+                    const recordsHtml = data.records.map(record => {
+                        const fieldsHtml = Object.entries(record.fields).map(([key, value]) => {
+                            if (value !== null && value !== undefined && value !== '') {
+                                return `<div class="field-display"><strong>${key}:</strong> ${value}</div>`;
+                            }
+                            return '';
+                        }).filter(html => html).join('');
+                        
+                        return `
+                            <div class="record-card">
+                                <div class="record-header">
+                                    <span class="record-id">ID: ${record.id.substring(0, 8)}...</span>
+                                    <span class="record-time">${new Date(record.created_time || Date.now()).toLocaleDateString()}</span>
+                                </div>
+                                <div class="record-fields">${fieldsHtml}</div>
+                            </div>
+                        `;
+                    }).join('');
+                    
+                    recordsContainer.innerHTML = `
+                        <div class="records-header">
+                            <span>📊 ${data.count} records found</span>
+                        </div>
+                        <div class="records-grid">${recordsHtml}</div>
+                    `;
+                } else {
+                    recordsContainer.innerHTML = `
+                        <div class="no-records">
+                            <p>📭 No records found in this table.</p>
+                            <p>Click "Add New Record" to create the first entry.</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error loading records:', error);
+                document.getElementById('recordsContainer').innerHTML = `
+                    <div class="error-records">
+                        <p>❌ Failed to load records: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+        
+        function toggleView() {
+            const recordsSection = document.getElementById('recordsSection');
+            const formSection = document.getElementById('formSection');
+            const toggleBtn = document.getElementById('viewToggleBtn');
+            
+            if (formSection.style.display === 'none') {
+                // Show form, hide records
+                recordsSection.style.display = 'none';
+                formSection.style.display = 'block';
+                toggleBtn.textContent = '📋 View Records';
+                toggleBtn.style.background = '#17a2b8';
+            } else {
+                // Show records, hide form
+                recordsSection.style.display = 'block';
+                formSection.style.display = 'none';
+                toggleBtn.textContent = '📝 Add New Record';
+                toggleBtn.style.background = '#28a745';
+            }
         }
 
         async function submitForm(event) {
@@ -469,6 +646,12 @@ DASHBOARD_HTML = """
                 if (result.success) {
                     showMessage('✅ Record saved successfully!', 'success');
                     document.getElementById('dataForm').reset();
+                    
+                    // Refresh records after successful submission
+                    setTimeout(() => {
+                        toggleView(); // Switch back to records view
+                        loadTableRecords(currentTable); // Reload records
+                    }, 1500);
                 } else {
                     showMessage(`❌ Error: ${result.error}`, 'error');
                 }
@@ -703,6 +886,37 @@ def get_form(table_id):
         return jsonify({
             'success': True,
             'form': ''.join(form_html)
+        })
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        })
+
+@app.route('/api/records/<table_id>')
+def get_records(table_id):
+    """Get existing records from the specified table"""
+    try:
+        table = base.table(table_id)
+        schema = base.schema().table(table_id)
+        
+        # Get records with limit to avoid overwhelming the interface
+        records = table.all(max_records=50, sort=[{'field': 'Created', 'direction': 'desc'}] if any(f.name == 'Created' for f in schema.fields) else None)
+        
+        # Format records for display
+        formatted_records = []
+        for record in records:
+            formatted_record = {
+                'id': record['id'],
+                'fields': record['fields'],
+                'created_time': record.get('createdTime', '')
+            }
+            formatted_records.append(formatted_record)
+        
+        return jsonify({
+            'success': True,
+            'records': formatted_records,
+            'count': len(formatted_records)
         })
     except Exception as e:
         return jsonify({

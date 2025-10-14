@@ -355,11 +355,11 @@ DASHBOARD_HTML = """
             document.getElementById('formContainer').innerHTML = `
                 <div class="form-section">
                     <h2>📝 Add New Record to ${tableName}</h2>
+                    <div id="message" style="display: none;"></div>
                     <form onsubmit="submitForm(event)" id="dataForm">
                         ${formHtml}
                         <button type="submit" class="btn">💾 Save Record</button>
                     </form>
-                    <div id="message"></div>
                 </div>
             `;
         }
@@ -472,6 +472,34 @@ def get_field_type(field):
     
     return type_mapping.get(field_type, 'text')
 
+def serialize_field_options(options):
+    """Safely serialize field options to JSON-compatible format"""
+    if options is None:
+        return None
+    
+    try:
+        # Handle different types of options objects
+        if hasattr(options, '__dict__'):
+            # Convert object to dict
+            result = {}
+            for key, value in options.__dict__.items():
+                if not key.startswith('_'):  # Skip private attributes
+                    try:
+                        # Try to serialize the value
+                        import json
+                        json.dumps(value)  # Test if it's serializable
+                        result[key] = value
+                    except (TypeError, ValueError):
+                        # If not serializable, convert to string
+                        result[key] = str(value)
+            return result
+        elif isinstance(options, dict):
+            return options
+        else:
+            return str(options)
+    except Exception:
+        return None
+
 def should_exclude_field(field):
     """Check if field should be excluded from forms"""
     field_type = field.get('type', '')
@@ -500,7 +528,7 @@ def generate_field_html(field, table_name):
     
     field_name = field['name']
     field_type = get_field_type(field)
-    field_id = f"field_{field_name.replace(' ', '_').replace('(', '').replace(')', '')}"
+    field_id = f"field_{field_name.replace(' ', '_').replace('(', '').replace(')', '').replace('&', '')}"
     
     # Special handling for Training table - convert select fields to text
     is_training_table = 'training' in table_name.lower() and 'competency' in table_name.lower()
@@ -513,11 +541,21 @@ def generate_field_html(field, table_name):
     if field_type == 'textarea':
         html_parts.append(f'<textarea id="{field_id}" name="{field_name}" rows="4"></textarea>')
     elif field_type == 'select' and not is_training_table:
-        options = field.get('options', {}).get('choices', [])
+        # Handle serialized options safely
+        options = []
+        field_options = field.get('options', {})
+        if isinstance(field_options, dict):
+            choices = field_options.get('choices', [])
+            if isinstance(choices, list):
+                options = choices
+        
         html_parts.append(f'<select id="{field_id}" name="{field_name}">')
         html_parts.append('<option value="">-- Select an option --</option>')
         for option in options:
-            option_name = option.get('name', str(option))
+            if isinstance(option, dict):
+                option_name = option.get('name', str(option))
+            else:
+                option_name = str(option)
             html_parts.append(f'<option value="{option_name}">{option_name}</option>')
         html_parts.append('</select>')
     elif field_type == 'checkbox':
@@ -567,7 +605,7 @@ def get_tables():
                     {
                         'name': field.name,
                         'type': field.type,
-                        'options': getattr(field, 'options', None)
+                        'options': serialize_field_options(getattr(field, 'options', None))
                     }
                     for field in table.fields
                 ]

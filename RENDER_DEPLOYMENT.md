@@ -101,3 +101,5 @@ After creating the service, add these environment variables:
 
 ---
 **Your app will be live at**: `https://airtable-dashboard-[random].onrender.com`
+
+*Updated: Ready for deployment! 🚀*

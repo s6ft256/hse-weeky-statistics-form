@@ -18,6 +18,10 @@ AIRTABLE_TOKEN = os.getenv('AIRTABLE_TOKEN')
 AIRTABLE_BASE_ID = os.getenv('AIRTABLE_BASE_ID')
 
 if not AIRTABLE_TOKEN or not AIRTABLE_BASE_ID:
+    print("❌ ERROR: Missing environment variables!")
+    print(f"AIRTABLE_TOKEN: {'✅ Set' if AIRTABLE_TOKEN else '❌ Missing'}")
+    print(f"AIRTABLE_BASE_ID: {'✅ Set' if AIRTABLE_BASE_ID else '❌ Missing'}")
+    print("Please add these in your Render Environment settings.")
     raise ValueError("Missing required environment variables: AIRTABLE_TOKEN and AIRTABLE_BASE_ID")
 
 # Initialize Airtable API
@@ -539,5 +543,5 @@ def internal_error(error):
     return jsonify({'success': False, 'error': 'Internal server error'}), 500
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
+    port = int(os.environ.get('PORT', 10000))
     app.run(host='0.0.0.0', port=port, debug=False)

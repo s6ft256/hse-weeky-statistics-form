@@ -213,8 +213,16 @@ DASHBOARD_HTML = """
         async function loadTables() {
             showLoading(true);
             try {
+                console.log('Fetching tables from /api/tables...');
                 const response = await fetch('/api/tables');
+                console.log('Response status:', response.status);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
                 const data = await response.json();
+                console.log('Tables data received:', data);
                 
                 if (data.success) {
                     tableSchemas = data.schemas;
@@ -223,11 +231,12 @@ DASHBOARD_HTML = """
                         loadTable(data.tables[0].id, data.tables[0].name);
                     }
                 } else {
+                    console.error('API returned error:', data.error);
                     showMessage(data.error || 'Failed to load tables', 'error');
                 }
             } catch (error) {
                 console.error('Error loading tables:', error);
-                showMessage('Failed to connect to server', 'error');
+                showMessage(`Failed to connect to server: ${error.message}`, 'error');
             } finally {
                 showLoading(false);
             }
@@ -431,6 +440,16 @@ def generate_field_html(field, table_name):
 def dashboard():
     """Main dashboard page"""
     return render_template_string(DASHBOARD_HTML)
+
+@app.route('/api/test')
+def test_connection():
+    """Simple test endpoint"""
+    return jsonify({
+        'success': True,
+        'message': 'API is working!',
+        'token_set': bool(AIRTABLE_TOKEN),
+        'base_id_set': bool(AIRTABLE_BASE_ID)
+    })
 
 @app.route('/api/tables')
 def get_tables():

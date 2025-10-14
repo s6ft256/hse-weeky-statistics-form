@@ -299,10 +299,48 @@ DASHBOARD_HTML = """
             justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
-            padding: 10px 15px;
+            padding: 15px 20px;
             background: var(--section-bg);
             border-radius: 8px;
             font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .records-count {
+            color: #28a745;
+            font-size: 16px;
+        }
+        .refresh-btn {
+            background: #17a2b8;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .refresh-btn:hover {
+            background: #138496;
+            transform: scale(1.05);
+        }
+        .record-footer {
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #6c757d;
+        }
+        .field-value {
+            word-wrap: break-word;
+            color: var(--text-color);
+        }
+        .no-fields {
+            color: #6c757d;
+            font-style: italic;
+            text-align: center;
+            padding: 10px;
         }
         .no-records, .error-records {
             text-align: center;
@@ -311,10 +349,21 @@ DASHBOARD_HTML = """
             border-radius: 10px;
             color: var(--text-color);
         }
+        .no-records-icon, .error-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        .no-records h3, .error-records h3 {
+            margin: 10px 0;
+            color: var(--text-color);
+        }
         .loading-records {
             text-align: center;
-            padding: 20px;
+            padding: 40px 20px;
             color: var(--text-color);
+        }
+        .loading-records .spinner {
+            margin: 0 auto 15px auto;
         }
         @media (max-width: 768px) {
             .content { padding: 20px; }
@@ -451,6 +500,8 @@ DASHBOARD_HTML = """
             currentTable = tableId;
             showLoading(true);
             
+            console.log(`Loading table: ${tableName} (${tableId})`);
+            
             // Update active button states
             document.querySelectorAll('.table-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelectorAll('.about-btn').forEach(btn => btn.classList.remove('active'));
@@ -462,17 +513,19 @@ DASHBOARD_HTML = """
             document.getElementById('aboutContainer').style.display = 'none';
             
             try {
-                const response = await fetch(`/api/form/${tableId}`);
-                const data = await response.json();
+                // Load both form and records
+                const formResponse = await fetch(`/api/form/${tableId}`);
+                const formData = await formResponse.json();
                 
-                if (data.success) {
-                    displayForm(data.form, tableName);
+                if (formData.success) {
+                    displayForm(formData.form, tableName);
+                    // Records will be loaded automatically by displayForm function
                 } else {
-                    showMessage(data.error || 'Failed to load form', 'error');
+                    showMessage(formData.error || 'Failed to load table', 'error');
                 }
             } catch (error) {
-                console.error('Error loading form:', error);
-                showMessage('Failed to load form', 'error');
+                console.error('Error loading table:', error);
+                showMessage(`Failed to load table: ${error.message}`, 'error');
             } finally {
                 showLoading(false);
             }
@@ -543,51 +596,92 @@ DASHBOARD_HTML = """
         }
 
         async function loadTableRecords(tableId) {
+            const recordsContainer = document.getElementById('recordsContainer');
+            
+            // Show loading state
+            recordsContainer.innerHTML = `
+                <div class="loading-records">
+                    <div class="spinner"></div>
+                    <p>Loading records from Airtable...</p>
+                </div>
+            `;
+            
             try {
+                console.log(`Loading records for table: ${tableId}`);
                 const response = await fetch(`/api/records/${tableId}`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
                 const data = await response.json();
+                console.log('Records data received:', data);
                 
-                const recordsContainer = document.getElementById('recordsContainer');
-                
-                if (data.success && data.records.length > 0) {
-                    const recordsHtml = data.records.map(record => {
+                if (data.success && data.records && data.records.length > 0) {
+                    const recordsHtml = data.records.map((record, index) => {
                         const fieldsHtml = Object.entries(record.fields).map(([key, value]) => {
                             if (value !== null && value !== undefined && value !== '') {
-                                return `<div class="field-display"><strong>${key}:</strong> ${value}</div>`;
+                                // Truncate long values
+                                const displayValue = String(value).length > 100 ? 
+                                    String(value).substring(0, 100) + '...' : String(value);
+                                return `<div class="field-display">
+                                    <strong>${key}:</strong> 
+                                    <span class="field-value">${displayValue}</span>
+                                </div>`;
                             }
                             return '';
                         }).filter(html => html).join('');
                         
+                        const createdDate = record.created_time ? 
+                            new Date(record.created_time).toLocaleDateString() : 
+                            'Unknown';
+                        
                         return `
-                            <div class="record-card">
+                            <div class="record-card" data-record-id="${record.id}">
                                 <div class="record-header">
-                                    <span class="record-id">ID: ${record.id.substring(0, 8)}...</span>
-                                    <span class="record-time">${new Date(record.created_time || Date.now()).toLocaleDateString()}</span>
+                                    <span class="record-id">Record #${index + 1}</span>
+                                    <span class="record-time">📅 ${createdDate}</span>
                                 </div>
-                                <div class="record-fields">${fieldsHtml}</div>
+                                <div class="record-fields">
+                                    ${fieldsHtml || '<div class="no-fields">No data available</div>'}
+                                </div>
+                                <div class="record-footer">
+                                    <small class="full-id">ID: ${record.id}</small>
+                                    <small class="field-count">${record.field_count || 0} fields</small>
+                                </div>
                             </div>
                         `;
                     }).join('');
                     
                     recordsContainer.innerHTML = `
                         <div class="records-header">
-                            <span>📊 ${data.count} records found</span>
+                            <span class="records-count">📊 ${data.count} records loaded from Airtable</span>
+                            <button onclick="loadTableRecords('${tableId}')" class="refresh-btn" title="Refresh Records">🔄</button>
                         </div>
                         <div class="records-grid">${recordsHtml}</div>
                     `;
-                } else {
+                } else if (data.success && data.records && data.records.length === 0) {
                     recordsContainer.innerHTML = `
                         <div class="no-records">
-                            <p>📭 No records found in this table.</p>
-                            <p>Click "Add New Record" to create the first entry.</p>
+                            <div class="no-records-icon">📭</div>
+                            <h3>No Records Found</h3>
+                            <p>This table appears to be empty.</p>
+                            <p>Click <strong>"Add New Record"</strong> to create the first entry.</p>
+                            <button onclick="toggleView()" class="btn" style="margin-top: 15px;">📝 Add First Record</button>
                         </div>
                     `;
+                } else {
+                    throw new Error(data.error || 'Failed to load records');
                 }
             } catch (error) {
                 console.error('Error loading records:', error);
-                document.getElementById('recordsContainer').innerHTML = `
+                recordsContainer.innerHTML = `
                     <div class="error-records">
-                        <p>❌ Failed to load records: ${error.message}</p>
+                        <div class="error-icon">❌</div>
+                        <h3>Failed to Load Records</h3>
+                        <p><strong>Error:</strong> ${error.message}</p>
+                        <p>Please check your Airtable connection and try again.</p>
+                        <button onclick="loadTableRecords('${tableId}')" class="btn" style="margin-top: 15px;">🔄 Retry</button>
                     </div>
                 `;
             }
@@ -898,30 +992,45 @@ def get_records(table_id):
     """Get existing records from the specified table"""
     try:
         table = base.table(table_id)
-        schema = base.schema().table(table_id)
         
         # Get records with limit to avoid overwhelming the interface
-        records = table.all(max_records=50, sort=[{'field': 'Created', 'direction': 'desc'}] if any(f.name == 'Created' for f in schema.fields) else None)
+        records = table.all(max_records=100)
         
         # Format records for display
         formatted_records = []
         for record in records:
+            # Clean and format fields
+            clean_fields = {}
+            for key, value in record['fields'].items():
+                if value is not None and str(value).strip():
+                    # Handle different field types
+                    if isinstance(value, list):
+                        clean_fields[key] = ', '.join(str(v) for v in value)
+                    elif isinstance(value, dict):
+                        clean_fields[key] = str(value)
+                    else:
+                        clean_fields[key] = str(value)
+            
             formatted_record = {
                 'id': record['id'],
-                'fields': record['fields'],
-                'created_time': record.get('createdTime', '')
+                'fields': clean_fields,
+                'created_time': record.get('createdTime', ''),
+                'field_count': len(clean_fields)
             }
             formatted_records.append(formatted_record)
         
         return jsonify({
             'success': True,
             'records': formatted_records,
-            'count': len(formatted_records)
+            'count': len(formatted_records),
+            'table_id': table_id
         })
     except Exception as e:
+        print(f"Error fetching records from table {table_id}: {str(e)}")
         return jsonify({
             'success': False,
-            'error': str(e)
+            'error': f"Failed to load records: {str(e)}",
+            'table_id': table_id
         })
 
 @app.route('/api/submit/<table_id>', methods=['POST'])

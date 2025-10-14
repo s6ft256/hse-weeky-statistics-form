@@ -35,7 +35,7 @@ DASHBOARD_HTML = """
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Airtable Dashboard</title>
+    <title>HSE Statistics Report - Trojan Construction Group</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -182,7 +182,8 @@ DASHBOARD_HTML = """
 <body>
     <div class="container">
         <div class="header">
-            <h1>🚀 Airtable Dashboard</h1>
+            <img src="https://trojanconstruction.group/storage/subsidiaries/August2022/PG0Hzw1iVnUOQAiyYYuS.png" alt="Trojan Construction Group" style="height: 60px; margin-bottom: 15px;">
+            <h1>HSE STATISTICS REPORT</h1>
             <p>Streamlined Data Management Interface</p>
         </div>
         <div class="content">
@@ -196,22 +197,23 @@ DASHBOARD_HTML = """
             
             <div id="aboutContainer" style="display: none;">
                 <div class="form-section">
-                    <h2>📚 About Airtable Dashboard</h2>
+                    <h2>📚 About HSE Statistics Report</h2>
                     <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #28a745;">
-                        <h3>🔧 Python API Client Library</h3>
-                        <p>A Python API client library for Airtable, providing wrappers around Airtable's REST API to simplify CRUD operations, filtering and pagination.</p>
+                        <h3>🏗️ Trojan Construction Group HSE Management</h3>
+                        <p>A comprehensive Health, Safety & Environment statistics reporting system built with Python API client library for Airtable, providing wrappers around Airtable's REST API to simplify CRUD operations, filtering and pagination.</p>
                         
                         <h3>📜 License</h3>
                         <p>MIT license, permissive for both open and proprietary use.</p>
                         
-                        <h3>✨ Features</h3>
+                        <h3>✨ HSE Features</h3>
                         <ul>
-                            <li>🚀 Streamlined data management interface</li>
-                            <li>📝 Dynamic form generation based on table schemas</li>
-                            <li>🔍 Smart field type detection and validation</li>
-                            <li>💾 Simplified CRUD operations</li>
-                            <li>🎯 Training table optimizations</li>
-                            <li>🔒 Secure environment variable configuration</li>
+                            <li>🏗️ Health, Safety & Environment data management</li>
+                            <li>📊 Training & Competency Register tracking</li>
+                            <li>📝 Dynamic form generation for HSE records</li>
+                            <li>🔍 Smart field validation for safety compliance</li>
+                            <li>💾 Streamlined incident and training reporting</li>
+                            <li>🎯 Specialized training table optimizations</li>
+                            <li>🔒 Secure data handling for sensitive HSE information</li>
                         </ul>
                         
                         <h3>🛠️ Built With</h3>

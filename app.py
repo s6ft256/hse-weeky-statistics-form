@@ -194,6 +194,41 @@ DASHBOARD_HTML = """
                 <!-- Forms will be populated by JavaScript -->
             </div>
             
+            <div id="aboutContainer" style="display: none;">
+                <div class="form-section">
+                    <h2>📚 About Airtable Dashboard</h2>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #28a745;">
+                        <h3>🔧 Python API Client Library</h3>
+                        <p>A Python API client library for Airtable, providing wrappers around Airtable's REST API to simplify CRUD operations, filtering and pagination.</p>
+                        
+                        <h3>📜 License</h3>
+                        <p>MIT license, permissive for both open and proprietary use.</p>
+                        
+                        <h3>✨ Features</h3>
+                        <ul>
+                            <li>🚀 Streamlined data management interface</li>
+                            <li>📝 Dynamic form generation based on table schemas</li>
+                            <li>🔍 Smart field type detection and validation</li>
+                            <li>💾 Simplified CRUD operations</li>
+                            <li>🎯 Training table optimizations</li>
+                            <li>🔒 Secure environment variable configuration</li>
+                        </ul>
+                        
+                        <h3>🛠️ Built With</h3>
+                        <ul>
+                            <li>Python Flask - Web framework</li>
+                            <li>pyairtable - Airtable API client</li>
+                            <li>Gunicorn - WSGI HTTP Server</li>
+                            <li>Modern HTML5/CSS3/JavaScript</li>
+                        </ul>
+                        
+                        <div style="margin-top: 20px; padding: 15px; background: #e3f2fd; border-radius: 6px;">
+                            <strong>🌐 Repository:</strong> <a href="https://github.com/s6ft256/airtablepy3" target="_blank" style="color: #1976d2; text-decoration: none;">github.com/s6ft256/airtablepy3</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <div class="loading" id="loading">
                 <div class="spinner"></div>
                 <p>Loading...</p>
@@ -244,9 +279,13 @@ DASHBOARD_HTML = """
 
         function displayTableButtons(tables) {
             const selector = document.getElementById('tableSelector');
-            selector.innerHTML = tables.map(table => 
+            const tableButtons = tables.map(table => 
                 `<a href="#" class="table-btn" onclick="loadTable('${table.id}', '${table.name}')">${table.name}</a>`
             ).join('');
+            
+            const aboutButton = `<a href="#" class="table-btn" onclick="showAbout()">📚 About</a>`;
+            
+            selector.innerHTML = tableButtons + aboutButton;
         }
 
         async function loadTable(tableId, tableName) {
@@ -256,6 +295,9 @@ DASHBOARD_HTML = """
             // Update active button
             document.querySelectorAll('.table-btn').forEach(btn => btn.classList.remove('active'));
             event?.target?.classList.add('active');
+            
+            // Hide about section
+            document.getElementById('aboutContainer').style.display = 'none';
             
             try {
                 const response = await fetch(`/api/form/${tableId}`);
@@ -275,6 +317,10 @@ DASHBOARD_HTML = """
         }
 
         function displayForm(formHtml, tableName) {
+            // Hide about section and show form
+            document.getElementById('aboutContainer').style.display = 'none';
+            document.getElementById('formContainer').style.display = 'block';
+            
             document.getElementById('formContainer').innerHTML = `
                 <div class="form-section">
                     <h2>📝 Add New Record to ${tableName}</h2>
@@ -285,6 +331,16 @@ DASHBOARD_HTML = """
                     <div id="message"></div>
                 </div>
             `;
+        }
+
+        function showAbout() {
+            // Update active button
+            document.querySelectorAll('.table-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Hide form and show about section
+            document.getElementById('formContainer').style.display = 'none';
+            document.getElementById('aboutContainer').style.display = 'block';
         }
 
         async function submitForm(event) {

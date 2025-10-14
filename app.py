@@ -182,7 +182,7 @@ DASHBOARD_HTML = """
 <body>
     <div class="container">
         <div class="header">
-            <img src="https://trojanconstruction.group/storage/subsidiaries/August2022/PG0Hzw1iVnUOQAiyYYuS.png" alt="Trojan Construction Group" style="height: 60px; margin-bottom: 15px;">
+            <img src="https://trojanconstruction.group/storage/subsidiaries/August2022/PG0Hzw1iVnUOQAiyYYuS.png" alt="Trojan Construction Group" style="height: 120px; margin-bottom: 20px; max-width: 90%; object-fit: contain;">
             <h1>HSE STATISTICS REPORT</h1>
             <p>Streamlined Data Management Interface</p>
         </div>

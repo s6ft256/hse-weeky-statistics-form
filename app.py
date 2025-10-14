@@ -4,9 +4,28 @@ Production Airtable Dashboard for Render Deployment
 """
 
 import os
+import ssl
+import urllib3
+import requests
 from flask import Flask, render_template_string, request, jsonify
 from pyairtable import Api
 from dotenv import load_dotenv
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+
+# Disable SSL warnings and verification for corporate proxy
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+ssl._create_default_https_context = ssl._create_unverified_context
+os.environ['REQUESTS_CA_BUNDLE'] = ''
+os.environ['CURL_CA_BUNDLE'] = ''
+os.environ['PYTHONHTTPSVERIFY'] = '0'
+
+# Monkey-patch requests library to always disable SSL verification
+_original_request = requests.Session.request
+def _patched_request(self, method, url, **kwargs):
+    kwargs['verify'] = False
+    return _original_request(self, method, url, **kwargs)
+requests.Session.request = _patched_request
 
 # Load environment variables
 load_dotenv()
@@ -273,7 +292,13 @@ DASHBOARD_HTML = """
                 }
             } catch (error) {
                 console.error('Error loading tables:', error);
-                showMessage(`Failed to connect to server: ${error.message}`, 'error');
+                const errorMessage = error.message || 'Unknown error occurred';
+                showMessage(`Failed to connect to Airtable: ${errorMessage}`, 'error');
+                
+                // Show additional help for SSL errors
+                if (errorMessage.includes('SSL') || errorMessage.includes('certificate')) {
+                    showMessage('SSL Certificate issue detected. Please check environment variables.', 'error');
+                }
             } finally {
                 showLoading(false);
             }
@@ -401,15 +426,21 @@ DASHBOARD_HTML = """
 
         function showMessage(message, type) {
             const messageDiv = document.getElementById('message');
-            messageDiv.className = type;
-            messageDiv.textContent = message;
-            messageDiv.style.display = 'block';
-            
-            // Auto-hide success messages
-            if (type === 'success') {
-                setTimeout(() => {
-                    messageDiv.style.display = 'none';
-                }, 5000);
+            if (messageDiv) {
+                messageDiv.className = type;
+                messageDiv.textContent = message;
+                messageDiv.style.display = 'block';
+                
+                // Auto-hide success messages
+                if (type === 'success') {
+                    setTimeout(() => {
+                        messageDiv.style.display = 'none';
+                    }, 5000);
+                }
+            } else {
+                // Fallback: show alert if message div not found
+                alert(`${type.toUpperCase()}: ${message}`);
+                console.error('Message div not found, using alert fallback');
             }
         }
     </script>

@@ -281,9 +281,11 @@ DASHBOARD_HTML = """
 
         function displayTableButtons(tables) {
             const selector = document.getElementById('tableSelector');
-            const tableButtons = tables.map(table => 
-                `<a href="#" class="table-btn" onclick="loadTable('${table.id}', '${table.name}')">${table.name}</a>`
-            ).join('');
+            const tableButtons = tables.map(table => {
+                const escapedId = table.id.replace(/'/g, "\\'");
+                const escapedName = table.name.replace(/'/g, "\\'");
+                return `<a href="#" class="table-btn" onclick="loadTable('${escapedId}', '${escapedName}')">${table.name}</a>`;
+            }).join('');
             
             const aboutButton = `<a href="#" class="table-btn" onclick="showAbout()">📚 About</a>`;
             
@@ -296,7 +298,9 @@ DASHBOARD_HTML = """
             
             // Update active button
             document.querySelectorAll('.table-btn').forEach(btn => btn.classList.remove('active'));
-            event?.target?.classList.add('active');
+            if (window.event && window.event.target) {
+                window.event.target.classList.add('active');
+            }
             
             // Hide about section
             document.getElementById('aboutContainer').style.display = 'none';
@@ -338,7 +342,9 @@ DASHBOARD_HTML = """
         function showAbout() {
             // Update active button
             document.querySelectorAll('.table-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
             
             // Hide form and show about section
             document.getElementById('formContainer').style.display = 'none';
@@ -352,7 +358,7 @@ DASHBOARD_HTML = """
             const data = {};
             
             // Convert FormData to object, handling multiple values for the same key
-            for (let [key, value] = formData.entries()) {
+            for (let [key, value] of formData.entries()) {
                 if (data[key]) {
                     if (!Array.isArray(data[key])) {
                         data[key] = [data[key]];

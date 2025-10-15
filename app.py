@@ -72,6 +72,125 @@ DASHBOARD_HTML = """
             --border-color: #34495e;
             --input-bg: #2c3e50;
         }
+        
+        /* Dark theme for Airtable-style interface */
+        [data-theme="dark"] .tab-navigation {
+            background: #2c3e50;
+            border-bottom-color: #34495e;
+        }
+        
+        [data-theme="dark"] .tab-item {
+            color: #bdc3c7;
+        }
+        
+        [data-theme="dark"] .tab-item:hover {
+            color: #ecf0f1;
+            background: #34495e;
+        }
+        
+        [data-theme="dark"] .tab-item.active {
+            color: #3498db;
+            background: #2c3e50;
+            border-bottom-color: #3498db;
+        }
+        
+        [data-theme="dark"] .grid-toolbar {
+            background: #2c3e50;
+            border-bottom-color: #34495e;
+            color: #ecf0f1;
+        }
+        
+        [data-theme="dark"] .toolbar-btn {
+            background: #34495e;
+            border-color: #2c3e50;
+            color: #bdc3c7;
+        }
+        
+        [data-theme="dark"] .toolbar-btn:hover {
+            background: #2c3e50;
+            border-color: #34495e;
+        }
+        
+        [data-theme="dark"] .airtable-grid {
+            background: #2c3e50;
+        }
+        
+        [data-theme="dark"] .airtable-grid th {
+            background: #34495e;
+            border-color: #2c3e50;
+            color: #ecf0f1;
+        }
+        
+        [data-theme="dark"] .airtable-grid td {
+            border-color: #2c3e50;
+            color: #bdc3c7;
+        }
+        
+        [data-theme="dark"] .airtable-grid td:first-child {
+            background: #34495e;
+        }
+        
+        [data-theme="dark"] .airtable-grid tbody tr:hover {
+            background: #34495e;
+        }
+        
+        [data-theme="dark"] .container {
+            background: #2c3e50;
+        }
+        
+        [data-theme="dark"] .top-nav {
+            background: #2c3e50;
+            border-bottom-color: #34495e;
+        }
+        
+        [data-theme="dark"] .workspace-name {
+            color: #ecf0f1;
+        }
+        
+        [data-theme="dark"] .nav-item {
+            color: #bdc3c7;
+        }
+        
+        [data-theme="dark"] .nav-item:hover {
+            color: #ecf0f1;
+        }
+        
+        [data-theme="dark"] .nav-btn:hover {
+            background: #34495e;
+        }
+        
+        [data-theme="dark"] .table-footer {
+            background: #2c3e50;
+            border-top-color: #34495e;
+        }
+        
+        [data-theme="dark"] .add-record-btn {
+            color: #bdc3c7;
+        }
+        
+        [data-theme="dark"] .add-record-btn:hover {
+            background: #34495e;
+            color: #ecf0f1;
+        }
+        
+        [data-theme="dark"] .add-icon {
+            background: #34495e;
+        }
+        
+        [data-theme="dark"] .content {
+            background: #2c3e50;
+        }
+        
+        [data-theme="dark"] .add-field-btn {
+            background: #34495e;
+            border-color: #2c3e50;
+            color: #bdc3c7;
+        }
+        
+        [data-theme="dark"] .add-field-btn:hover {
+            background: #2c3e50;
+            border-color: #34495e;
+        }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -81,14 +200,113 @@ DASHBOARD_HTML = """
             transition: all 0.3s ease;
         }
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: var(--container-bg);
+            max-width: 100%;
+            margin: 0;
+            background: white;
             color: var(--text-color);
-            border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            min-height: 100vh;
             overflow: hidden;
             transition: all 0.3s ease;
+        }
+        
+        /* Top navigation */
+        .top-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            height: 56px;
+            background: white;
+            border-bottom: 1px solid #e6e6e6;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .workspace-icon {
+            width: 32px;
+            height: 32px;
+            background: #2d7ff9;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+        }
+        
+        .workspace-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .workspace-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .workspace-dropdown {
+            color: #999;
+            cursor: pointer;
+        }
+        
+        .main-nav {
+            display: flex;
+            gap: 32px;
+        }
+        
+        .nav-item {
+            text-decoration: none;
+            color: #666;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-item:hover {
+            color: #333;
+        }
+        
+        .nav-item.active {
+            color: #2d7ff9;
+            border-bottom-color: #2d7ff9;
+        }
+        
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .nav-btn {
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-btn:hover {
+            background: #f5f5f5;
+        }
+        
+        .trial-info {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
         }
         .header {
             background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
@@ -102,7 +320,9 @@ DASHBOARD_HTML = """
             font-weight: 300;
         }
         .content {
-            padding: 40px;
+            padding: 0;
+            background: #fafafa;
+            min-height: calc(100vh - 56px);
         }
         .form-section {
             margin-bottom: 40px;
@@ -193,26 +413,210 @@ DASHBOARD_HTML = """
             border-radius: 8px;
             margin: 20px 0;
         }
-        .table-selector {
-            margin-bottom: 30px;
-            text-align: center;
+        /* Airtable-style tab navigation */
+        .tab-navigation {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            padding: 20px;
-            background: var(--section-bg);
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-bottom: 1px solid #e6e6e6;
+            background: #fafafa;
+            padding: 0 16px;
+            overflow-x: auto;
+            white-space: nowrap;
         }
-        .table-btn {
-            display: inline-block;
-            padding: 12px 20px;
-            background: #6c757d;
-            color: white;
+        .tab-item {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 16px;
             text-decoration: none;
-            border-radius: 25px;
-            transition: all 0.3s;
+            color: #666;
+            font-size: 14px;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            user-select: none;
+        }
+        .tab-item:hover {
+            color: #333;
+            background: #f0f0f0;
+        }
+        .tab-item.active {
+            color: #2d7ff9;
+            border-bottom-color: #2d7ff9;
+            background: white;
+        }
+        .tab-item .tab-icon {
+            margin-right: 6px;
+            font-size: 12px;
+        }
+        
+        /* Main content area */
+        .main-content {
+            background: white;
+            min-height: 600px;
+        }
+        
+        /* Grid toolbar */
+        .grid-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            border-bottom: 1px solid #e6e6e6;
+            background: #fafafa;
+        }
+        .view-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+        }
+        .grid-icon {
+            font-size: 16px;
+            color: #666;
+        }
+        .dropdown-arrow {
+            color: #999;
+            margin-left: 4px;
+        }
+        .toolbar-actions {
+            display: flex;
+            gap: 8px;
+        }
+        .toolbar-btn {
+            background: white;
+            border: 1px solid #ddd;
+            color: #666;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .toolbar-btn:hover {
+            background: #f5f5f5;
+            border-color: #ccc;
+        }
+        
+        /* Airtable-style grid table */
+        .airtable-grid {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: 14px;
+            background: white;
+        }
+        .airtable-grid th {
+            background: #f7f7f7;
+            border-right: 1px solid #e6e6e6;
+            border-bottom: 1px solid #e6e6e6;
+            padding: 12px 8px;
+            text-align: left;
+            font-weight: 500;
+            color: #333;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .airtable-grid th:first-child {
+            border-left: 1px solid #e6e6e6;
+            width: 40px;
+            text-align: center;
+        }
+        .airtable-grid td {
+            border-right: 1px solid #e6e6e6;
+            border-bottom: 1px solid #e6e6e6;
+            padding: 12px 8px;
+            vertical-align: top;
+            max-width: 200px;
+            word-wrap: break-word;
+        }
+        .airtable-grid td:first-child {
+            border-left: 1px solid #e6e6e6;
+            text-align: center;
+            font-weight: 500;
+            color: #666;
+            background: #fafafa;
+        }
+        .airtable-grid tbody tr:hover {
+            background: #f8f9ff;
+        }
+        .record-number {
+            color: #999;
+            font-size: 12px;
+        }
+        .cell-content {
+            word-break: break-word;
+            line-height: 1.4;
+        }
+        
+        /* Table footer */
+        .table-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: white;
+            border-top: 1px solid #e6e6e6;
+        }
+        
+        .add-record-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+        
+        .add-record-btn:hover {
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .add-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            background: #e6e6e6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .record-count-info {
+            font-size: 13px;
+            color: #999;
+        }
+        
+        /* Add field button */
+        .add-field-btn {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            background: #f5f5f5;
+            border: 1px solid #e6e6e6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+            color: #666;
+            transition: all 0.2s ease;
+        }
+        
+        .add-field-btn:hover {
+            background: #eeeeee;
+            border-color: #ddd;
+        }
             font-weight: 600;
             font-size: 14px;
             white-space: nowrap;
@@ -365,33 +769,138 @@ DASHBOARD_HTML = """
         .loading-records .spinner {
             margin: 0 auto 15px auto;
         }
+        /* Definitions table special styling */
+        .definition-card {
+            background: var(--container-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .definition-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .definition-term {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #007bff;
+        }
+
+        .term-number {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .term-title {
+            margin: 0;
+            color: var(--text-color);
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .definition-content {
+            padding-left: 42px;
+        }
+
+        .definition-text {
+            margin: 0;
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
         @media (max-width: 768px) {
-            .content { padding: 20px; }
-            .form-section { padding: 20px; }
+            .content { padding: 10px; }
+            .form-section { padding: 15px; }
             .header h1 { font-size: 2em; }
             .records-grid { grid-template-columns: 1fr; }
-            .table-selector { flex-direction: column; }
+            .definition-content { padding-left: 20px; }
+            .term-title { font-size: 16px; }
+            .tab-navigation { padding: 0 8px; }
+            .tab-item { padding: 10px 12px; font-size: 13px; }
+            .grid-toolbar { padding: 8px 12px; flex-direction: column; gap: 10px; }
+            .toolbar-actions { justify-content: center; }
+            .airtable-grid { font-size: 13px; }
+            .airtable-grid th, .airtable-grid td { padding: 8px 4px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <div style="position: absolute; top: 20px; right: 20px; display: flex; align-items: center; gap: 15px;">
-                <button onclick="toggleTheme()" class="theme-btn" title="Toggle Dark/Light Theme">🌓</button>
-                <button onclick="showAbout()" class="about-btn" title="About HSE Statistics Report">📚 About</button>
+        <!-- Airtable-style top navigation -->
+        <div class="top-nav">
+            <div class="nav-left">
+                <div class="workspace-icon">🏗️</div>
+                <div class="workspace-info">
+                    <span class="workspace-name">HSE Statistics</span>
+                    <span class="workspace-dropdown">⌄</span>
+                </div>
             </div>
-            <img src="https://trojanconstruction.group/storage/subsidiaries/August2022/PG0Hzw1iVnUOQAiyYYuS.png" alt="Trojan Construction Group" style="height: 120px; margin-bottom: 20px; max-width: 90%; object-fit: contain;">
-            <h1>HSE STATISTICS REPORT</h1>
-            <p>Streamlined Data Management Interface</p>
+            <div class="nav-center">
+                <nav class="main-nav">
+                    <a href="#" class="nav-item active">Data</a>
+                    <a href="#" class="nav-item">Automations</a>
+                    <a href="#" class="nav-item">Interfaces</a>
+                    <a href="#" class="nav-item">Forms</a>
+                </nav>
+            </div>
+            <div class="nav-right">
+                <button onclick="toggleTheme()" class="nav-btn" title="Toggle Theme">🌓</button>
+                <button onclick="showAbout()" class="nav-btn" title="About">📚</button>
+                <div class="trial-info">Trial: 13</div>
+            </div>
         </div>
         <div class="content">
-            <div class="table-selector" id="tableSelector">
-                <!-- Table buttons will be populated by JavaScript -->
+            <!-- Airtable-style tab navigation -->
+            <div class="tab-navigation" id="tabNavigation">
+                <!-- Table tabs will be populated by JavaScript -->
             </div>
             
-            <div id="formContainer">
-                <!-- Forms will be populated by JavaScript -->
+            <!-- Main content area -->
+            <div class="main-content">
+                <!-- Grid view container -->
+                <div id="gridViewContainer" style="display: none;">
+                    <div class="grid-toolbar">
+                        <div class="view-controls">
+                            <span class="grid-icon">⚏</span>
+                            <span class="view-name">Grid view</span>
+                            <span class="dropdown-arrow">⌄</span>
+                        </div>
+                        <div class="toolbar-actions">
+                            <button class="toolbar-btn" title="Hide fields">👁️ Hide fields</button>
+                            <button class="toolbar-btn" title="Filter">🔍 Filter</button>
+                            <button class="toolbar-btn" title="Group">📊 Group</button>
+                            <button class="toolbar-btn" title="Sort">↕️ Sort</button>
+                            <button class="toolbar-btn refresh-btn" onclick="refreshCurrentTable()" title="Refresh">🔄</button>
+                        </div>
+                    </div>
+                    <div id="gridTable">
+                        <!-- Grid table will be populated here -->
+                    </div>
+                </div>
+                
+                <!-- Form container (hidden by default) -->
+                <div id="formContainer" style="display: none;">
+                    <!-- Forms will be populated by JavaScript -->
+                </div>
             </div>
             
             <div id="aboutContainer" style="display: none;">
@@ -438,7 +947,8 @@ DASHBOARD_HTML = """
     </div>
 
     <script>
-        let currentTable = '';
+        let currentTable = null;
+        let currentTableName = null;
         let tableSchemas = {};
 
         // Load tables and theme on page load
@@ -486,17 +996,289 @@ DASHBOARD_HTML = """
         }
 
         function displayTableButtons(tables) {
-            const selector = document.getElementById('tableSelector');
-            const tableButtons = tables.map(table => {
+            const tabNavigation = document.getElementById('tabNavigation');
+            
+            // Define the preferred order based on your Airtable structure
+            const tableOrder = [
+                'Definitions',
+                'Project Information', 
+                'MAIN REGISTER',
+                'Incident Tracker',
+                'Injury Details',
+                'Induction Register',
+                'Training & competency Register',
+                'Observation Register',
+                'NCR Tracker'
+            ];
+            
+            // Sort tables according to preferred order
+            const sortedTables = tables.sort((a, b) => {
+                const aIndex = tableOrder.findIndex(name => 
+                    a.name.toLowerCase().includes(name.toLowerCase()) || 
+                    name.toLowerCase().includes(a.name.toLowerCase())
+                );
+                const bIndex = tableOrder.findIndex(name => 
+                    b.name.toLowerCase().includes(name.toLowerCase()) || 
+                    name.toLowerCase().includes(b.name.toLowerCase())
+                );
+                
+                if (aIndex === -1 && bIndex === -1) return a.name.localeCompare(b.name);
+                if (aIndex === -1) return 1;
+                if (bIndex === -1) return -1;
+                return aIndex - bIndex;
+            });
+            
+            const tabItems = sortedTables.map((table, index) => {
                 const escapedId = table.id.replace(/'/g, "\\'");
                 const escapedName = table.name.replace(/'/g, "\\'");
-                return `<a href="#" class="table-btn" onclick="loadTable('${escapedId}', '${escapedName}')">${table.name}</a>`;
+                
+                // Determine display name (numbered like in Airtable)
+                let displayName = table.name;
+                let tabNumber = '';
+                
+                // Add numbering based on position
+                if (index === 0) tabNumber = '';
+                else tabNumber = `${index + 1}.`;
+                
+                const activeClass = index === 0 ? 'active' : '';
+                
+                return `<div class="tab-item ${activeClass}" onclick="switchToTable('${escapedId}', '${escapedName}', this)">
+                    ${tabNumber}${displayName}
+                </div>`;
             }).join('');
             
-            selector.innerHTML = tableButtons;
+            tabNavigation.innerHTML = tabItems;
+            
+            // Load the first table by default
+            if (sortedTables.length > 0) {
+                loadGridTable(sortedTables[0].id, sortedTables[0].name);
+            }
+        }
+
+        function switchToTable(tableId, tableName, tabElement) {
+            // Update active tab
+            document.querySelectorAll('.tab-item').forEach(tab => tab.classList.remove('active'));
+            tabElement.classList.add('active');
+            
+            // Load the grid table
+            loadGridTable(tableId, tableName);
+        }
+        
+        function refreshCurrentTable() {
+            if (currentTable && currentTableName) {
+                loadGridTable(currentTable, currentTableName);
+            }
+        }
+        
+        async function loadGridTable(tableId, tableName) {
+            currentTable = tableId;
+            currentTableName = tableName;
+            
+            // Show grid view, hide form view
+            document.getElementById('gridViewContainer').style.display = 'block';
+            document.getElementById('formContainer').style.display = 'none';
+            
+            // Load records and display in grid format
+            try {
+                const response = await fetch('/load_table_records', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        table_id: tableId,
+                        table_name: tableName
+                    })
+                });
+                
+                const data = await response.json();
+                console.log('Records data received:', data);
+                
+                if (data.success && data.records && data.records.length > 0) {
+                    displayGridTable(data.records, tableName);
+                } else {
+                    document.getElementById('gridTable').innerHTML = `
+                        <div style="text-align: center; padding: 40px; color: #666;">
+                            <div style="font-size: 48px; margin-bottom: 16px;">📝</div>
+                            <h3>No records found</h3>
+                            <p>This table appears to be empty or there was an error loading the data.</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error loading grid table:', error);
+                document.getElementById('gridTable').innerHTML = `
+                    <div style="text-align: center; padding: 40px; color: #d32f2f;">
+                        <div style="font-size: 48px; margin-bottom: 16px;">⚠️</div>
+                        <h3>Error loading table</h3>
+                        <p>There was an error loading the table data. Please try again.</p>
+                    </div>
+                `;
+            }
+        }
+        
+        function displayGridTable(records, tableName) {
+            const gridContainer = document.getElementById('gridTable');
+            
+            if (!records || records.length === 0) {
+                gridContainer.innerHTML = '<div style="padding: 20px; text-align: center;">No records found</div>';
+                return;
+            }
+            
+            // Get all field names from the records
+            const allFields = new Set();
+            records.forEach(record => {
+                Object.keys(record.fields || {}).forEach(field => allFields.add(field));
+            });
+            const fieldNames = Array.from(allFields);
+            
+            // Special handling for Definitions table
+            const isDefinitionsTable = fieldNames.includes('Term') && fieldNames.includes('Definitions');
+            
+            let tableHTML = '';
+            
+            if (isDefinitionsTable) {
+                // Use Term and Definitions columns specifically
+                tableHTML = `
+                    <table class="airtable-grid">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>� Term</th>
+                                <th>📝 Definitions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${records.map((record, index) => `
+                                <tr>
+                                    <td class="record-number">${index + 1}</td>
+                                    <td><div class="cell-content">${record.fields.Term || ''}</div></td>
+                                    <td><div class="cell-content">${record.fields.Definitions || ''}</div></td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                `;
+            } else if (tableName.toLowerCase().includes('project')) {
+                // Special handling for Project Information table to match exact structure from screenshot
+                const projectStructure = [
+                    'Project Stakeholder',
+                    'Project Code', 
+                    'Project Name:',
+                    'Partner Name (if any):',
+                    'Client:',
+                    'Consultant:',
+                    'Project Time line',
+                    'Project starting date:',
+                    'Project Progress %',
+                    'Project Duration (days):',
+                    'Elapsed time (days):',
+                    'Time to completion (days):',
+                    'Project Key Personnel',
+                    'Sr. Project Manager:',
+                    'HSE Manager:',
+                    'Project Manager:'
+                ];
+                
+                tableHTML = `
+                    <table class="airtable-grid">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>📋 PROJECT INFORMATION</th>
+                                <th>📄 Field 1</th>
+                                <th style="width: 40px;">
+                                    <div class="add-field-btn" title="Add field">+</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${records.map((record, index) => {
+                                // Map record fields to the project structure
+                                const recordFields = Object.entries(record.fields || {});
+                                const fieldName = recordFields[0] ? recordFields[0][0] : (projectStructure[index] || `Field ${index + 1}`);
+                                const fieldValue = recordFields[0] ? recordFields[0][1] : '';
+                                
+                                return `
+                                    <tr>
+                                        <td class="record-number">${index + 1}</td>
+                                        <td><div class="cell-content">${fieldName}</div></td>
+                                        <td><div class="cell-content">${fieldValue}</div></td>
+                                        <td></td>
+                                    </tr>
+                                `;
+                            }).join('')}
+                        </tbody>
+                    </table>
+                `;
+            } else {
+                // Standard grid layout for other tables with proper column structure
+                const maxColumns = Math.min(fieldNames.length, 3); // Limit to 3 data columns for better display
+                const displayFields = fieldNames.slice(0, maxColumns);
+                
+                tableHTML = `
+                    <table class="airtable-grid">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                ${displayFields.map((field, index) => {
+                                    if (index === 0) return `<th>📋 ${field.toUpperCase()}</th>`;
+                                    return `<th>📄 Field ${index + 1}</th>`;
+                                }).join('')}
+                                <th style="width: 40px;">
+                                    <div class="add-field-btn" title="Add field">+</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${records.map((record, index) => `
+                                <tr>
+                                    <td class="record-number">${index + 1}</td>
+                                    ${displayFields.map((field, fieldIndex) => `
+                                        <td><div class="cell-content">${fieldIndex === 0 ? field : (record.fields[field] || '')}</div></td>
+                                    `).join('')}
+                                    <td></td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                `;
+            }
+            
+            // Add the table footer with add button and record count
+            const footerHTML = `
+                <div class="table-footer">
+                    <button class="add-record-btn" onclick="showAddForm()">
+                        <span class="add-icon">+</span>
+                        <span>Add...</span>
+                    </button>
+                    <div class="record-count-info">
+                        ${records.length} record${records.length !== 1 ? 's' : ''}
+                    </div>
+                </div>
+            `;
+            
+            gridContainer.innerHTML = tableHTML + footerHTML;
         }
 
         async function loadTable(tableId, tableName) {
+            // This function now switches to grid view
+            loadGridTable(tableId, tableName);
+        }
+
+        function showAddForm() {
+            // Switch to form view
+            document.getElementById('gridViewContainer').style.display = 'none';
+            document.getElementById('formContainer').style.display = 'block';
+            
+            // Load the form for the current table
+            if (currentTable && currentTableName) {
+                loadTableOld(currentTable, currentTableName);
+            }
+        }
+
+        // Keep the original loadTable function for backward compatibility
+        async function loadTableOld(tableId, tableName) {
             currentTable = tableId;
             showLoading(true);
             
@@ -617,41 +1399,72 @@ DASHBOARD_HTML = """
                 const data = await response.json();
                 console.log('Records data received:', data);
                 
+                // Check if this is the Definitions table for special formatting
+                const isDefinitionsTable = data.records && data.records.length > 0 && 
+                    data.records.some(record => {
+                        console.log('Checking record fields:', Object.keys(record.fields));
+                        return record.fields.hasOwnProperty('Term') && record.fields.hasOwnProperty('Definitions');
+                    });
+                console.log('Is Definitions table:', isDefinitionsTable, 'Table name:', data.table_name);
+                
                 if (data.success && data.records && data.records.length > 0) {
-                    const recordsHtml = data.records.map((record, index) => {
-                        const fieldsHtml = Object.entries(record.fields).map(([key, value]) => {
-                            if (value !== null && value !== undefined && value !== '') {
-                                // Truncate long values
-                                const displayValue = String(value).length > 100 ? 
-                                    String(value).substring(0, 100) + '...' : String(value);
-                                return `<div class="field-display">
-                                    <strong>${key}:</strong> 
-                                    <span class="field-value">${displayValue}</span>
-                                </div>`;
-                            }
-                            return '';
-                        }).filter(html => html).join('');
-                        
-                        const createdDate = record.created_time ? 
-                            new Date(record.created_time).toLocaleDateString() : 
-                            'Unknown';
-                        
-                        return `
-                            <div class="record-card" data-record-id="${record.id}">
-                                <div class="record-header">
-                                    <span class="record-id">Record #${index + 1}</span>
-                                    <span class="record-time">📅 ${createdDate}</span>
+                    let recordsHtml;
+                    
+                    if (isDefinitionsTable) {
+                        // Special formatting for Definitions table
+                        recordsHtml = data.records.map((record, index) => {
+                            const term = record.fields.Term || `Term ${index + 1}`;
+                            const definition = record.fields.Definitions || 'No definition available';
+                            
+                            return `
+                                <div class="definition-card">
+                                    <div class="definition-term">
+                                        <span class="term-number">${index + 1}</span>
+                                        <h3 class="term-title">${term}</h3>
+                                    </div>
+                                    <div class="definition-content">
+                                        <p class="definition-text">${definition}</p>
+                                    </div>
                                 </div>
-                                <div class="record-fields">
-                                    ${fieldsHtml || '<div class="no-fields">No data available</div>'}
+                            `;
+                        }).join('');
+                    } else {
+                        // Standard formatting for other tables
+                        recordsHtml = data.records.map((record, index) => {
+                            const fieldsHtml = Object.entries(record.fields).map(([key, value]) => {
+                                if (value !== null && value !== undefined && value !== '') {
+                                    // Truncate long values
+                                    const displayValue = String(value).length > 100 ? 
+                                        String(value).substring(0, 100) + '...' : String(value);
+                                    return `<div class="field-display">
+                                        <strong>${key}:</strong> 
+                                        <span class="field-value">${displayValue}</span>
+                                    </div>`;
+                                }
+                                return '';
+                            }).filter(html => html).join('');
+                            
+                            const createdDate = record.created_time ? 
+                                new Date(record.created_time).toLocaleDateString() : 
+                                'Unknown';
+                            
+                            return `
+                                <div class="record-card" data-record-id="${record.id}">
+                                    <div class="record-header">
+                                        <span class="record-id">Record #${index + 1}</span>
+                                        <span class="record-time">📅 ${createdDate}</span>
+                                    </div>
+                                    <div class="record-fields">
+                                        ${fieldsHtml || '<div class="no-fields">No data available</div>'}
+                                    </div>
+                                    <div class="record-footer">
+                                        <small class="full-id">ID: ${record.id}</small>
+                                        <small class="field-count">${record.field_count || 0} fields</small>
+                                    </div>
                                 </div>
-                                <div class="record-footer">
-                                    <small class="full-id">ID: ${record.id}</small>
-                                    <small class="field-count">${record.field_count || 0} fields</small>
-                                </div>
-                            </div>
-                        `;
-                    }).join('');
+                            `;
+                        }).join('');
+                    }
                     
                     recordsContainer.innerHTML = `
                         <div class="records-header">

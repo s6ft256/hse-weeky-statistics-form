@@ -66,7 +66,20 @@ _DASH = """
 <html>
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Airtable Dashboard</title>
+<title>hse_statistics_report</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+: 
+<script>
+        (function(){
+                try{
+                        const t = localStorage.getItem('theme') || 'light';
+                        // set on documentElement and body (if available) so CSS selectors for body[data-theme] apply early
+                        document.documentElement.dataset.theme = t;
+                        if(document.body) document.body.dataset.theme = t; else document.addEventListener('DOMContentLoaded', ()=> document.body.dataset.theme = t);
+                }catch(e){}
+        })();
+: </script>
+<script>try{document.title = 'hse_statistics_report'}catch(e){}</script>
 <style>
 :root{--bg:#f8fafc;--card:#ffffff;--muted:#6b7280;--accent:#7c3aed;--fg:#111827;--ease: cubic-bezier(.22,.61,.36,1); --dur: 220ms}
 html,body{height:100%}
@@ -86,25 +99,40 @@ body.instant-theme *{transition: none !important}
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;scroll-behavior:auto !important}}
 /* light theme override */
 body[data-theme="light"]{--bg:#f8fafc;--card:#ffffff;--muted:#6b7280;--accent:#7c3aed;--fg:#111827}
-.banner{height:460px;background:linear-gradient(180deg,rgba(11,20,40,.95),rgba(16,24,37,.98));display:flex;align-items:center;justify-content:center;padding:32px;border-bottom:1px solid rgba(255,255,255,.03);position:relative}
-.hero{max-width:1100px;width:100%;background:linear-gradient(180deg,#26343b,#222a30);padding:22px;border-radius:14px;box-shadow:0 20px 60px rgba(2,6,23,.6), 0 0 0 1px rgba(124,58,237,.22), 0 40px 120px rgba(124,58,237,.28);text-align:center;position:relative;min-height:300px;z-index:1}
+/* Dark theme variables */
+html[data-theme="dark"], body[data-theme="dark"]{--bg:#0b1028;--card:#0f1724;--muted:#94a3b8;--accent:#7c3aed;--fg:#e6eef8}
+
+/* Smooth theme transitions */
+body{transition: background-color .28s var(--ease), color .28s var(--ease)}
+/* helper class for a fuller transition effect */
+.theme-transition *{transition: background-color .35s var(--ease), color .35s var(--ease), border-color .28s var(--ease), box-shadow .28s var(--ease) !important}
+/* Theme toggle button */
+.theme-toggle{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:999px;border:0;background:var(--card);color:var(--fg);cursor:pointer;box-shadow:0 8px 26px rgba(2,6,23,.12);position:fixed;right:18px;bottom:18px;z-index:999;transition:transform .18s ease, box-shadow .18s ease}
+.theme-toggle:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(2,6,23,.18)}
+.theme-toggle .theme-icon{display:inline-flex;width:18px;height:18px}
+.theme-toggle .theme-label{font-size:13px}
+/* About floating button */
+.about-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:999px;border:0;background:var(--card);color:var(--fg);cursor:pointer;box-shadow:0 8px 26px rgba(2,6,23,.08);position:fixed;right:120px;bottom:18px;z-index:999;transition:transform .18s ease, box-shadow .18s ease}
+.about-btn:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(2,6,23,.12)}
+.banner{height:460px;background:linear-gradient(180deg,rgba(11,20,40,.95),rgba(16,24,37,.98));display:flex;align-items:center;justify-content:center;padding:32px 18px;border-bottom:1px solid rgba(255,255,255,.03);position:relative;box-sizing:border-box}
+.hero{max-width:1100px;width:100%;background:linear-gradient(180deg,var(--card),rgba(0,0,0,.04));padding:22px;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.12), 0 0 0 1px var(--border);text-align:center;position:relative;min-height:300px;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto}
 .hero::after{content:"";position:absolute;inset:-44px;background:radial-gradient(ellipse at 50% -10%, rgba(124,58,237,.4), rgba(124,58,237,0) 60%), radial-gradient(ellipse at 10% 50%, rgba(59,130,246,.22), rgba(59,130,246,0) 50%), radial-gradient(ellipse at 90% 50%, rgba(234,179,8,.22), rgba(234,179,8,0) 50%);filter:blur(34px);z-index:-1;pointer-events:none}
-.logo{position:absolute;left:50%;transform:translateX(-50%);top:26px;width:200px;height:200px;background-size:contain;background-repeat:no-repeat;background-position:center}
+.logo{width:260px;height:260px;background-size:contain;background-repeat:no-repeat;background-position:center;margin:0 auto 12px;flex:0 0 auto}
 .report-title{margin-top:36px;text-align:center}
-.report-title h1{font-size:48px;margin:0;color:#111827;letter-spacing:1px;font-weight:700}
+.report-title h1{font-size:48px;margin:0;color:var(--fg);letter-spacing:1px;font-weight:700}
 .report-title .subtitle{color:var(--muted);margin-top:10px}
 /* light theme: ensure strong contrast for title area */
-body[data-theme="light"] .report-title h1{color:#111827 !important}
-body[data-theme="light"] .report-title .subtitle{color:#374151 !important}
+body[data-theme="light"] .report-title h1{color:var(--fg) !important}
+body[data-theme="light"] .report-title .subtitle{color:var(--muted) !important}
 /* light theme banner/hero becomes brighter */
-body[data-theme="light"] .banner{background:linear-gradient(180deg,#f8fafc,#eef2ff)}
+body[data-theme="light"] .banner{background:linear-gradient(180deg,var(--bg),var(--card))}
 body[data-theme="light"] .hero{background:linear-gradient(180deg,#ffffff,#ffffff);box-shadow:0 12px 40px rgba(2,6,23,.08), 0 0 0 1px rgba(99,102,241,.15)}
 body[data-theme="light"] .hero::after{background:radial-gradient(ellipse at 50% -10%, rgba(124,58,237,.16), rgba(124,58,237,0) 60%), radial-gradient(ellipse at 10% 50%, rgba(59,130,246,.12), rgba(59,130,246,0) 50%), radial-gradient(ellipse at 90% 50%, rgba(234,179,8,.12), rgba(234,179,8,0) 50%)}
 
 /* responsive title and entrance animation */
 @keyframes fadeScaleIn { from { opacity: 0; transform: translateY(8px) scale(.98); } to { opacity:1; transform: translateY(0) scale(1);} }
 .report-title h1{animation: fadeScaleIn 420ms ease both}
-@media (max-width: 800px){ .report-title h1{font-size:28px} .logo{width:130px;height:130px;top:10px} .banner{height:260px} }
+@media (max-width: 800px){ .report-title h1{font-size:28px} .logo{width:160px;height:160px} .banner{height:260px} }
 
 /* visible count animation */
 .value{transition:transform .18s ease, opacity .18s ease}
@@ -120,10 +148,10 @@ body[data-theme="light"] .hero::after{background:radial-gradient(ellipse at 50% 
 .stat .label{color:var(--muted);font-size:12px}
 .stat .value{font-size:22px;font-weight:700;margin-top:6px}
 .search{margin:18px 0}
-.search input{width:100%;padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,.04);background:#071025;color:#e6eef8;transition:box-shadow .18s ease, transform .12s ease, border-color .12s ease}
+.search input{width:100%;padding:14px;border-radius:10px;border:1px solid rgba(0,0,0,.06);background:var(--card);color:var(--fg);transition:box-shadow .18s ease, transform .12s ease, border-color .12s ease}
 .search input:focus{outline:0;box-shadow:0 8px 30px rgba(124,58,237,.12);transform:translateY(-1px);border-color:rgba(124,58,237,.6)}
-body[data-theme="light"] .search input{background:#ffffff;color:#111827;border:1px solid #e5e7eb}
-body[data-theme="light"] .card{color:#111827}
+html[data-theme="light"] body .search input{background:var(--card);color:var(--fg);border:1px solid var(--border)}
+html[data-theme="light"], body[data-theme="light"] .card{color:#111827}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-top:18px}
 .card{background:var(--card);padding:22px;border-radius:12px;min-height:140px;border:1px solid rgba(255,255,255,.03);box-shadow:0 6px 20px rgba(2,6,23,.6);color:var(--fg)}
 .card h3{margin:0 0 10px 0;font-size:20px;font-weight:600}
@@ -131,6 +159,8 @@ body[data-theme="light"] .card{color:#111827}
 .card .active{float:right;color:var(--accent);font-weight:600}
 .footer-note{color:var(--muted);font-size:13px;margin-top:14px}
 a.card{text-decoration:none}
+/* hide decorative svg icons inside card/tool areas for a cleaner toolbar look */
+.card .card-icon svg, .toolbar .card-icon svg{display:none}
 @media(max-width:800px){.stats{flex-direction:column}}
 /* subtle hover lift and smooth appearance */
 .card{transition:transform var(--dur) var(--ease),opacity var(--dur) var(--ease);will-change:transform,opacity}
@@ -138,7 +168,14 @@ a.card{text-decoration:none}
 .card[style*="opacity: 0"]{opacity:0}
 .card{opacity:1}
 /* small copyright/footer */
-.site-footer{color:var(--muted);font-size:12px;margin-top:12px;text-align:center}
+.site-footer{color:var(--muted);font-size:12px;margin-top:12px;text-align:center;font-weight:700}
+/* About modal and overlay */
+.overlay{position:fixed;inset:0;background:rgba(2,6,23,.48);backdrop-filter:blur(2px);display:none;opacity:0;transition:opacity .18s linear;z-index:998}
+.overlay.show{display:block;opacity:1}
+.modal{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(.98);background:var(--card);color:var(--fg);padding:18px;border-radius:12px;box-shadow:0 20px 60px rgba(2,6,23,.4);max-width:720px;width:calc(100% - 48px);z-index:999;opacity:0;transition:opacity .18s var(--ease),transform .18s var(--ease)}
+.modal.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.modal h3{margin:0 0 8px 0;font-size:18px}
+.modal a{color:var(--accent);font-weight:600}
 </style>
 </head>
 <body>
@@ -150,6 +187,10 @@ a.card{text-decoration:none}
                         </div>
 
                                 <div class="container">
+                                        <div style="display:flex;justify-content:flex-end;margin-top:8px">
+                                                <button class="about-btn" aria-label="About">About</button>
+                                                <button class="theme-toggle" aria-label="Toggle theme"><span id="themeIcon" class="theme-icon"></span><span id="themeLabel" class="theme-label"></span></button>
+                                        </div>
                                         <div class="report-title" style="margin-top:18px;margin-bottom:18px;text-align:center">
                                                 <h1 style="margin:0;font-size:44px;letter-spacing:1px">HSE STATISTICS REPORT</h1>
                                                 <div class="subtitle" style="color:var(--muted);margin-top:8px">Streamlined Data Management Interface</div>
@@ -182,7 +223,7 @@ a.card{text-decoration:none}
                         <a class="card" data-name="{{ t.name|e }}" data-count="{{ t.count }}" href="/table/{{ t.name|urlencode }}">
                                 <div style="display:flex;align-items:center;gap:12px">
                                     <div class="card-icon" aria-hidden="true">
-                                      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="6" rx="1.5" fill="#7C5CFF"/><rect x="3" y="14" width="8" height="6" rx="1.5" fill="#5CE1E6"/><rect x="14" y="14" width="7" height="6" rx="1.5" fill="#FFD166"/></svg>
+                                      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="6" rx="1.5" fill="var(--accent)"/><rect x="3" y="14" width="8" height="6" rx="1.5" fill="var(--accent2)"/><rect x="14" y="14" width="7" height="6" rx="1.5" fill="var(--accent3)"/></svg>
                                     </div>
                                     <div style="flex:1;min-width:0">
                                         <h3 style="margin:0;font-size:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ t.name }}</h3>
@@ -205,7 +246,7 @@ a.card{text-decoration:none}
                                                                 <script>
                                                                         (function(){
                                                                                 const KEY='theme';
-                                                                                const saved = localStorage.getItem(KEY) || 'dark';
+                                                                                const saved = localStorage.getItem(KEY) || 'light';
                                                                                 document.body.dataset.theme = saved;
                                                                                 const toggles = Array.from(document.querySelectorAll('.theme-toggle'));
                                                                                 function iconSvg(t){
@@ -224,11 +265,13 @@ a.card{text-decoration:none}
                                                                                 }
                                                                                 function toggleTheme(){
                                                                                         const next = document.body.dataset.theme==='dark'?'light':'dark';
-                                                                                        document.body.classList.add('instant-theme');
+                                                                                        // animate theme transition by toggling a helper class
+                                                                                        document.body.classList.add('theme-transition');
                                                                                         document.body.dataset.theme = next;
                                                                                         try{ localStorage.setItem(KEY,next); }catch(e){}
                                                                                         render();
-                                                                                        setTimeout(()=> document.body.classList.remove('instant-theme'), 120);
+                                                                                        // remove transition class after animation completes
+                                                                                        setTimeout(()=> document.body.classList.remove('theme-transition'), 350);
                                                                                 }
                                                                                 toggles.forEach(btn=>{
                                                                                     btn.addEventListener('pointerdown', (e)=>{ e.preventDefault(); toggleTheme(); });
@@ -238,6 +281,42 @@ a.card{text-decoration:none}
                                                                                 render();
                                                                         })();
                                                                         
+                                                                                                                                                                                                                                                                                                // About modal (dashboard)
+                                                                                                                                                                                                                                                                                                (function(){
+                                                                                                                                                                                                                                                                                                                                const aboutBtn = document.querySelector('.about-btn');
+                                                                                                                                                                                                                                                                                                                                if(!aboutBtn) return;
+                                                                                                                                                                                                                                                                                                                                const overlay = document.createElement('div'); overlay.className='overlay'; overlay.id='aboutOverlay';
+                                                                                                                                                                                                                                                                                                                                const modal = document.createElement('div'); modal.className='modal'; modal.id='aboutModal';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                modal.innerHTML = `
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <h3>About this website</h3>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div style="max-width:520px;line-height:1.4;color:var(--muted)">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <p>It’s a Flask-based web server that provides a REST API + interactive UI for managing Airtable data.</p>
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <p>The UI is a dashboard where users can create, read, update, delete (CRUD) records in Airtable tables, with an emphasis on protecting the schema (i.e. users cannot modify table structures or change fields).</p>
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <p>It uses an Airtable Personal Access Token (PAT) + Base ID to connect to Airtable.</p>
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <p>It has a permissions model: allowed operations include viewing tables, creating/editing/deleting records; disallowed are creating/deleting tables or altering schema.</p>
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <p>It has a REST API (endpoints GET /api/tables, etc.) and a web frontend.</p>
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <p>It is designed with production considerations in mind (SSL support, error handling).</p>
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <p>The tech stack: Python (3.13.8), Flask, uses pyairtable library to interface with Airtable REST API.</p>
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <p>Visit the repository that includes documentation: Quickstart, server guide, permissions.</p>
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <p><a href="https://github.com/s6ft256/hse-weeky-statistics-form.git" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">Source code</a></p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div style="margin-top:10px;color:var(--muted);font-size:12px">developed by Elius @2025 HSE TROJAN CONTRACTING GROUP</div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div style="margin-top:12px;text-align:right"><button class="tool" id="closeAbout">Close</button></div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                `;
+                                                                                                                                                                                                                                                                                                                                document.body.appendChild(overlay); document.body.appendChild(modal);
+                                                                                                                                                                                                                                                                                                                                aboutBtn.addEventListener('click', ()=>{ overlay.classList.add('show'); modal.classList.add('show'); });
+                                                                                                                                                                                                                                                                                                                                document.getElementById('closeAbout')?.addEventListener('click', ()=>{ overlay.classList.remove('show'); modal.classList.remove('show'); });
+                                                                                                                                                                                                                                                                                                                                overlay.addEventListener('click', ()=>{ overlay.classList.remove('show'); modal.classList.remove('show'); });
+                                                                                                                                                                                                                                                                                                })();
+
                                                                         (function(){
                                                                                 const searchEl = document.getElementById('tableSearch');
                                                                                 const grid = document.getElementById('tableGrid');
@@ -308,10 +387,51 @@ _TABLE = """
 <html>
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{{ table_name }}</title>
+<title>hse_statistics_report</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <style>
 /* Theme variables */
-:root{--bg:#f3f4f6;--card:#ffffff;--fg:#111827;--muted:#6b7280;--accent:#7c3aed;--border:#e6e9ef;--ease:cubic-bezier(.22,.61,.36,1);--dur:220ms}
+:root{--bg:#f3f4f6;--card:#ffffff;--fg:#111827;--muted:#6b7280;--accent:#7c3aed;--accent2:#5ce1e6;--accent3:#ffd166;--danger:#dc2626;--border:#e6e9ef;--ease:cubic-bezier(.22,.61,.36,1);--dur:220ms}
+
+/* Dark theme overrides for table views and forms */
+html[data-theme="dark"], body[data-theme="dark"]{
+        --bg:#0b1028;
+        --card:#0f1724;
+        --fg:#e6eef8;
+        --muted:#94a3b8;
+        --accent:#7c3aed;
+        --accent2:#5ce1e6;
+        --accent3:#ffd166;
+        --danger:#f87171;
+        --border: rgba(255,255,255,0.06);
+        --shadow: rgba(0,0,0,0.6);
+}
+
+/* Specific element overrides so forms, modals, tables and overlays match dark theme */
+html[data-theme="dark"], body[data-theme="dark"] .form-smooth input,
+html[data-theme="dark"], body[data-theme="dark"] .form-smooth select,
+html[data-theme="dark"], body[data-theme="dark"] .form-smooth textarea{
+        background: var(--card);
+        color: var(--fg);
+        border: 1px solid var(--border);
+}
+html[data-theme="dark"], body[data-theme="dark"] .modal{
+        background: var(--card);
+        color: var(--fg);
+        box-shadow: 0 10px 30px rgba(0,0,0,.6);
+}
+html[data-theme="dark"], body[data-theme="dark"] .overlay{
+        background: rgba(0,0,0,.6);
+}
+html[data-theme="dark"], body[data-theme="dark"] .table-wrap{
+        background: var(--card);
+        border-color: var(--border);
+        box-shadow: 0 8px 24px rgba(0,0,0,.5);
+}
+html[data-theme="dark"], body[data-theme="dark"] table thead th{ background: var(--card); color: var(--fg); border-bottom-color: var(--border); }
+html[data-theme="dark"], body[data-theme="dark"] tbody tr:hover{ background: rgba(255,255,255,0.03); }
+html[data-theme="dark"], body[data-theme="dark"] .add-bar{ background: var(--card); border-top-color: var(--border); color: var(--fg); }
+html[data-theme="dark"], body[data-theme="dark"] .theme-toggle{ background: var(--card); color: var(--fg); }
 
 /* Page layout */
 html{scroll-behavior:smooth}
@@ -327,8 +447,8 @@ body.instant-theme *{transition: none !important}
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;scroll-behavior:auto !important}}
 .top-tabs{background:transparent;padding:8px 12px;border-bottom:0}
 .tabs{display:flex;gap:8px;overflow:auto;padding:6px 4px}
-.tab{padding:8px 14px;border-radius:6px;background:#ffffff;color:#111827;font-weight:600;border:1px solid #e5e7eb}
-.tab.active{background:#f3f4ff;border-color:#c7d2fe;box-shadow:inset 0 -2px 0 rgba(99,102,241,.15)}
+.tab{padding:8px 14px;border-radius:6px;background:var(--card);color:var(--fg);font-weight:600;border:1px solid var(--border)}
+.tab.active{background:linear-gradient(180deg,color-mix(in srgb, var(--accent) 14%, var(--card) 86%), var(--card));border-color:rgba(124,58,237,.12);box-shadow:inset 0 -2px 0 rgba(124,58,237,.12)}
 .tab{transition:background var(--dur) var(--ease), color var(--dur) var(--ease), border-color 140ms var(--ease), box-shadow var(--dur) var(--ease)}
 .tab:hover{transform:translateY(-1px)}
 .page{padding:18px}
@@ -336,53 +456,69 @@ body.instant-theme *{transition: none !important}
 header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 header h2{margin:0;font-size:20px;font-weight:600}
 header .muted{color:var(--muted);font-size:13px}
+/* Back link styling */
+.back-link{color:var(--accent);text-decoration:underline;margin:0 8px;padding:6px 8px;border-radius:6px}
+.back-link:hover{background:rgba(124,58,237,0.06);text-decoration:none}
 
-.toolbar{display:flex;gap:10px;align-items:center;margin:10px 0;padding:10px;background:#f9fafb;border-radius:8px}
-.tool{display:flex;gap:8px;align-items:center;padding:6px 10px;border-radius:8px;background:transparent;color:var(--fg);border:1px solid var(--border);cursor:pointer}
-body[data-theme="light"] .tool{background:#ffffff;color:#111827;border:1px solid #e5e7eb}
-body[data-theme="dark"] .tool{background:rgba(255,255,255,.02);color:var(--fg);border:1px solid rgba(255,255,255,.1)}
+.toolbar{display:flex;gap:8px;align-items:center;margin:8px 0;padding:6px 0;background:transparent;border-radius:0}
+.tool{display:inline-flex;align-items:center;justify-content:center;padding:6px;width:36px;height:36px;border-radius:8px;background:transparent;color:var(--fg);border:0;cursor:pointer;font-size:0}
+        /* visually remove icon glyphs in toolbar so only the compact action controls remain */
+        .toolbar .tool .icon, .toolbar .tool svg{display:none !important}
+        /* keep hidden labels for screen-readers/fallback, but keep them visually hidden */
+        .tool .tool-label{display:none}
+body[data-theme="light"] .tool{background:transparent;color:var(--fg);border:0}
+html[data-theme="dark"], body[data-theme="dark"] .tool{background:transparent;color:var(--fg);border:0}
 .tool .icon{opacity:0.8}
 .tool svg path,.tool svg rect,.tool svg circle{fill:currentColor}
 
 /* responsive heading */
-@media(max-width:720px){ header h2{font-size:16px} .tool{padding:6px 8px;font-size:13px} }
+@media(max-width:720px){ header h2{font-size:16px} .tool{padding:6px 8px} }
 
 /* Smooth form styles (apply to all forms) */
 .form-smooth .form-row{display:flex;flex-direction:column;gap:6px}
-.form-smooth .form-label{font-size:13px;color:#374151}
-.form-smooth input,.form-smooth select,.form-smooth textarea{padding:10px 12px;border:1px solid #e5e7eb;border-radius:8px;background:#ffffff;color:#111827;transition:box-shadow .18s ease, border-color .14s ease, transform .08s ease}
+.form-smooth .form-label{font-size:13px;color:var(--muted)}
+.form-smooth input,.form-smooth select,.form-smooth textarea{padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--fg);transition:box-shadow .18s ease, border-color .14s ease, transform .08s ease}
 .form-smooth input::placeholder,.form-smooth textarea::placeholder{color:var(--muted)}
-.form-smooth input:focus,.form-smooth select:focus,.form-smooth textarea:focus{outline:0;border-color:#7c3aed;box-shadow:0 8px 30px rgba(124,58,237,.12)}
+.form-smooth input:focus,.form-smooth select:focus,.form-smooth textarea:focus{outline:0;border-color:var(--accent);box-shadow:0 8px 30px rgba(124,58,237,.12)}
 .form-smooth button,.tool,.add-btn{transition:background .16s ease, color .12s ease, transform .08s ease, box-shadow .16s ease}
 .form-smooth button:hover,.tool:hover,.add-btn:hover{transform:translateY(-1px)}
 .form-smooth button:active,.tool:active,.add-btn:active{transform:translateY(0)}
-.field-error{color:#dc2626;font-size:12px;min-height:16px;margin-top:4px}
+.field-error{color:var(--danger);font-size:12px;min-height:16px;margin-top:4px}
 
 /* Density toggle */
 body[data-density="compact"] th, body[data-density="compact"] td{padding:6px 10px}
 body[data-density="compact"] .form-smooth input, body[data-density="compact"] .form-smooth select, body[data-density="compact"] .form-smooth textarea{padding:6px 8px;border-radius:6px}
 body[data-density="compact"] .add-btn{padding:6px 10px}
 
-.table-wrap{background:#ffffff;border-radius:8px;box-shadow:0 8px 24px rgba(2,6,23,.06);overflow:auto}
+.table-wrap{background:var(--card);border-radius:8px;box-shadow:0 8px 24px rgba(2,6,23,.06);overflow:auto}
 table{width:100%;border-collapse:collapse}
 .hdr-sort{opacity:0.45;margin-left:8px;font-size:12px}
-.cell-trunc{max-width:none;white-space:normal;overflow:visible;text-overflow:clip;word-break:break-word}
-.sort-asc .hdr-sort{color:#1f6feb}
-.sort-desc .hdr-sort{color:#1f6feb}
-th,td{padding:12px 16px;border-bottom:1px solid #f1f5f9;text-align:left;font-size:15px}
-thead th{position:sticky;top:0;background:#f9fafb;border-bottom:2px solid var(--border);color:var(--fg)}
+.cell-trunc{max-width:none;white-space:normal;overflow:visible;text-overflow:clip;word-break:break-word;position:relative}
+/* collapsed preview for long text in cells */
+.cell-content{transition: max-height .18s ease, box-shadow .18s ease}
+.cell-content.collapsed{max-height:4.5em;overflow:hidden}
+.cell-content.expanded{max-height:none}
+.expand-btn{position:absolute;right:8px;bottom:6px;background:rgba(0,0,0,.06);border-radius:6px;padding:4px 6px;font-size:12px;cursor:pointer;color:var(--muted);border:1px solid rgba(0,0,0,.06)}
+.cell-trunc .expand-btn{background:rgba(255,255,255,0.9)}
+/* theme-aware expand button */
+html[data-theme="dark"], body[data-theme="dark"] .expand-btn{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+.sort-asc .hdr-sort{color:var(--accent)}
+.sort-desc .hdr-sort{color:var(--accent)}
+th,td{padding:12px 16px;border-bottom:1px solid var(--border);text-align:left;font-size:15px}
+thead th{position:sticky;top:0;background:var(--card);border-bottom:2px solid var(--border);color:var(--fg)}
 .row-index{width:64px;text-align:center;color:var(--muted)}
 .row-select{width:56px;text-align:center}
 tbody tr:hover{background:rgba(0,0,0,.02)}
+html[data-theme="dark"], body[data-theme="dark"] tbody tr:hover{background:rgba(255,255,255,0.02)}
 
 /* Inline editors inside grid cells reflect theme */
 #gridBody td[data-col-index] input,
 #gridBody td[data-col-index] textarea,
-#gridBody td[data-col-index] select{width:100%;box-sizing:border-box;background:#ffffff;color:#111827;border:1px solid #e5e7eb;border-radius:6px;padding:6px 8px}
+#gridBody td[data-col-index] select{width:100%;box-sizing:border-box;background:var(--card);color:var(--fg);border:1px solid var(--border);border-radius:6px;padding:6px 8px}
 
 /* bottom add bar */
 .add-bar{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--border);padding:10px 18px;display:flex;justify-content:flex-start;align-items:center;gap:10px}
-.add-btn{background:var(--accent);color:#fff;padding:8px 12px;border-radius:8px;border:0;cursor:pointer;font-weight:600}
+.add-btn{background:var(--accent);color:var(--card);padding:8px 12px;border-radius:8px;border:0;cursor:pointer;font-weight:600}
 
 /* small modal & overlay */
 .overlay{position:fixed;left:0;top:0;right:0;bottom:0;background:rgba(0,0,0,.24);display:none;opacity:0;transition:opacity .22s ease;z-index:30}
@@ -390,13 +526,13 @@ tbody tr:hover{background:rgba(0,0,0,.02)}
 .modal{position:fixed;left:50%;top:48%;transform:translate(-50%,-46%);background:var(--card);color:var(--fg);padding:14px;border-radius:8px;box-shadow:0 10px 30px rgba(2,6,23,.12);display:block;opacity:0;transition:opacity .22s ease,transform .22s ease;z-index:40}
 .modal.show{opacity:1;transform:translate(-50%,-50%)}
 
-/* Banner shared styles (like dashboard) */
-.banner{height:320px;background:linear-gradient(180deg,#f8fafc,#eef2ff);display:flex;align-items:center;justify-content:center;padding:24px;border-bottom:1px solid rgba(255,255,255,.03);position:relative}
+./* Banner shared styles (like dashboard) */
+.banner{height:320px;background:linear-gradient(180deg,var(--bg),var(--card));display:flex;align-items:center;justify-content:center;padding:24px 18px;border-bottom:1px solid rgba(255,255,255,.03);position:relative;box-sizing:border-box}
 .banner{transition:background 240ms var(--ease)}
-.hero{max-width:1100px;width:100%;background:#ffffff;padding:20px;border-radius:14px;box-shadow:0 12px 40px rgba(2,6,23,.08), 0 0 0 1px rgba(99,102,241,.12);text-align:center;position:relative;min-height:220px;z-index:1}
+.hero{max-width:1100px;width:100%;background:var(--card);padding:20px;border-radius:14px;box-shadow:0 12px 40px var(--shadow), 0 0 0 1px var(--border);text-align:center;position:relative;min-height:220px;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto}
 .hero::after{content:"";position:absolute;inset:-32px;background:radial-gradient(ellipse at 50% -10%, rgba(124,58,237,.16), rgba(124,58,237,0) 60%), radial-gradient(ellipse at 10% 50%, rgba(59,130,246,.12), rgba(59,130,246,0) 50%), radial-gradient(ellipse at 90% 50%, rgba(234,179,8,.12), rgba(234,179,8,0) 50%);filter:blur(26px);z-index:-1;pointer-events:none}
-.logo{position:absolute;left:50%;transform:translateX(-50%);top:16px;width:150px;height:150px;background-size:contain;background-repeat:no-repeat;background-position:center}
-@media (max-width: 800px){ .logo{width:110px;height:110px;top:8px} .banner{height:240px} }
+.logo{width:220px;height:220px;background-size:contain;background-repeat:no-repeat;background-position:center;margin:0 auto 8px;flex:0 0 auto}
+@media (max-width: 800px){ .logo{width:140px;height:140px} .banner{height:240px} }
 
 /* Tool accent hover */
 .tool:hover{background:rgba(124,58,237,.08); border-color: rgba(124,58,237,.25)}
@@ -434,20 +570,17 @@ tbody tr:hover{background:rgba(0,0,0,.02)}
                                 <div class="muted">{{ fields|length }} columns • {{ display_records|length }} records</div>
                         </div>
                         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end">
-                                <button id="densityToggle" class="density-toggle" title="Toggle density" aria-label="Toggle density">
-                                        <span aria-hidden="true">⇅</span>
-                                        <span style="font-size:12px">Density</span>
-                                </button>
-                                <a href="/">Back</a>
+                                <button class="theme-toggle" aria-label="Toggle theme" style="margin-right:6px"><span id="themeIcon" class="theme-icon"></span><span id="themeLabel" class="theme-label"></span></button>
+                                <a href="/" class="back-link">Back</a>
                                 <button class="add-btn" id="openAddBtn">+ Add</button>
                         </div>
                 </header>
 
                 <div class="toolbar">
-                        <div class="tool" id="hideFieldsBtn"><span class="icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 5C7 5 3.2 8.4 1.5 12c1.7 3.6 5.5 7 10.5 7s8.8-3.4 10.5-7C20.8 8.4 17 5 12 5z" fill="#374151"/><circle cx="12" cy="12" r="3" fill="#fff"/></svg></span> Hide fields</div>
-                        <div class="tool" id="filterBtn"><span class="icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5h18v2L13 14v5l-2 1v-6L3 7V5z" fill="#374151"/></svg></span> Filter</div>
-                        <div class="tool" id="groupBtn"><span class="icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="8" height="6" rx="1.2" fill="#374151"/><rect x="13" y="5" width="8" height="6" rx="1.2" fill="#a3a3a3"/><rect x="3" y="13" width="8" height="6" rx="1.2" fill="#a3a3a3"/></svg></span> Group</div>
-                        <div class="tool" id="sortBtn"><span class="icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 10h6v2H7v-2zM7 6h10v2H7V6zM7 14h4v2H7v-2z" fill="#374151"/></svg></span> Sort</div>
+                        <div class="tool" id="hideFieldsBtn" role="button" aria-label="Hide fields"><span class="icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 5C7 5 3.2 8.4 1.5 12c1.7 3.6 5.5 7 10.5 7s8.8-3.4 10.5-7C20.8 8.4 17 5 12 5z" fill="currentColor"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg></span><span class="tool-label">Hide fields</span></div>
+                        <div class="tool" id="filterBtn" role="button" aria-label="Filter"><span class="icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5h18v2L13 14v5l-2 1v-6L3 7V5z" fill="currentColor"/></svg></span><span class="tool-label">Filter</span></div>
+                        <div class="tool" id="groupBtn" role="button" aria-label="Group"><span class="icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="8" height="6" rx="1.2" fill="currentColor"/><rect x="13" y="5" width="8" height="6" rx="1.2" fill="currentColor"/><rect x="3" y="13" width="8" height="6" rx="1.2" fill="currentColor"/></svg></span><span class="tool-label">Group</span></div>
+                        <div class="tool" id="sortBtn" role="button" aria-label="Sort"><span class="icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 10h6v2H7v-2zM7 6h10v2H7V6zM7 14h4v2H7v-2z" fill="currentColor"/></svg></span><span class="tool-label">Sort</span></div>
                 </div>
 
                                 <div class="overlay" id="overlay"></div>
@@ -456,7 +589,7 @@ tbody tr:hover{background:rgba(0,0,0,.02)}
                                 <div class="modal" id="fieldModal">
                                         <h3>Hide fields</h3>
                                         <div id="fieldList"></div>
-                                        <div style="margin-top:12px"><button id="applyHide" class="tool">Apply</button> <button id="cancelHide" class="tool">Cancel</button></div>
+                                        <div style="margin-top:12px"><button id="applyHide" class="tool" aria-label="Apply"><span class="icon" aria-hidden="true">✓</span><span class="tool-label">Apply</span></button> <button id="cancelHide" class="tool" aria-label="Cancel"><span class="icon" aria-hidden="true">✕</span><span class="tool-label">Cancel</span></button></div>
                                 </div>
 
                                                                    <div class="modal" id="filterModal">
@@ -466,7 +599,7 @@ tbody tr:hover{background:rgba(0,0,0,.02)}
                                                                                    <select id="filterOpSelect"><option value="contains">contains</option><option value="equals">equals</option></select>
                                                                                    <input id="filterValueInput" placeholder="value" style="flex:1;padding:6px;border:1px solid #e6e9ef;border-radius:6px">
                                                                            </div>
-                                                                           <div style="margin-top:12px"><button id="applyFilterModal" class="tool">Apply</button> <button id="clearFilterModal" class="tool">Clear</button> <button id="cancelFilter" class="tool">Cancel</button></div>
+                                                                           <div style="margin-top:12px"><button id="applyFilterModal" class="tool" aria-label="Apply filter"><span class="icon" aria-hidden="true">✓</span><span class="tool-label">Apply</span></button> <button id="clearFilterModal" class="tool" aria-label="Clear filter"><span class="icon" aria-hidden="true">↺</span><span class="tool-label">Clear</span></button> <button id="cancelFilter" class="tool" aria-label="Cancel filter"><span class="icon" aria-hidden="true">✕</span><span class="tool-label">Cancel</span></button></div>
                                                                    </div>
 
                                 <!-- Filter modal (single-condition builder) -->
@@ -477,7 +610,7 @@ tbody tr:hover{background:rgba(0,0,0,.02)}
                                                 <select id="filterOpSelect"><option value="contains">contains</option><option value="equals">equals</option><option value="starts">starts with</option></select>
                                                 <input id="filterInput" placeholder="value">
                                         </div>
-                                        <div style="margin-top:12px"><button id="applyFilterBtn" class="tool">Apply</button> <button id="cancelFilterBtn" class="tool">Cancel</button></div>
+                                        <div style="margin-top:12px"><button id="applyFilterBtn" class="tool" aria-label="Apply filter"><span class="icon" aria-hidden="true">✓</span><span class="tool-label">Apply</span></button> <button id="cancelFilterBtn" class="tool" aria-label="Cancel filter"><span class="icon" aria-hidden="true">✕</span><span class="tool-label">Cancel</span></button></div>
                                 </div>
 
                                 <!-- Add Record modal -->
@@ -486,8 +619,8 @@ tbody tr:hover{background:rgba(0,0,0,.02)}
                                                                                                                                                                 <form id="addRecordForm" class="form-smooth">
                                           <div id="addFormFields" style="display:flex;flex-direction:column;gap:8px;margin-top:8px"></div>
                                           <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
-                                            <button type="button" id="submitAdd" class="tool">Create</button>
-                                            <button type="button" id="cancelAdd" class="tool">Cancel</button>
+                                            <button type="button" id="submitAdd" class="tool" aria-label="Create record"><span class="icon" aria-hidden="true">✓</span><span class="tool-label">Create</span></button>
+                                            <button type="button" id="cancelAdd" class="tool" aria-label="Cancel add"><span class="icon" aria-hidden="true">✕</span><span class="tool-label">Cancel</span></button>
                                           </div>
                                         </form>
                                 </div>
@@ -524,7 +657,7 @@ tbody tr:hover{background:rgba(0,0,0,.02)}
 
                                                         <!-- inline add-row like Airtable's plus at bottom-left -->
                                                         <tr class="add-row" onclick="location.href='/add_record/{{ table_name|urlencode }}'" style="cursor:pointer">
-                                                                <td class="row-select" style="text-align:center;font-size:18px;color:#6b2e8a">＋</td>
+                                                                <td class="row-select" style="text-align:center;font-size:18px;color:var(--accent)">＋</td>
                                                                 <td class="row-index">&nbsp;</td>
                                                                 {% for f in fields %}<td>&nbsp;</td>{% endfor %}
                                                         </tr>
@@ -538,11 +671,44 @@ tbody tr:hover{background:rgba(0,0,0,.02)}
                 <button class="add-btn" onclick="location.href='/add_record/{{ table_name|urlencode }}'">+ Add record</button>
                 <div class="muted">Selected: <span id="selectedCount">0</span></div>
         </div>
-        <div style="padding:10px 18px;text-align:center;color:#6b7280;font-size:12px">&copy; 2025 HSE TROJAN CONSTRUCTION GROUP &nbsp;·&nbsp; Developed by Elius</div>
+        <div style="padding:10px 18px;text-align:center;color:var(--muted);font-size:12px;font-weight:700">&copy; 2025 HSE TROJAN CONSTRUCTION GROUP &nbsp;·&nbsp; Developed by Elius</div>
 
 <script>
-// Set light theme
-document.body.dataset.theme = 'light';        // Density toggle persistence (comfortable/compact)
+        // Initialize theme from localStorage and wire theme-toggle buttons
+        (function(){
+                const KEY='theme';
+                const saved = localStorage.getItem(KEY) || 'light';
+                document.body.dataset.theme = saved;
+                const toggles = Array.from(document.querySelectorAll('.theme-toggle'));
+                function iconSvg(t){
+                    return t==='dark'
+                      ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>'
+                      : '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.8 1.42-1.42zM1 13h3v-2H1v2zm10-9h2V1h-2v3zm7.04 2.46l1.79-1.8-1.41-1.41-1.8 1.79 1.42 1.42zM17 13h3v-2h-3v2zm-5 8h2v-3h-2v3zm-7.66-2.34l1.41 1.41 1.8-1.79-1.42-1.42-1.79 1.8zM20 20l1.41 1.41 1.41-1.41-1.41-1.41L20 20zM12 6a6 6 0 100 12A6 6 0 0012 6z"/></svg>';
+                }
+                function render(){
+                        const t = document.body.dataset.theme;
+                        toggles.forEach(btn=>{
+                            const label = btn.querySelector('#themeLabel, [data-role="themeLabel"], .theme-label');
+                            const icon = btn.querySelector('#themeIcon, [data-role="themeIcon"], .theme-icon');
+                            if(label) label.textContent = t==='dark'?'Dark':'Light';
+                            if(icon) icon.innerHTML = iconSvg(t);
+                        });
+                }
+                function toggleTheme(){
+                        const next = document.body.dataset.theme==='dark'?'light':'dark';
+                        document.body.classList.add('theme-transition');
+                        document.body.dataset.theme = next;
+                        try{ localStorage.setItem(KEY,next); }catch(e){}
+                        render();
+                        setTimeout(()=> document.body.classList.remove('theme-transition'), 350);
+                }
+                toggles.forEach(btn=>{
+                    btn.addEventListener('pointerdown', (e)=>{ e.preventDefault(); toggleTheme(); });
+                    btn.addEventListener('touchstart', (e)=>{ e.preventDefault(); toggleTheme(); }, {passive:false});
+                    btn.addEventListener('click', (e)=>{ e.preventDefault(); toggleTheme(); });
+                });
+                render();
+        })();        // Density toggle persistence (comfortable/compact)
         (function(){
                 const KEY='density';
                 const saved = localStorage.getItem(KEY) || 'comfortable';
@@ -733,7 +899,7 @@ document.body.dataset.theme = 'light';        // Density toggle persistence (com
                 }
                 if(!rawModal){
                         rawModal = document.createElement('div'); rawModal.id = 'rawModal'; rawModal.style.cssText = 'position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);min-width:320px;max-width:90%;max-height:80%;overflow:auto;background:#fff;padding:12px;border-radius:8px;box-shadow:0 12px 40px rgba(2,6,23,.12);display:none;z-index:130;font-family:monospace;font-size:13px;color:#111827';
-                        const closeBtn = document.createElement('button'); closeBtn.textContent='Close'; closeBtn.className='tool'; closeBtn.style.marginBottom='8px'; closeBtn.addEventListener('click', ()=>{ rawOverlay.style.display='none'; rawModal.style.display='none'; });
+                        const closeBtn = document.createElement('button'); closeBtn.className='tool'; closeBtn.setAttribute('aria-label','Close'); closeBtn.style.marginBottom='8px'; closeBtn.innerHTML = '<span class="icon" aria-hidden="true">✕</span><span class="tool-label">Close</span>'; closeBtn.addEventListener('click', ()=>{ rawOverlay.style.display='none'; rawModal.style.display='none'; });
                         const pre = document.createElement('pre'); pre.id = '__raw_json'; pre.style.whiteSpace='pre-wrap'; pre.style.wordBreak='break-word'; pre.style.margin=0; pre.style.padding='6px'; rawModal.appendChild(closeBtn); rawModal.appendChild(pre); document.body.appendChild(rawModal);
                 }
 
@@ -765,6 +931,23 @@ document.body.dataset.theme = 'light';        // Density toggle persistence (com
         // apply persisted hidden columns on load
         applyHidden();
         updateSelectedCount();
+
+        // Add expand/collapse buttons for long cell content
+        (function(){
+                const rows = document.querySelectorAll('#gridBody tr');
+                rows.forEach(tr=>{
+                        Array.from(tr.querySelectorAll('.cell-content')).forEach(div=>{
+                                // collapse by default if content is large
+                                if(div.scrollHeight > div.clientHeight + 12 || div.textContent.split('\n').length > 3 || div.textContent.length > 180){
+                                        div.classList.add('collapsed');
+                                        const btn = document.createElement('button'); btn.className='expand-btn'; btn.textContent='Expand';
+                                        btn.addEventListener('click', (e)=>{ e.stopPropagation(); const d=div; if(d.classList.contains('collapsed')){ d.classList.remove('collapsed'); d.classList.add('expanded'); btn.textContent='Collapse'; } else { d.classList.remove('expanded'); d.classList.add('collapsed'); btn.textContent='Expand'; } });
+                                        // place the button inside the cell container
+                                        const parentTd = div.closest('td'); if(parentTd) parentTd.appendChild(btn);
+                                }
+                        });
+                });
+        })();
 
         // Tabs scroll controls
         (function(){
@@ -962,9 +1145,10 @@ def view_table(table_name):
                 if t and hasattr(t, 'fields'):
                         for f in t.fields:
                                 # field object may contain name, type, required, options/choices
+                                # Preserve the exact Airtable field name (do not strip)
                                 fname = getattr(f, 'name', None) or getattr(f, 'id', '')
-                                # Normalize field name: strip whitespace
-                                fname = fname.strip() if isinstance(fname, str) else fname
+                                # client-safe name used for HTML form inputs
+                                client_name = normalize_field_name(fname) if isinstance(fname, str) else fname
                                 ftype = getattr(f, 'type', None) or getattr(f, 'typeName', None) or 'text'
                                 read_only = bool(getattr(f, 'read_only', False) or getattr(f, 'readOnly', False))
                                 # choices / options
@@ -981,7 +1165,6 @@ def view_table(table_name):
                                 fields.append(fname)
                                 # Include editable flag to indicate if field can be edited
                                 is_editable = ftype not in ('autoNumber',) and not read_only
-                                client_name = normalize_field_name(fname) if isinstance(fname, str) else fname
                                 fields_meta.append({'name': fname, 'client_name': client_name, 'type': ftype, 'choices': choices, 'required': required, 'editable': is_editable})
         except Exception:
                 pass
@@ -1103,6 +1286,7 @@ def add_record(table_name):
                         # Return a small success page that notifies the user and returns to main menu
                         new_id = new.get('id')
                         return f'''<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Success</title>
+                        <script>try{{ const t = localStorage.getItem('theme') || 'light'; document.documentElement.dataset.theme = t; if(document.body) document.body.dataset.theme = t; }}catch(e){{}}</script>
                         <style>body{{font-family:Inter,Segoe UI,Arial,Helvetica,sans-serif;background:#f8fafc;color:#111827;margin:0;display:flex;align-items:center;justify-content:center;height:100vh}}.card{{background:#fff;padding:20px;border-radius:8px;box-shadow:0 12px 40px rgba(2,6,23,.08);text-align:center}}</style>
                         </head><body><div class="card"><h2>Success</h2><p>Record created: {new_id}</p><p>Returning to main menu...</p></div>
                         <script>setTimeout(function(){{window.location.href='/' }},800);</script></body></html>'''
@@ -1137,12 +1321,37 @@ def add_record(table_name):
                 except Exception:
                         form_fields = [{'name': 'Name', 'type': 'text'}, {'name': 'Description', 'type': 'text'}]
 
-        form_html = ['<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Add Record</title>\n<style>\n:root{--bg:#f8fafc;--fg:#111827;--card:#ffffff;--muted:#6b7280;--border:#e5e7eb}\nbody{font-family:Inter,Segoe UI,Arial,Helvetica,sans-serif;margin:0;background:var(--bg);color:var(--fg);padding:18px}\n.container{max-width:800px;margin:0 auto}\n.h1{font-size:22px;margin-bottom:12px}\n.form-smooth .form-row{display:flex;flex-direction:column;gap:6px;margin-bottom:10px}\n.form-smooth label{font-size:13px;color:var(--muted)}\n.form-smooth input,.form-smooth select,.form-smooth textarea{padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--fg);transition:box-shadow .18s ease, border-color .14s ease, transform .08s ease}\n.form-smooth input:focus,.form-smooth select:focus,.form-smooth textarea:focus{outline:0;border-color:#7c3aed;box-shadow:0 8px 30px rgba(124,58,237,.18)}\n.btn{background:#7c3aed;color:#fff;padding:8px 12px;border-radius:8px;border:0;cursor:pointer;transition:transform .1s ease, box-shadow .16s ease}\n.btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(124,58,237,.22)}\n.btn:disabled{opacity:.6;cursor:not-allowed}\n.link{color:#7c3aed}\n</style>\n</head><body><div class="container">']
+        form_html = ['<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Add Record</title>\n<script>\n  (function(){\n    try{ const t = localStorage.getItem("theme") || "light"; document.documentElement.dataset.theme = t; if(document.body) document.body.dataset.theme = t; else document.addEventListener("DOMContentLoaded", ()=> document.body.dataset.theme = t); }catch(e){}\n  })();\n</script>\n<style>\n:root{--bg:#f8fafc;--fg:#111827;--card:#ffffff;--muted:#6b7280;--border:#e5e7eb}\nbody{font-family:Inter,Segoe UI,Arial,Helvetica,sans-serif;margin:0;background:var(--bg);color:var(--fg);padding:18px}\n.container{max-width:800px;margin:0 auto}\n.h1{font-size:22px;margin-bottom:12px}\n.form-smooth .form-row{display:flex;flex-direction:column;gap:6px;margin-bottom:10px}\n.form-smooth label{font-size:13px;color:var(--muted)}\n.form-smooth input,.form-smooth select,.form-smooth textarea{padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--fg);transition:box-shadow .18s ease, border-color .14s ease, transform .08s ease}\n.form-smooth input:focus,.form-smooth select:focus,.form-smooth textarea:focus{outline:0;border-color:#7c3aed;box-shadow:0 8px 30px rgba(124,58,237,.18)}\n/* dark theme for standalone form */\nbody[data-theme="dark"]{ --bg:#0b1028; --card:#0f1724; --fg:#e6eef8; --muted:#94a3b8; --border: rgba(255,255,255,0.06); }\nbody[data-theme="dark"] .form-smooth input, body[data-theme="dark"] .form-smooth select, body[data-theme="dark"] .form-smooth textarea{ background:var(--card); color:var(--fg); border:1px solid var(--border); }\n.btn{background:#7c3aed;color:#fff;padding:8px 12px;border-radius:8px;border:0;cursor:pointer;transition:transform .1s ease, box-shadow .16s ease}\n.btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(124,58,237,.22)}\n.btn:disabled{opacity:.6;cursor:not-allowed}\n.link{color:#7c3aed}\n</style>\n</head><body><div class="container">']
         form_html.append(f'<h1 class="h1">Add Record to {table_name}</h1>')
-        form_html.append('<form method="post" class="form-smooth">')
+        # inline success message (hidden by default)
+        form_html.append('<div id="successMsg" style="display:none;padding:10px;border-radius:6px;background:#10b981;color:#fff;margin-bottom:12px;text-align:center;font-weight:600">Success</div>')
+        # Use AJAX submit so we can show a simple inline success message
+        form_html.append(f'<form id="addForm" method="post" class="form-smooth">')
         for f in form_fields:
+                # use data-name attributes safe for JSON keys; names may contain spaces
                 form_html.append(f'<div class="form-row"><label>{f["name"]}</label><input name="{f["name"]}" /></div>')
         form_html.append(f'<p><button type="submit" class="btn">Create</button> <a class="link" href="/table/{table_name}">Cancel</a></p>')
+        # script to intercept submit and call AJAX endpoint; on success show inline message then redirect back to table
+        js_template = '''<script>
+document.getElementById('addForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  const payload = {};
+  fd.forEach((v,k)=> payload[k]=v);
+  try{
+    const res = await fetch('/add_record_ajax/{table}', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload)});
+    const j = await res.json();
+    if(j && j.ok){
+      const msg = document.getElementById('successMsg'); msg.textContent = 'Success'; msg.style.display = 'block';
+      setTimeout(function(){ window.location.href = '/table/{table}'; }, 800);
+    } else {
+      alert((j && j.error) ? j.error : 'Error creating record');
+    }
+  } catch(err){ alert('Network error'); console.error(err); }
+});
+</script>'''
+        # use simple replace to avoid conflicts with JS braces when formatting
+        form_html.append(js_template.replace('{table}', table_name))
 
         # Return the rendered simple form page
         return ''.join(form_html)
@@ -1250,7 +1459,22 @@ def update_record_ajax(table_name, record_id):
 
 @app.route('/favicon.ico')
 def favicon():
-        return '', 204
+        from flask import redirect
+        return redirect('/favicon.svg')
+
+
+@app.route('/favicon.svg')
+def favicon_svg():
+        """Return an inline SVG that masks the external image into a circle for browsers that support SVG favicons."""
+        svg = '''<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <clipPath id="c"><circle cx="32" cy="32" r="32"/></clipPath>
+  </defs>
+  <image clip-path="url(#c)" width="64" height="64" href="https://tse1.mm.bing.net/th/id/OIP.n30HBYs76HyBK5_D2EyZdQHaEK?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3" preserveAspectRatio="xMidYMid slice"/>
+</svg>'''
+        from flask import Response
+        return Response(svg, mimetype='image/svg+xml')
 
 
 if __name__ == '__main__':

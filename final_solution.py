@@ -94,6 +94,11 @@ body.instant-theme *{transition: none !important}
 *::-webkit-scrollbar{height:10px;width:10px}
 *::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18);border-radius:8px}
 *::-webkit-scrollbar-track{background:transparent}
+/* theme toggle base styles (table view) */
+.theme-toggle{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--fg);cursor:pointer;box-shadow:0 6px 18px rgba(2,6,23,.08);}
+.theme-toggle:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(2,6,23,.12)}
+.theme-toggle .theme-icon{display:inline-flex;width:16px;height:16px}
+.theme-toggle .theme-label{font-size:13px}
 /* focus visible */
 :where(button,[role="button"],a,input,select,textarea):focus-visible{outline:0;box-shadow:0 0 0 2px rgba(124,58,237,.65),0 6px 18px rgba(124,58,237,.18)}
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;scroll-behavior:auto !important}}
@@ -111,6 +116,11 @@ body{transition: background-color .28s var(--ease), color .28s var(--ease)}
 .theme-toggle:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(2,6,23,.18)}
 .theme-toggle .theme-icon{display:inline-flex;width:18px;height:18px}
 .theme-toggle .theme-label{font-size:13px}
+/* Floating About button styled to sit left of theme toggle */
+.about-fab{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:999px;border:0;background:var(--card);color:var(--fg);cursor:pointer;box-shadow:0 8px 26px rgba(2,6,23,.12);position:fixed;right:118px;bottom:18px;z-index:999;transition:transform .18s ease, box-shadow .18s ease}
+.about-fab:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(2,6,23,.18)}
+.about-fab .theme-icon{display:inline-flex;width:18px;height:18px}
+.about-fab .theme-label{font-size:13px}
 .banner{height:460px;background:linear-gradient(180deg,rgba(11,20,40,.95),rgba(16,24,37,.98));display:flex;align-items:center;justify-content:center;padding:32px 18px;border-bottom:1px solid rgba(255,255,255,.03);position:relative;box-sizing:border-box}
 .hero{max-width:1100px;width:100%;background:linear-gradient(180deg,var(--card),rgba(0,0,0,.04));padding:22px;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.12), 0 0 0 1px var(--border);text-align:center;position:relative;min-height:300px;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto}
 .hero::after{content:"";position:absolute;inset:-44px;background:radial-gradient(ellipse at 50% -10%, rgba(124,58,237,.4), rgba(124,58,237,0) 60%), radial-gradient(ellipse at 10% 50%, rgba(59,130,246,.22), rgba(59,130,246,0) 50%), radial-gradient(ellipse at 90% 50%, rgba(234,179,8,.22), rgba(234,179,8,0) 50%);filter:blur(34px);z-index:-1;pointer-events:none}
@@ -178,7 +188,8 @@ a.card{text-decoration:none}
 
                                 <div class="container">
                                         <div style="display:flex;justify-content:flex-end;margin-top:8px">
-                                                <button class="theme-toggle" aria-label="Toggle theme"><span id="themeIcon" class="theme-icon"></span><span id="themeLabel" class="theme-label"></span></button>
+                                                <button class="theme-toggle" aria-label="Toggle theme"><span id="themeIcon" class="theme-icon">◐</span><span id="themeLabel" class="theme-label">Theme</span></button>
+                                                <button class="about-fab" aria-label="About"><span class="theme-icon">ℹ️</span><span class="theme-label">About</span></button>
                                         </div>
                                         <div class="report-title" style="margin-top:18px;margin-bottom:18px;text-align:center">
                                                 <h1 style="margin:0;font-size:44px;letter-spacing:1px">HSE STATISTICS REPORT</h1>
@@ -245,91 +256,78 @@ a.card{text-decoration:none}
                                                                                 }
                                                                                 function render(){
                                                                                         const t = document.body.dataset.theme;
-                                                                                        FIELDS.forEach((f,i)=>{
+                                                                                        toggles.forEach(btn=>{
                                                                                             const label = btn.querySelector('#themeLabel, [data-role="themeLabel"], .theme-label');
                                                                                             const icon = btn.querySelector('#themeIcon, [data-role="themeIcon"], .theme-icon');
                                                                                             if(label) label.textContent = t==='dark'?'Dark':'Light';
                                                                                             if(icon) icon.innerHTML = iconSvg(t);
                                                                                         });
-                                                                                                const label = document.createElement('label'); label.textContent = f + (m.required ? ' *' : ''); label.style.fontSize='13px';
+                                                                                }
                                                                                 function toggleTheme(){
-                                                                                                const uid = 'fld_' + i + '_' + Math.random().toString(36).slice(2,7);
                                                                                         const next = document.body.dataset.theme==='dark'?'light':'dark';
-                                                                                                        editor = document.createElement('input'); editor.type='date'; editor.value = cur;
                                                                                         document.body.classList.add('theme-transition');
-                                                                                                        editor = document.createElement('input'); editor.type='time'; editor.value = cur;
+                                                                                        document.body.dataset.theme = next;
                                                                                         try{ localStorage.setItem(KEY,next); }catch(e){}
-                                                                                                        editor = document.createElement('input'); editor.type='number'; editor.value = cur;
-                                                                                        // remove transition class after animation completes
-                                                                                                        // multi-select -> allow multiple checkboxes, give each checkbox a unique id
-                                                                                                        input = document.createElement('div'); input.className='multi-select';
-                                                                                                        m.choices.forEach((ch,ci)=>{ const cbId = uid + '_opt_' + ci; const cbWrap = document.createElement('div'); cbWrap.style.display='inline-flex'; cbWrap.style.alignItems='center'; cbWrap.style.gap='6px'; const cb = document.createElement('input'); cb.type='checkbox'; cb.name = m.client_name || f; cb.value = ch; cb.id = cbId; const lab = document.createElement('label'); lab.htmlFor = cbId; lab.textContent = ' ' + ch; cbWrap.appendChild(cb); cbWrap.appendChild(lab); input.appendChild(cbWrap); });
+                                                                                        render();
+                                                                                        setTimeout(()=> document.body.classList.remove('theme-transition'), 350);
+                                                                                }
+                                                                                toggles.forEach(btn=>{
                                                                                     btn.addEventListener('pointerdown', (e)=>{ e.preventDefault(); toggleTheme(); });
-                                                                                                        input = document.createElement('select'); input.id = uid; const emptyOpt = document.createElement('option'); emptyOpt.value=''; emptyOpt.textContent='-- choose --'; input.appendChild(emptyOpt); m.choices.forEach(ch=>{ const o = document.createElement('option'); o.value = ch; o.textContent = ch; input.appendChild(o); });
+                                                                                    btn.addEventListener('touchstart', (e)=>{ e.preventDefault(); toggleTheme(); }, {passive:false});
                                                                                     btn.addEventListener('click', (e)=>{ e.preventDefault(); toggleTheme(); });
-                                                                                                        input = document.createElement('input'); input.type='file'; input.id = uid; input.multiple = false;
+                                                                                });
                                                                                 render();
-                                                                                                        input = document.createElement('input'); input.type='checkbox'; input.id = uid;
-                                                                        
-                                                                                                        input = document.createElement('textarea'); input.id = uid; input.rows = 4; input.style.resize='vertical';
-                                                                                const searchEl = document.getElementById('tableSearch');
-                                                                                                        input = document.createElement('input'); input.type='text'; input.id = uid;
-                                                                                const cards = Array.from(grid.querySelectorAll('.card'));
-                                                                                const visibleEl = document.getElementById('visibleCount');
-                                                                                const pageSize = 24;
-                                                                                let currentPage = 1;
-                                                                                                // link label to input when possible
-                                                                                                if(input.id) label.htmlFor = input.id;
-
-                                                                                function animateCount(){
-                                                                                        visibleEl.classList.add('anim');
-                                                                                        setTimeout(()=> visibleEl.classList.remove('anim'), 350);
+                                                                        })();
+                                                                        // About modal (dashboard)
+                                                                        (function(){
+                                                                                // create overlay and modal
+                                                                                let overlay = document.getElementById('aboutOverlay');
+                                                                                let modal = document.getElementById('aboutModal');
+                                                                                if(!overlay){
+                                                                                        overlay = document.createElement('div');
+                                                                                        overlay.id = 'aboutOverlay';
+                                                                                        overlay.style.cssText = 'position:fixed;left:0;top:0;right:0;bottom:0;background:rgba(0,0,0,.36);display:none;z-index:998;';
+                                                                                        document.body.appendChild(overlay);
                                                                                 }
-
-                                                                                function setVisibleCount(n){
-                                                                                        if(!visibleEl) return;
-                                                                                        visibleEl.textContent = n;
-                                                                                        animateCount();
+                                                                                if(!modal){
+                                                                                        modal = document.createElement('div');
+                                                                                        modal.id = 'aboutModal';
+                                                                                        modal.style.cssText = 'position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);min-width:300px;max-width:90%;background:var(--card);color:var(--fg);padding:14px;border-radius:10px;box-shadow:0 12px 40px rgba(2,6,23,.18);display:none;z-index:999;';
+                                                                                        var title = document.createElement('div');
+                                                                                        title.style.cssText = 'font-weight:700;font-size:16px;margin-bottom:6px;';
+                                                                                        title.textContent = 'About';
+                                                                                        var body = document.createElement('div');
+                                                                                        body.style.cssText = 'font-size:13px;color:var(--fg);';
+                                                                                                                                                                                body.innerHTML = [
+                                                                                                                                                                                        'A Flask-based web server that provides a REST API + interactive UI for managing Airtable data',
+                                                                                                                                                                                        'The UI is a dashboard where users can create, read, update, delete (CRUD) records in Airtable tables, with an emphasis on protecting the schema (i.e. users cannot modify table structures or change fields)',
+                                                                                                                                                                                        'Uses an Airtable Personal Access Token (PAT) + Base ID to connect to Airtable.',
+                                                                                                                                                                                        'Has a permissions model: allowed operations include viewing tables, creating/editing/deleting records; disallowed are creating/deleting tables or altering schema',
+                                                                                                                                                                                        'Has a REST API (endpoints  GET /api/tables, etc.) and a web frontend',
+                                                                                                                                                                                        'This web is designed with production considerations in mind (SSL support, error handling)',
+                                                                                                                                                                                        'The tech stack: Python (3.13.8), Flask, uses pyairtable library to interface with Airtable REST API',
+                                                                                                                                                                                        'Visit The repository that includes documentation: Quickstart, server guide, permissions <br> <a href="https://github.com/s6ft256/hse-weeky-statistics-form.git" target="_blank" rel="noopener noreferrer">source code</a>',
+                                                                                                                                                                                        '<span style="color:var(--muted)">© 2025 Trojan Construction Group · Developed by Elius</span>'
+                                                                                                                                                                                ].join('<br>');
+                                                                                        var actions = document.createElement('div');
+                                                                                        actions.style.cssText = 'margin-top:10px;display:flex;justify-content:flex-end;';
+                                                                                        var close = document.createElement('button');
+                                                                                        close.className = 'about-fab';
+                                                                                        close.style.cssText += 'position:static;box-shadow:none;border:1px solid var(--border);';
+                                                                                        close.innerHTML = '<span class="theme-icon">✕</span><span class="theme-label">Close</span>';
+                                                                                        actions.appendChild(close);
+                                                                                        modal.appendChild(title);
+                                                                                        modal.appendChild(body);
+                        								modal.appendChild(actions);
+                                                                                        document.body.appendChild(modal);
+                                                                                        close.addEventListener('click', ()=>{ overlay.style.display='none'; modal.style.display='none'; });
                                                                                 }
-
-                                                                                function filterMatched(){
-                                                                                        const q = (searchEl.value||'').toLowerCase().trim();
-                                                                                        return cards.filter(c => c.dataset.name.toLowerCase().indexOf(q) !== -1);
+                                                                                const aboutBtn = document.querySelector('.about-fab');
+                                                                                if(aboutBtn){
+                                                                                        aboutBtn.addEventListener('click', (e)=>{ e.preventDefault(); overlay.style.display='block'; modal.style.display='block'; });
                                                                                 }
-
-                                                                                function render(page){
-                                                                                        const matched = filterMatched();
-                                                                                        const total = matched.length;
-                                                                                        const totalPages = Math.max(1, Math.ceil(total / pageSize));
-                                                                                        currentPage = Math.min(Math.max(1, page), totalPages);
-                                                                                        cards.forEach(c=> c.style.display = 'none');
-                                                                                        const start = (currentPage-1)*pageSize;
-                                                                                        const slice = matched.slice(start, start + pageSize);
-                                                                                        slice.forEach((c,i)=>{ c.style.display='block'; c.style.opacity=0; c.style.transform='translateY(6px)'; setTimeout(()=>{ c.style.transition='transform .28s ease, opacity .28s ease'; c.style.opacity=1; c.style.transform='translateY(0)'; }, 40 + i*10); });
-
-                                                                                        // show/hide pagers
-                                                                                        const showPager = total > pageSize;
-                                                                                        document.getElementById('pagerTop').style.display = showPager ? 'flex' : 'none';
-                                                                                        document.getElementById('pagerBottom').style.display = showPager ? 'flex' : 'none';
-                                                                                        document.getElementById('pageInfo').textContent = `Page ${currentPage} / ${totalPages}`;
-                                                                                        document.getElementById('pageInfoB').textContent = `Page ${currentPage} / ${totalPages}`;
-
-                                                                                        setVisibleCount(total);
-                                                                                }
-
-                                                                                function wire(idPrev, idNext){
-                                                                                        const prev = document.getElementById(idPrev);
-                                                                                        const next = document.getElementById(idNext);
-                                                                                        prev?.addEventListener('click', ()=> render(currentPage-1));
-                                                                                        next?.addEventListener('click', ()=> render(currentPage+1));
-                                                                                }
-                                                                                wire('prevPage','nextPage'); wire('prevPageB','nextPageB');
-
-                                                                                searchEl?.addEventListener('input', ()=> render(1));
-                                                                                document.addEventListener('keydown', e=>{ if(e.key==='/' && document.activeElement.tagName!=='INPUT'){ e.preventDefault(); searchEl.focus(); searchEl.select(); } });
-
-                                                                                // initial
-                                                                                render(1);
+                                                                                document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ overlay.style.display='none'; modal.style.display='none'; } });
+                                                                                overlay.addEventListener('click', ()=>{ overlay.style.display='none'; modal.style.display='none'; });
                                                                         })();
                                                                 </script>
 </body>
@@ -526,7 +524,7 @@ html[data-theme="dark"], body[data-theme="dark"] tbody tr:hover{background:rgba(
                                 <div class="muted">{{ fields|length }} columns • {{ display_records|length }} records</div>
                         </div>
                         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end">
-                                <button class="theme-toggle" aria-label="Toggle theme" style="margin-right:6px"><span id="themeIcon" class="theme-icon"></span><span id="themeLabel" class="theme-label"></span></button>
+                                <button class="theme-toggle" aria-label="Toggle theme" style="margin-right:6px"><span id="themeIcon" class="theme-icon">◐</span><span id="themeLabel" class="theme-label">Theme</span></button>
                                 <a href="/" class="back-link">Back</a>
                                 <button class="add-btn" id="openAddBtn">+ Add</button>
                         </div>

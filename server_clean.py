@@ -778,10 +778,10 @@ DASHBOARD_TEMPLATE = '''
         }
         
         .icon-btn {
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             background: transparent;
-            border: 1px solid var(--border);
+            border: 0;
             border-radius: 6px;
             display: flex;
             align-items: center;
@@ -797,6 +797,11 @@ DASHBOARD_TEMPLATE = '''
             color: var(--text-primary);
             border-color: var(--accent);
         }
+
+        /* hide inline glyphs inside view-actions to match compact toolbar (icons removed) */
+        .view-actions .icon-btn { padding: 0 }
+        .view-actions .icon-btn::before, .view-actions .icon-btn::after { display: none }
+        .view-actions .icon-btn { font-size: 0 }
         
         .icon-btn.active {
             background: var(--accent-light);
@@ -1246,10 +1251,10 @@ DASHBOARD_TEMPLATE = '''
                     </div>
                 </div>
                 <div class="view-actions">
-                    <button class="icon-btn" onclick="toggleFilter()" title="Filter" data-tooltip="Filter">⚡</button>
-                    <button class="icon-btn" onclick="toggleGroup()" title="Group" data-tooltip="Group">⚏</button>
-                    <button class="icon-btn" onclick="toggleSort()" title="Sort" data-tooltip="Sort">⇅</button>
-                    <button class="icon-btn" onclick="hideFields()" title="Hide fields" data-tooltip="Hide fields">👁</button>
+                    <button class="icon-btn" onclick="toggleFilter()" title="Filter" data-tooltip="Filter" aria-label="Filter">⚡</button>
+                    <button class="icon-btn" onclick="toggleGroup()" title="Group" data-tooltip="Group" aria-label="Group">⚏</button>
+                    <button class="icon-btn" onclick="toggleSort()" title="Sort" data-tooltip="Sort" aria-label="Sort">⇅</button>
+                    <button class="icon-btn" onclick="hideFields()" title="Hide fields" data-tooltip="Hide fields" aria-label="Hide fields">👁</button>
                 </div>
             </div>
             

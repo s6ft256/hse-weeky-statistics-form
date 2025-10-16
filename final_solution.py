@@ -507,7 +507,11 @@ tbody tr:hover{background:rgba(0,0,0,.02)}
                                                                         <tr data-id="{{ r.id }}">
                                                                                 <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
                                                                                 <td class="row-index">{{ loop.index }}</td>
-                                                                                {% for c in r.cells %}<td data-col-index="{{ loop.index0 }}">{{ c }}</td>{% endfor %}
+                                                                                {% for c in r.cells %}
+                                                                                        <td data-col-index="{{ loop.index0 }}" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">{{ c|e }}</div>
+                                                                                        </td>
+                                                                                {% endfor %}
                                                                         </tr>
                                                                 {% endfor %}
                                                         {% else %}

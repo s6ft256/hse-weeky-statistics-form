@@ -798,10 +798,9 @@ DASHBOARD_TEMPLATE = '''
             border-color: var(--accent);
         }
 
-        /* hide inline glyphs inside view-actions to match compact toolbar (icons removed) */
-        .view-actions .icon-btn { padding: 0 }
+        /* hide pseudo-elements in view-actions; keep glyph font-size so inline icons remain visible */
+        .view-actions .icon-btn { padding: 0; font-size: inherit; }
         .view-actions .icon-btn::before, .view-actions .icon-btn::after { display: none }
-        .view-actions .icon-btn { font-size: 0 }
         
         .icon-btn.active {
             background: var(--accent-light);

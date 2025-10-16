@@ -13,6 +13,10 @@ from pyairtable import Api
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 from unittest.mock import patch
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Disable SSL warnings and verification for corporate proxy
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -28,19 +32,37 @@ def _patched_request(self, method, url, **kwargs):
     return _original_request(self, method, url, **kwargs)
 requests.Session.request = _patched_request
 
-# Configuration
-AIRTABLE_TOKEN = os.getenv('AIRTABLE_TOKEN', 'your_token_here')
-AIRTABLE_BASE_ID = os.getenv('AIRTABLE_BASE_ID', 'your_base_id_here')
+# Configuration - Load from environment variables
+AIRTABLE_TOKEN = os.getenv("AIRTABLE_TOKEN")
+AIRTABLE_BASE_ID = os.getenv("AIRTABLE_BASE_ID")
+STATISTICS_API = os.getenv("STATISTICS_API")
+
+# Validate required environment variables
+if not AIRTABLE_TOKEN:
+    raise ValueError("AIRTABLE_TOKEN environment variable is required")
+if not AIRTABLE_BASE_ID:
+    raise ValueError("AIRTABLE_BASE_ID environment variable is required")
 
 app = Flask(__name__)
 
 # Initialize Airtable API
 try:
     print("[*] Initializing Airtable connection...")
+    print(f"[*] Using Base ID: {AIRTABLE_BASE_ID}")
+    print(f"[*] Token configured: {AIRTABLE_TOKEN is not None}")
+    print(f"[*] Token starts with: {AIRTABLE_TOKEN[:10]}...")
     print("[*] SSL verification disabled for corporate proxy...")
     api = Api(AIRTABLE_TOKEN, timeout=(30, 30))
     print("[*] Testing connection to Airtable...")
     base = api.base(AIRTABLE_BASE_ID)
+    try:
+        # Try to get a list of tables
+        schema = base.schema()
+        tables = schema.tables
+        print(f"[+] Successfully retrieved {len(tables)} tables from base")
+        print(f"[+] Tables: {', '.join([t.name for t in tables])}")
+    except Exception as schema_error:
+        print(f"[!] Warning: Could not retrieve table list: {schema_error}")
     print("[+] Connected to Airtable successfully")
 except Exception as e:
     print(f"[!] Failed to connect to Airtable: {e}")
@@ -52,21 +74,28 @@ except Exception as e:
 def dashboard():
     """Main dashboard page"""
     try:
+        print("[*] Dashboard route accessed")
         if api is None:
+            print("[!] API is None, returning error")
             return "Airtable API not initialized. Check server logs for SSL/connection issues.", 500
             
         # Get all tables from the base
+        print("[*] Getting tables from base")
         tables_info = []
         base_metadata = api.base(AIRTABLE_BASE_ID).schema()
+        print(f"[*] Retrieved metadata with {len(base_metadata.tables)} tables")
         
         for table_info in base_metadata.tables:
             table_name = table_info.name
             table_id = table_info.id
+            print(f"[*] Processing table: {table_name}")
             
             # Get record count
             try:
                 table = base.table(table_name)
-                record_count = len(table.all())
+                records = table.all()
+                record_count = len(records)
+                print(f"[+] Table {table_name}: {record_count} records")
             except Exception as e:
                 print(f"[!] Warning: Could not get records for {table_name}: {e}")
                 record_count = 0
@@ -77,7 +106,60 @@ def dashboard():
                 'count': record_count
             })
         
-        return render_template_string(DASHBOARD_TEMPLATE, tables=tables_info)
+        # Create a simple HTML response showing the tables directly
+        print(f"[+] Rendering simplified dashboard with {len(tables_info)} tables")
+        
+        table_html = ""
+        for table in tables_info:
+            table_html += f"""
+            <div class="table-card" onclick="viewTable('{table['name']}')">
+                <h3>{table['name']}</h3>
+                <p>Records: {table['count']}</p>
+                <p>ID: {table['id']}</p>
+            </div>
+            """
+        
+        direct_html = f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Airtable Tables</title>
+            <style>
+                body {{ font-family: Arial, sans-serif; margin: 20px; }}
+                h1 {{ color: #4285f4; }}
+                .container {{ display: flex; flex-wrap: wrap; gap: 20px; }}
+                .table-card {{ 
+                    border: 1px solid #ddd; 
+                    padding: 15px; 
+                    border-radius: 8px;
+                    width: 250px;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                    cursor: pointer;
+                }}
+                .table-card:hover {{ 
+                    background-color: #f5f5f5; 
+                    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+                }}
+                h3 {{ margin-top: 0; }}
+            </style>
+        </head>
+        <body>
+            <h1>Airtable Tables</h1>
+            <p>Found {len(tables_info)} tables in your Airtable base.</p>
+            <div class="container">
+                {table_html}
+            </div>
+            <script>
+                function viewTable(tableName) {{
+                    alert('Viewing table: ' + tableName);
+                    // In a real app, this would navigate to the table view
+                }}
+            </script>
+        </body>
+        </html>
+        """
+        
+        return direct_html
     except Exception as e:
         import traceback
         error_details = traceback.format_exc()
@@ -1750,49 +1832,43 @@ DASHBOARD_TEMPLATE = '''
                             let inputType = 'text';
                             let placeholder = 'Enter value...';
                             
+                            // Special handling for Training table - force all fields to text inputs to prevent #REF/#N/A errors
+                            const isTrainingTable = table.name === '4b.Training & comptency Registe';
+                            
                             // Set appropriate input type and placeholder based on field type
-                            switch(field.type) {
-                                case 'date':
-                                case 'dateTime':
-                                    inputType = 'date';
-                                    placeholder = 'YYYY-MM-DD';
-                                    break;
-                                case 'number':
-                                    inputType = 'number';
-                                    placeholder = 'Enter number...';
-                                    break;
-                                case 'email':
-                                    inputType = 'email';
-                                    placeholder = 'Enter email...';
-                                    break;
-                                case 'url':
-                                    inputType = 'url';
-                                    placeholder = 'Enter URL...';
-                                    break;
-                                case 'phoneNumber':
-                                    inputType = 'tel';
-                                    placeholder = 'Enter phone number...';
-                                    break;
-                                case 'singleSelect':
-                                    // Check if this is the Training table and force text inputs for problematic fields
-                                    const isTrainingTable = currentTableName === '4b.Training & comptency Registe';
-                                    const isProblematicField = ['Designation', 'Company '].includes(field.name);
-                                    
-                                    if (isTrainingTable && isProblematicField) {
-                                        // Force text input for problematic fields in Training table
-                                        inputType = 'text';
-                                        placeholder = `Enter ${field.name.toLowerCase()}... (free text input)`;
-                                        // Update the label to show it's a free text field
-                                        formHtml += `
-                                            <div class="form-group">
-                                                <label for="field-${fieldId}">${field.name} <span style="color: #28a745; font-weight: bold;">(free text - no #REF errors)</span></label>
-                                                <input type="${inputType}" id="field-${fieldId}" name="${field.name}" 
-                                                       placeholder="${placeholder}"/>
-                                            </div>
-                                        `;
-                                        return; // Skip the default input creation
-                                    } else {
-                                        // Create dropdown for other single select fields
+                            if (isTrainingTable) {
+                                // For Training table: always use text input regardless of field type
+                                inputType = 'text';
+                                placeholder = `Enter ${field.name.toLowerCase()}...`;
+                                if (field.type === 'singleSelect' || field.type === 'multipleSelect') {
+                                    placeholder += ' (Note: Enter text directly to avoid #REF/#N/A errors)';
+                                }
+                            } else {
+                                // Normal field type handling for other tables
+                                switch(field.type) {
+                                    case 'date':
+                                    case 'dateTime':
+                                        inputType = 'date';
+                                        placeholder = 'YYYY-MM-DD';
+                                        break;
+                                    case 'number':
+                                        inputType = 'number';
+                                        placeholder = 'Enter number...';
+                                        break;
+                                    case 'email':
+                                        inputType = 'email';
+                                        placeholder = 'Enter email...';
+                                        break;
+                                    case 'url':
+                                        inputType = 'url';
+                                        placeholder = 'Enter URL...';
+                                        break;
+                                    case 'phoneNumber':
+                                        inputType = 'tel';
+                                        placeholder = 'Enter phone number...';
+                                        break;
+                                    case 'singleSelect':
+                                        // Create dropdown for single select fields
                                         let selectOptions = '<option value="">Choose an option...</option>';
                                         if (field.options && field.options.choices) {
                                             field.options.choices.forEach(choice => {
@@ -1801,33 +1877,15 @@ DASHBOARD_TEMPLATE = '''
                                         }
                                         formHtml += `
                                             <div class="form-group">
-                                                <label for="field-${fieldId}">${field.name} <span style="color: #666;">(select - dropdown)</span></label>
+                                                <label for="field-${fieldId}">${field.name} <span style="color: #666;">(${field.type})</span></label>
                                                 <select id="field-${fieldId}" name="${field.name}">
                                                     ${selectOptions}
                                                 </select>
                                             </div>
                                         `;
                                         return; // Skip the input creation below
-                                    }
-                                case 'multipleSelect':
-                                    // Check if this is the Training table and might need text input
-                                    const isTrainingTableMulti = currentTableName === '4b.Training & comptency Registe';
-                                    
-                                    if (isTrainingTableMulti) {
-                                        // Force text input for Training table multiSelect fields to avoid #REF
-                                        inputType = 'text';
-                                        placeholder = `Enter ${field.name.toLowerCase()}... (comma-separated values)`;
-                                        formHtml += `
-                                            <div class="form-group">
-                                                <label for="field-${fieldId}">${field.name} <span style="color: #28a745; font-weight: bold;">(free text - no #REF errors)</span></label>
-                                                <input type="${inputType}" id="field-${fieldId}" name="${field.name}" 
-                                                       placeholder="${placeholder}"/>
-                                                <small style="color: #666;">Enter multiple values separated by commas</small>
-                                            </div>
-                                        `;
-                                        return; // Skip the input creation below
-                                    } else {
-                                        // Create multi-select for other tables
+                                    case 'multipleSelect':
+                                        // Create multi-select for multiple select fields
                                         let multiSelectOptions = '';
                                         if (field.options && field.options.choices) {
                                             field.options.choices.forEach(choice => {
@@ -1836,7 +1894,7 @@ DASHBOARD_TEMPLATE = '''
                                         }
                                         formHtml += `
                                             <div class="form-group">
-                                                <label for="field-${fieldId}">${field.name} <span style="color: #666;">(multi-select dropdown)</span></label>
+                                                <label for="field-${fieldId}">${field.name} <span style="color: #666;">(${field.type})</span></label>
                                                 <select id="field-${fieldId}" name="${field.name}" multiple>
                                                     ${multiSelectOptions}
                                                 </select>
@@ -1844,31 +1902,24 @@ DASHBOARD_TEMPLATE = '''
                                             </div>
                                         `;
                                         return; // Skip the input creation below
-                                    }
-                                case 'longText':
-                                    // Use textarea for long text
-                                    formHtml += `
-                                        <div class="form-group">
-                                            <label for="field-${fieldId}">${field.name} <span style="color: #666;">(${field.type})</span></label>
-                                            <textarea id="field-${fieldId}" name="${field.name}" 
-                                                     placeholder="${placeholder}" rows="3"></textarea>
-                                        </div>
-                                    `;
-                                    return; // Skip the input creation below
-                                default:
-                                    placeholder = `Enter ${field.type || 'value'}...`;
+                                    case 'longText':
+                                        // Use textarea for long text
+                                        formHtml += `
+                                            <div class="form-group">
+                                                <label for="field-${fieldId}">${field.name} <span style="color: #666;">(${field.type})</span></label>
+                                                <textarea id="field-${fieldId}" name="${field.name}" 
+                                                         placeholder="${placeholder}" rows="3"></textarea>
+                                            </div>
+                                        `;
+                                        return; // Skip the input creation below
+                                    default:
+                                        placeholder = `Enter ${field.type || 'value'}...`;
+                                }
                             }
-                            
-                            // Check if this is a text override for Training table
-                            const isTextOverride = (currentTableName === '4b.Training & comptency Registe') && 
-                                                   (['singleSelect', 'multipleSelect'].includes(field.type));
-                            
-                            const labelStyle = isTextOverride ? 'color: #28a745; font-weight: bold;' : 'color: #666;';
-                            const labelText = isTextOverride ? '(free text - no #REF errors)' : `(${field.type})`;
                             
                             formHtml += `
                                 <div class="form-group">
-                                    <label for="field-${fieldId}">${field.name} <span style="${labelStyle}">${labelText}</span></label>
+                                    <label for="field-${fieldId}">${field.name} <span style="color: #666;">(${field.type})</span></label>
                                     <input type="${inputType}" id="field-${fieldId}" name="${field.name}" 
                                            placeholder="${placeholder}"/>
                                 </div>
@@ -2117,6 +2168,9 @@ DASHBOARD_TEMPLATE = '''
 </html>
 '''
 
+from airtable_helpers import normalize_field_name, coerce_payload_to_body
+
+
 def get_airtable_api():
     """Returns the global Airtable API instance."""
     global api
@@ -2224,16 +2278,12 @@ def add_record_route():
                             return jsonify({'success': False, 'error': f'Field "{key}" must be a valid number.'}), 400
                             
                     elif field_def.type == 'singleSelect':
-                        # Special handling for Training table's problematic fields
-                        is_training_table = found_table.name == '4b.Training & comptency Registe'
-                        is_problematic_field = key in ['Designation', 'Company ']
-                        
-                        if is_training_table and is_problematic_field:
-                            # Treat as free text for problematic fields in Training table
-                            processed_fields[key] = str(value)
-                            print(f"[*] Processing {key} as free text: {value}")
+                        # Special handling for Training table - skip validation and treat as text
+                        if found_table.name == '4b.Training & comptency Registe':
+                            # For Training table: accept any text value for select fields
+                            processed_fields[key] = value
                         else:
-                            # Validate single select options for other fields
+                            # Normal validation for other tables
                             if hasattr(field_def, 'options') and hasattr(field_def.options, 'choices'):
                                 valid_options = [choice.name for choice in field_def.options.choices]
                                 if str(value) not in valid_options:
@@ -2244,19 +2294,12 @@ def add_record_route():
                             processed_fields[key] = value
                         
                     elif field_def.type == 'multipleSelect':
-                        # Special handling for Training table
-                        is_training_table = found_table.name == '4b.Training & comptency Registe'
-                        
-                        if is_training_table:
-                            # Treat as free text for Training table multiSelect fields
-                            # Convert comma-separated text to array if needed
-                            if isinstance(value, str) and ',' in value:
-                                processed_fields[key] = [v.strip() for v in value.split(',') if v.strip()]
-                            else:
-                                processed_fields[key] = [str(value)] if value else []
-                            print(f"[*] Processing {key} as free text array: {processed_fields[key]}")
+                        # Special handling for Training table - skip validation and treat as text
+                        if found_table.name == '4b.Training & comptency Registe':
+                            # For Training table: accept any text value for select fields
+                            processed_fields[key] = value
                         else:
-                            # Validate multiple select options for other tables
+                            # Normal validation for other tables
                             if hasattr(field_def, 'options') and hasattr(field_def.options, 'choices'):
                                 valid_options = [choice.name for choice in field_def.options.choices]
                                 # Handle both single values and arrays
@@ -2293,10 +2336,32 @@ def add_record_route():
         # Create table instance using the base and table name
         base_instance = api.base(AIRTABLE_BASE_ID)
         table = base_instance.table(found_table.name)
-        
-        # Create the record
+
+        # Before creating, attempt a final normalization/coercion pass using helpers
         try:
-            new_record = table.create(processed_fields)
+            # Build meta_fields for coercion
+            meta_fields = []
+            if found_table and hasattr(found_table, 'fields'):
+                for f in found_table.fields:
+                    name = getattr(f, 'name', None) or getattr(f, 'id', '')
+                    ftype = getattr(f, 'type', None) or getattr(f, 'typeName', None) or 'text'
+                    choices = []
+                    if hasattr(f, 'options') and getattr(f, 'options'):
+                        choices = [getattr(c, 'name', c) for c in getattr(f.options, 'choices', []) or []]
+                    required = bool(getattr(f, 'required', False) or getattr(f, 'isRequired', False))
+                    meta_fields.append({'name': name, 'type': ftype, 'choices': choices, 'required': required})
+
+            # Map keys by normalized match
+            mapped = {}
+            for k, v in processed_fields.items():
+                matched = next((m['name'] for m in meta_fields if normalize_field_name(m['name']) == normalize_field_name(k)), None)
+                mapped[matched or k] = v
+
+            body, errors = coerce_payload_to_body(mapped, meta_fields)
+            if errors:
+                return jsonify({'success': False, 'error': 'Validation failed', 'errors': errors}), 400
+
+            new_record = table.create(body)
             print(f"[+] Record added successfully with ID: {new_record['id']}")
             return jsonify({'success': True, 'record': new_record})
         except Exception as create_error:
@@ -2363,6 +2428,18 @@ def add_record_route():
             print(f"[!] Error parsing Airtable error: {str(parse_error)}")
             
         return jsonify({'success': False, 'error': error_message}), 500
+
+@app.route('/api/config')
+def get_config():
+    """Returns current configuration status (without sensitive data)"""
+    return jsonify({
+        'airtable_connected': api is not None,
+        'base_id': AIRTABLE_BASE_ID,
+        'token_configured': AIRTABLE_TOKEN is not None,
+        'statistics_api_configured': STATISTICS_API is not None,
+        'statistics_api_length': len(STATISTICS_API) if STATISTICS_API else 0
+    })
+
 if __name__ == '__main__':
     print("[*] Starting Clean Airtable Dashboard...")
     print("[*] Dashboard available at: http://localhost:5000")

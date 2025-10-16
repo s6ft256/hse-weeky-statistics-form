@@ -16,6 +16,10 @@ from datetime import datetime
 from flask import Flask, render_template_string, request, jsonify
 from pyairtable import Api
 from dotenv import load_dotenv
+import re
+import unicodedata
+import re
+from airtable_helpers import normalize_field_name, coerce_payload_to_body
 
 load_dotenv()
 
@@ -37,6 +41,8 @@ if not AIRTABLE_TOKEN or not AIRTABLE_BASE_ID:
         raise RuntimeError('Set AIRTABLE_TOKEN and AIRTABLE_BASE_ID in environment')
 
 app = Flask(__name__)
+
+# Use shared helpers from airtable_helpers.py (imported above)
 
 # Initialize Airtable client
 try:
@@ -62,7 +68,7 @@ _DASH = """
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Airtable Dashboard</title>
 <style>
-:root{--bg:#0f1724;--card:#0b1220;--muted:#9aa3b2;--accent:#7c3aed;--fg:#e6eef8;--ease: cubic-bezier(.22,.61,.36,1); --dur: 220ms}
+:root{--bg:#f8fafc;--card:#ffffff;--muted:#6b7280;--accent:#7c3aed;--fg:#111827;--ease: cubic-bezier(.22,.61,.36,1); --dur: 220ms}
 html,body{height:100%}
 html{scroll-behavior:smooth}
 body{font-family:Inter,Segoe UI,Arial,Helvetica,sans-serif;margin:0;background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
@@ -85,7 +91,7 @@ body[data-theme="light"]{--bg:#f8fafc;--card:#ffffff;--muted:#6b7280;--accent:#7
 .hero::after{content:"";position:absolute;inset:-44px;background:radial-gradient(ellipse at 50% -10%, rgba(124,58,237,.4), rgba(124,58,237,0) 60%), radial-gradient(ellipse at 10% 50%, rgba(59,130,246,.22), rgba(59,130,246,0) 50%), radial-gradient(ellipse at 90% 50%, rgba(234,179,8,.22), rgba(234,179,8,0) 50%);filter:blur(34px);z-index:-1;pointer-events:none}
 .logo{position:absolute;left:50%;transform:translateX(-50%);top:26px;width:200px;height:200px;background-size:contain;background-repeat:no-repeat;background-position:center}
 .report-title{margin-top:36px;text-align:center}
-.report-title h1{font-size:40px;margin:0;color:#fff;letter-spacing:1px}
+.report-title h1{font-size:48px;margin:0;color:#111827;letter-spacing:1px;font-weight:700}
 .report-title .subtitle{color:var(--muted);margin-top:10px}
 /* light theme: ensure strong contrast for title area */
 body[data-theme="light"] .report-title h1{color:#111827 !important}
@@ -119,8 +125,8 @@ body[data-theme="light"] .hero::after{background:radial-gradient(ellipse at 50% 
 body[data-theme="light"] .search input{background:#ffffff;color:#111827;border:1px solid #e5e7eb}
 body[data-theme="light"] .card{color:#111827}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-top:18px}
-.card{background:var(--card);padding:22px;border-radius:12px;min-height:140px;border:1px solid rgba(255,255,255,.03);box-shadow:0 6px 20px rgba(2,6,23,.6);color:#e6eef8}
-.card h3{margin:0 0 10px 0}
+.card{background:var(--card);padding:22px;border-radius:12px;min-height:140px;border:1px solid rgba(255,255,255,.03);box-shadow:0 6px 20px rgba(2,6,23,.6);color:var(--fg)}
+.card h3{margin:0 0 10px 0;font-size:20px;font-weight:600}
 .card .meta{color:var(--muted);font-size:13px;margin-top:8px}
 .card .active{float:right;color:var(--accent);font-weight:600}
 .footer-note{color:var(--muted);font-size:13px;margin-top:14px}
@@ -133,19 +139,9 @@ a.card{text-decoration:none}
 .card{opacity:1}
 /* small copyright/footer */
 .site-footer{color:var(--muted);font-size:12px;margin-top:12px;text-align:center}
-/* theme toggle */
-.theme-toggle{position:fixed;top:14px;right:14px;display:flex;align-items:center;gap:8px;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.12);color:#fff;padding:6px 10px;border-radius:999px;cursor:pointer;backdrop-filter:blur(6px); z-index:1000; transition:transform .12s ease, box-shadow .16s ease, background .16s ease}
-.theme-toggle:hover{ transform: translateY(-1px); box-shadow:0 10px 30px rgba(2,6,23,.25) }
-body[data-theme="light"] .theme-toggle{ background:rgba(255,255,255,.65); color:#111827; border-color:rgba(0,0,0,.08) }
 </style>
 </head>
 <body>
-                                <div style="position:absolute;right:16px;top:16px;z-index:10">
-                                        <button id="themeToggle" class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
-                                                <span id="themeIcon" aria-hidden="true"></span>
-                                                <span id="themeLabel" style="font-size:12px"></span>
-                                        </button>
-                                </div>
                         <div class="banner">
                                 <div class="hero">
                                         <div class="logo" style="background-image:url('https://trojanconstruction.group/storage/subsidiaries/August2022/PG0Hzw1iVnUOQAiyYYuS.png')"></div>
@@ -211,14 +207,20 @@ body[data-theme="light"] .theme-toggle{ background:rgba(255,255,255,.65); color:
                                                                                 const KEY='theme';
                                                                                 const saved = localStorage.getItem(KEY) || 'dark';
                                                                                 document.body.dataset.theme = saved;
-                                                                                const icon = document.getElementById('themeIcon');
-                                                                                const label = document.getElementById('themeLabel');
+                                                                                const toggles = Array.from(document.querySelectorAll('.theme-toggle'));
+                                                                                function iconSvg(t){
+                                                                                    return t==='dark'
+                                                                                      ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>'
+                                                                                      : '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.8 1.42-1.42zM1 13h3v-2H1v2zm10-9h2V1h-2v3zm7.04 2.46l1.79-1.8-1.41-1.41-1.8 1.79 1.42 1.42zM17 13h3v-2h-3v2zm-5 8h2v-3h-2v3zm-7.66-2.34l1.41 1.41 1.8-1.79-1.42-1.42-1.79 1.8zM20 20l1.41 1.41 1.41-1.41-1.41-1.41L20 20zM12 6a6 6 0 100 12A6 6 0 0012 6z"/></svg>';
+                                                                                }
                                                                                 function render(){
                                                                                         const t = document.body.dataset.theme;
-                                                                                        label.textContent = t==='dark'?'Dark':'Light';
-                                                                                        icon.innerHTML = t==='dark'
-                                                                                          ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>'
-                                                                                          : '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.8 1.42-1.42zM1 13h3v-2H1v2zm10-9h2V1h-2v3zm7.04 2.46l1.79-1.8-1.41-1.41-1.8 1.79 1.42 1.42zM17 13h3v-2h-3v2zm-5 8h2v-3h-2v3zm-7.66-2.34l1.41 1.41 1.8-1.79-1.42-1.42-1.79 1.8zM20 20l1.41 1.41 1.41-1.41-1.41-1.41L20 20zM12 6a6 6 0 100 12A6 6 0 0012 6z"/></svg>';
+                                                                                        toggles.forEach(btn=>{
+                                                                                            const label = btn.querySelector('#themeLabel, [data-role="themeLabel"], .theme-label');
+                                                                                            const icon = btn.querySelector('#themeIcon, [data-role="themeIcon"], .theme-icon');
+                                                                                            if(label) label.textContent = t==='dark'?'Dark':'Light';
+                                                                                            if(icon) icon.innerHTML = iconSvg(t);
+                                                                                        });
                                                                                 }
                                                                                 function toggleTheme(){
                                                                                         const next = document.body.dataset.theme==='dark'?'light':'dark';
@@ -228,10 +230,11 @@ body[data-theme="light"] .theme-toggle{ background:rgba(255,255,255,.65); color:
                                                                                         render();
                                                                                         setTimeout(()=> document.body.classList.remove('instant-theme'), 120);
                                                                                 }
-                                                                                const btn = document.getElementById('themeToggle');
-                                                                                btn?.addEventListener('pointerdown', (e)=>{ e.preventDefault(); toggleTheme(); });
-                                                                                btn?.addEventListener('touchstart', (e)=>{ e.preventDefault(); toggleTheme(); }, {passive:false});
-                                                                                btn?.addEventListener('click', (e)=>{ e.preventDefault(); toggleTheme(); });
+                                                                                toggles.forEach(btn=>{
+                                                                                    btn.addEventListener('pointerdown', (e)=>{ e.preventDefault(); toggleTheme(); });
+                                                                                    btn.addEventListener('touchstart', (e)=>{ e.preventDefault(); toggleTheme(); }, {passive:false});
+                                                                                    btn.addEventListener('click', (e)=>{ e.preventDefault(); toggleTheme(); });
+                                                                                });
                                                                                 render();
                                                                         })();
                                                                         
@@ -308,8 +311,7 @@ _TABLE = """
 <title>{{ table_name }}</title>
 <style>
 /* Theme variables */
-:root{--bg:#0f1724;--card:#0b1220;--fg:#e6eef8;--muted:#9aa3b2;--accent:#7c3aed;--border:rgba(255,255,255,.08);--ease:cubic-bezier(.22,.61,.36,1);--dur:220ms}
-body[data-theme="light"]{--bg:#f3f4f6;--card:#ffffff;--fg:#111827;--muted:#6b7280;--accent:#7c3aed;--border:#e6e9ef}
+:root{--bg:#f3f4f6;--card:#ffffff;--fg:#111827;--muted:#6b7280;--accent:#7c3aed;--border:#e6e9ef;--ease:cubic-bezier(.22,.61,.36,1);--dur:220ms}
 
 /* Page layout */
 html{scroll-behavior:smooth}
@@ -324,25 +326,18 @@ body.instant-theme *{transition: none !important}
 :where(button,[role="button"],a,input,select,textarea):focus-visible{outline:0;box-shadow:0 0 0 2px rgba(124,58,237,.55),0 6px 18px rgba(124,58,237,.18)}
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;scroll-behavior:auto !important}}
 .top-tabs{background:transparent;padding:8px 12px;border-bottom:0}
-body[data-theme="light"] .top-tabs{background:transparent;border-bottom:0}
 .tabs{display:flex;gap:8px;overflow:auto;padding:6px 4px}
-.tab{padding:8px 14px;border-radius:6px;background:transparent;color:#6b2e8a;font-weight:600;border:1px solid rgba(107,46,138,.08)}
-.tab.active{background:#f6eef8;border-color:transparent;box-shadow:inset 0 -2px 0 rgba(107,46,138,.06)}
+.tab{padding:8px 14px;border-radius:6px;background:#ffffff;color:#111827;font-weight:600;border:1px solid #e5e7eb}
+.tab.active{background:#f3f4ff;border-color:#c7d2fe;box-shadow:inset 0 -2px 0 rgba(99,102,241,.15)}
 .tab{transition:background var(--dur) var(--ease), color var(--dur) var(--ease), border-color 140ms var(--ease), box-shadow var(--dur) var(--ease)}
 .tab:hover{transform:translateY(-1px)}
-/* theme-aware tabs */
-body[data-theme="dark"] .tab{background:transparent;color:#c4b5fd;border:1px solid rgba(124,58,237,.18)}
-body[data-theme="dark"] .tab.active{background:rgba(124,58,237,.14);border-color:rgba(124,58,237,.28);box-shadow:inset 0 -2px 0 rgba(124,58,237,.22)}
-body[data-theme="light"] .tab{background:#ffffff;color:#111827;border:1px solid #e5e7eb}
-body[data-theme="light"] .tab.active{background:#f3f4ff;border-color:#c7d2fe;box-shadow:inset 0 -2px 0 rgba(99,102,241,.15)}
 .page{padding:18px}
 
 header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-header h2{margin:0;font-size:18px}
+header h2{margin:0;font-size:20px;font-weight:600}
 header .muted{color:var(--muted);font-size:13px}
 
-.toolbar{display:flex;gap:10px;align-items:center;margin:10px 0;padding:10px;background:var(--card);border-radius:8px}
-body[data-theme="light"] .toolbar{background:#f9fafb}
+.toolbar{display:flex;gap:10px;align-items:center;margin:10px 0;padding:10px;background:#f9fafb;border-radius:8px}
 .tool{display:flex;gap:8px;align-items:center;padding:6px 10px;border-radius:8px;background:transparent;color:var(--fg);border:1px solid var(--border);cursor:pointer}
 body[data-theme="light"] .tool{background:#ffffff;color:#111827;border:1px solid #e5e7eb}
 body[data-theme="dark"] .tool{background:rgba(255,255,255,.02);color:var(--fg);border:1px solid rgba(255,255,255,.1)}
@@ -355,12 +350,9 @@ body[data-theme="dark"] .tool{background:rgba(255,255,255,.02);color:var(--fg);b
 /* Smooth form styles (apply to all forms) */
 .form-smooth .form-row{display:flex;flex-direction:column;gap:6px}
 .form-smooth .form-label{font-size:13px;color:#374151}
-.form-smooth input,.form-smooth select,.form-smooth textarea{padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--fg);transition:box-shadow .18s ease, border-color .14s ease, transform .08s ease}
+.form-smooth input,.form-smooth select,.form-smooth textarea{padding:10px 12px;border:1px solid #e5e7eb;border-radius:8px;background:#ffffff;color:#111827;transition:box-shadow .18s ease, border-color .14s ease, transform .08s ease}
 .form-smooth input::placeholder,.form-smooth textarea::placeholder{color:var(--muted)}
 .form-smooth input:focus,.form-smooth select:focus,.form-smooth textarea:focus{outline:0;border-color:#7c3aed;box-shadow:0 8px 30px rgba(124,58,237,.12)}
-/* explicit overrides per theme for max clarity */
-body[data-theme="light"] .form-smooth input, body[data-theme="light"] .form-smooth select, body[data-theme="light"] .form-smooth textarea{background:#ffffff;color:#111827;border-color:#e5e7eb}
-body[data-theme="dark"] .form-smooth input, body[data-theme="dark"] .form-smooth select, body[data-theme="dark"] .form-smooth textarea{background:var(--card);color:var(--fg);border-color:rgba(255,255,255,.14)}
 .form-smooth button,.tool,.add-btn{transition:background .16s ease, color .12s ease, transform .08s ease, box-shadow .16s ease}
 .form-smooth button:hover,.tool:hover,.add-btn:hover{transform:translateY(-1px)}
 .form-smooth button:active,.tool:active,.add-btn:active{transform:translateY(0)}
@@ -371,18 +363,14 @@ body[data-density="compact"] th, body[data-density="compact"] td{padding:6px 10p
 body[data-density="compact"] .form-smooth input, body[data-density="compact"] .form-smooth select, body[data-density="compact"] .form-smooth textarea{padding:6px 8px;border-radius:6px}
 body[data-density="compact"] .add-btn{padding:6px 10px}
 
-.table-wrap{background:var(--card);border-radius:8px;box-shadow:0 6px 18px rgba(15,23,42,.06);overflow:auto}
-body[data-theme="light"] .table-wrap{background:#ffffff;box-shadow:0 8px 24px rgba(2,6,23,.06)}
+.table-wrap{background:#ffffff;border-radius:8px;box-shadow:0 8px 24px rgba(2,6,23,.06);overflow:auto}
 table{width:100%;border-collapse:collapse}
 .hdr-sort{opacity:0.45;margin-left:8px;font-size:12px}
-.cell-trunc{max-width:320px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cell-trunc{max-width:none;white-space:normal;overflow:visible;text-overflow:clip;word-break:break-word}
 .sort-asc .hdr-sort{color:#1f6feb}
 .sort-desc .hdr-sort{color:#1f6feb}
-th,td{padding:12px 16px;border-bottom:1px solid #f1f5f9;text-align:left}
-thead th{position:sticky;top:0;background:var(--card);border-bottom:2px solid var(--border);color:var(--fg)}
-thead.stuck th{box-shadow:0 4px 16px rgba(2,6,23,.12)}
-/* lighter header surface in light mode for readability */
-body[data-theme="light"] #gridTable thead th{background:#f9fafb}
+th,td{padding:12px 16px;border-bottom:1px solid #f1f5f9;text-align:left;font-size:15px}
+thead th{position:sticky;top:0;background:#f9fafb;border-bottom:2px solid var(--border);color:var(--fg)}
 .row-index{width:64px;text-align:center;color:var(--muted)}
 .row-select{width:56px;text-align:center}
 tbody tr:hover{background:rgba(0,0,0,.02)}
@@ -390,10 +378,7 @@ tbody tr:hover{background:rgba(0,0,0,.02)}
 /* Inline editors inside grid cells reflect theme */
 #gridBody td[data-col-index] input,
 #gridBody td[data-col-index] textarea,
-#gridBody td[data-col-index] select{width:100%;box-sizing:border-box;background:var(--card);color:var(--fg);border:1px solid var(--border);border-radius:6px;padding:6px 8px}
-body[data-theme="light"] #gridBody td[data-col-index] input,
-body[data-theme="light"] #gridBody td[data-col-index] textarea,
-body[data-theme="light"] #gridBody td[data-col-index] select{background:#ffffff;color:#111827;border-color:#e5e7eb}
+#gridBody td[data-col-index] select{width:100%;box-sizing:border-box;background:#ffffff;color:#111827;border:1px solid #e5e7eb;border-radius:6px;padding:6px 8px}
 
 /* bottom add bar */
 .add-bar{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--border);padding:10px 18px;display:flex;justify-content:flex-start;align-items:center;gap:10px}
@@ -406,19 +391,12 @@ body[data-theme="light"] #gridBody td[data-col-index] select{background:#ffffff;
 .modal.show{opacity:1;transform:translate(-50%,-50%)}
 
 /* Banner shared styles (like dashboard) */
-.banner{height:320px;background:linear-gradient(180deg,rgba(11,20,40,.95),rgba(16,24,37,.98));display:flex;align-items:center;justify-content:center;padding:24px;border-bottom:1px solid rgba(255,255,255,.03);position:relative}
+.banner{height:320px;background:linear-gradient(180deg,#f8fafc,#eef2ff);display:flex;align-items:center;justify-content:center;padding:24px;border-bottom:1px solid rgba(255,255,255,.03);position:relative}
 .banner{transition:background 240ms var(--ease)}
-.hero{max-width:1100px;width:100%;background:linear-gradient(180deg,#26343b,#222a30);padding:20px;border-radius:14px;box-shadow:0 20px 60px rgba(2,6,23,.6), 0 0 0 1px rgba(124,58,237,.18), 0 30px 100px rgba(124,58,237,.22);text-align:center;position:relative;min-height:220px;z-index:1}
-body[data-theme="light"] .banner{background:linear-gradient(180deg,#f8fafc,#eef2ff)}
-body[data-theme="light"] .hero{background:#ffffff;box-shadow:0 12px 40px rgba(2,6,23,.08), 0 0 0 1px rgba(99,102,241,.12)}
-.hero::after{content:"";position:absolute;inset:-32px;background:radial-gradient(ellipse at 50% -10%, rgba(124,58,237,.32), rgba(124,58,237,0) 60%), radial-gradient(ellipse at 10% 50%, rgba(59,130,246,.18), rgba(59,130,246,0) 50%), radial-gradient(ellipse at 90% 50%, rgba(234,179,8,.18), rgba(234,179,8,0) 50%);filter:blur(26px);z-index:-1;pointer-events:none}
+.hero{max-width:1100px;width:100%;background:#ffffff;padding:20px;border-radius:14px;box-shadow:0 12px 40px rgba(2,6,23,.08), 0 0 0 1px rgba(99,102,241,.12);text-align:center;position:relative;min-height:220px;z-index:1}
+.hero::after{content:"";position:absolute;inset:-32px;background:radial-gradient(ellipse at 50% -10%, rgba(124,58,237,.16), rgba(124,58,237,0) 60%), radial-gradient(ellipse at 10% 50%, rgba(59,130,246,.12), rgba(59,130,246,0) 50%), radial-gradient(ellipse at 90% 50%, rgba(234,179,8,.12), rgba(234,179,8,0) 50%);filter:blur(26px);z-index:-1;pointer-events:none}
 .logo{position:absolute;left:50%;transform:translateX(-50%);top:16px;width:150px;height:150px;background-size:contain;background-repeat:no-repeat;background-position:center}
 @media (max-width: 800px){ .logo{width:110px;height:110px;top:8px} .banner{height:240px} }
-
-/* theme toggle button */
-.theme-toggle{position:static;display:inline-flex;align-items:center;gap:8px;background:rgba(0,0,0,.12);border:1px solid rgba(255,255,255,.12);color:#fff;padding:6px 10px;border-radius:999px;cursor:pointer; transition:transform .12s ease, box-shadow .16s ease, background .16s ease}
-.theme-toggle:hover{ transform: translateY(-1px); box-shadow:0 6px 18px rgba(2,6,23,.25) }
-body[data-theme="light"] .theme-toggle{ background:rgba(0,0,0,.04); color:#111827; border-color:rgba(0,0,0,.08) }
 
 /* Tool accent hover */
 .tool:hover{background:rgba(124,58,237,.08); border-color: rgba(124,58,237,.25)}
@@ -456,11 +434,7 @@ body[data-theme="light"] .theme-toggle{ background:rgba(0,0,0,.04); color:#11182
                                 <div class="muted">{{ fields|length }} columns • {{ display_records|length }} records</div>
                         </div>
                         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end">
-                                <button id="themeToggle" class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
-                                        <span id="themeIcon" aria-hidden="true"></span>
-                                        <span id="themeLabel" style="font-size:12px"></span>
-                                </button>
-                                <button id="densityToggle" class="theme-toggle" title="Toggle density" aria-label="Toggle density">
+                                <button id="densityToggle" class="density-toggle" title="Toggle density" aria-label="Toggle density">
                                         <span aria-hidden="true">⇅</span>
                                         <span style="font-size:12px">Density</span>
                                 </button>
@@ -563,36 +537,8 @@ body[data-theme="light"] .theme-toggle{ background:rgba(0,0,0,.04); color:#11182
         <div style="padding:10px 18px;text-align:center;color:#6b7280;font-size:12px">&copy; 2025 HSE TROJAN CONSTRUCTION GROUP &nbsp;·&nbsp; Developed by Elius</div>
 
 <script>
-        // Theme toggle persistence
-        (function(){
-                const KEY='theme';
-                const saved = localStorage.getItem(KEY) || 'light';
-                document.body.dataset.theme = saved;
-                const icon = document.getElementById('themeIcon');
-                const label = document.getElementById('themeLabel');
-                function render(){
-                        const t = document.body.dataset.theme;
-                        label.textContent = t==='dark'?'Dark':'Light';
-                        icon.innerHTML = t==='dark'
-                          ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>'
-                          : '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.8 1.42-1.42zM1 13h3v-2H1v2zm10-9h2V1h-2v3zm7.04 2.46l1.79-1.8-1.41-1.41-1.8 1.79 1.42 1.42zM17 13h3v-2h-3v2zm-5 8h2v-3h-2v3zm-7.66-2.34l1.41 1.41 1.8-1.79-1.42-1.42-1.79 1.8zM20 20l1.41 1.41 1.41-1.41-1.41-1.41L20 20zM12 6a6 6 0 100 12A6 6 0 0012 6z"/></svg>';
-                }
-                function toggleTheme(){
-                        const next = document.body.dataset.theme==='dark'?'light':'dark';
-                        document.body.classList.add('instant-theme');
-                        document.body.dataset.theme = next;
-                        try{ localStorage.setItem(KEY,next); }catch(e){}
-                        render();
-                        setTimeout(()=> document.body.classList.remove('instant-theme'), 120);
-                }
-                const btn = document.getElementById('themeToggle');
-                btn?.addEventListener('pointerdown', (e)=>{ e.preventDefault(); toggleTheme(); });
-                btn?.addEventListener('touchstart', (e)=>{ e.preventDefault(); toggleTheme(); }, {passive:false});
-                btn?.addEventListener('click', (e)=>{ e.preventDefault(); toggleTheme(); });
-                render();
-        })();
-
-        // Density toggle persistence (comfortable/compact)
+// Set light theme
+document.body.dataset.theme = 'light';        // Density toggle persistence (comfortable/compact)
         (function(){
                 const KEY='density';
                 const saved = localStorage.getItem(KEY) || 'comfortable';
@@ -606,6 +552,8 @@ body[data-theme="light"] .theme-toggle{ background:rgba(0,0,0,.04); color:#11182
         const TABLE_NAME = {{ table_name|tojson | safe }};
         const FIELDS = {{ fields|tojson | safe }};
         const RECORDS = {{ display_records|tojson | safe }};
+        // Raw Airtable records (exact data from API)
+        const RECORDS_RAW = {{ records|tojson | safe }};
         // Field metadata from server (type, choices, required)
         window.FIELDS_META = {{ fields_meta|tojson | safe }};
 
@@ -717,17 +665,17 @@ body[data-theme="light"] .theme-toggle{ background:rgba(0,0,0,.04); color:#11182
                 });
         });
 
-        // tooltips + truncation
+        // tooltips (show full text on hover) — do not force truncation; allow cells to wrap
         document.querySelectorAll('tbody td').forEach(td=>{
                 if(td.classList.contains('row-select') || td.classList.contains('row-index')) return;
-                const txt = (td.textContent||'').trim(); td.title = txt;
-                td.classList.add('cell-trunc');
+                const txt = (td.textContent||'').trim();
+                td.title = txt;
         });
 
         // Inline editing: click a cell to edit
         (function(){
                 const meta = window.FIELDS_META || [];
-                function fieldMetaByIndex(i){ return meta[i] || {name: window.FIELDS[i]||('', type:'text')}; }
+                function fieldMetaByIndex(i){ return meta[i] || {name: window.FIELDS[i] || '', type: 'text'}; }
                 document.querySelectorAll('#gridBody tr').forEach(tr=>{
                         const rid = tr.dataset.id;
                         if(!rid) return;
@@ -771,6 +719,45 @@ body[data-theme="light"] .theme-toggle{ background:rgba(0,0,0,.04); color:#11182
                 });
         })();
 
+        // Double-click a row to view the exact Airtable record JSON in a modal
+        (function(){
+                // create raw modal elements
+                let rawOverlay = document.getElementById('rawOverlay');
+                let rawModal = document.getElementById('rawModal');
+                if(!rawOverlay){
+                        rawOverlay = document.createElement('div'); rawOverlay.id = 'rawOverlay'; rawOverlay.style.cssText = 'position:fixed;left:0;top:0;right:0;bottom:0;background:rgba(0,0,0,.36);display:none;z-index:120;'; document.body.appendChild(rawOverlay);
+                }
+                if(!rawModal){
+                        rawModal = document.createElement('div'); rawModal.id = 'rawModal'; rawModal.style.cssText = 'position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);min-width:320px;max-width:90%;max-height:80%;overflow:auto;background:#fff;padding:12px;border-radius:8px;box-shadow:0 12px 40px rgba(2,6,23,.12);display:none;z-index:130;font-family:monospace;font-size:13px;color:#111827';
+                        const closeBtn = document.createElement('button'); closeBtn.textContent='Close'; closeBtn.className='tool'; closeBtn.style.marginBottom='8px'; closeBtn.addEventListener('click', ()=>{ rawOverlay.style.display='none'; rawModal.style.display='none'; });
+                        const pre = document.createElement('pre'); pre.id = '__raw_json'; pre.style.whiteSpace='pre-wrap'; pre.style.wordBreak='break-word'; pre.style.margin=0; pre.style.padding='6px'; rawModal.appendChild(closeBtn); rawModal.appendChild(pre); document.body.appendChild(rawModal);
+                }
+
+                function showRawForId(id){
+                        if(!id) return;
+                        const rec = (RECORDS_RAW || []).find(r=>r && (r.id===id || r.recordId===id));
+                        const pre = document.getElementById('__raw_json');
+                        if(!rec){
+                                if(pre) pre.textContent = 'Record not found.';
+                        }else{
+                                if(pre) pre.textContent = JSON.stringify(rec, null, 2);
+                        }
+                        rawOverlay.style.display='block'; rawModal.style.display='block';
+                }
+
+                // double-click handler on rows
+                document.addEventListener('dblclick', (e)=>{
+                        const tr = e.target && e.target.closest && e.target.closest('#gridBody tr');
+                        if(!tr) return;
+                        const rid = tr.dataset && tr.dataset.id;
+                        if(!rid) return;
+                        showRawForId(rid);
+                });
+
+                // click on overlay closes modal
+                rawOverlay.addEventListener('click', ()=>{ rawOverlay.style.display='none'; rawModal.style.display='none'; });
+        })();
+
         // apply persisted hidden columns on load
         applyHidden();
         updateSelectedCount();
@@ -799,7 +786,9 @@ body[data-theme="light"] .theme-toggle{ background:rgba(0,0,0,.04); color:#11182
                         // fields_meta provided by server for type mapping
                         const meta = window.FIELDS_META || [];
                         FIELDS.forEach((f,i)=>{
-                                const m = meta.find(x=>x.name===f) || {name:f,type:'text',choices:null,required:false};
+                                const m = meta.find(x=>x.name===f) || {name:f,client_name:(typeof f==='string'?f.replace(/\\s+/g,' ').trim():f),type:'text',choices:null,required:false,editable:true};
+                                // Skip non-editable fields (autoNumber, read-only, etc.)
+                                if(m.editable === false) return;
                                 const wrapper = document.createElement('div');
                                 wrapper.style.display = 'flex'; wrapper.style.flexDirection='column'; wrapper.style.gap='6px'; wrapper.dataset.field = f;
                                 const label = document.createElement('label'); label.textContent = f + (m.required ? ' *' : ''); label.style.fontSize='13px';
@@ -825,7 +814,8 @@ body[data-theme="light"] .theme-toggle{ background:rgba(0,0,0,.04); color:#11182
                                 }else{
                                         input = document.createElement('input'); input.type='text';
                                 }
-                                input.name = f;
+                                // use client-safe name (normalized) for form input keys
+                                input.name = m.client_name || f;
                                 input.style.padding='8px'; input.style.border='1px solid #e6e9ef'; input.style.borderRadius='6px';
                                 const err = document.createElement('div'); err.className='field-error'; err.style.color='crimson'; err.style.fontSize='12px'; err.style.minHeight='16px'; err.style.marginTop='4px';
                                 wrapper.appendChild(label); wrapper.appendChild(input); wrapper.appendChild(err);
@@ -861,15 +851,10 @@ body[data-theme="light"] .theme-toggle{ background:rgba(0,0,0,.04); color:#11182
                                 const res = await fetch(`/add_record_ajax/${encodeURIComponent(TABLE_NAME)}`, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(formData)});
                                 const data = await res.json();
                                 if(data.ok){
-                                        // optimistic insert row at top
-                                        const tbody = document.getElementById('gridBody');
-                                        const tr = document.createElement('tr'); tr.dataset.id = data.id;
-                                        tr.innerHTML = `<td class="row-select"><input type="checkbox" class="row-checkbox"></td><td class="row-index">1</td>` + FIELDS.map((f,i)=>`<td data-col-index="${i}">${(formData[f]||'')}</td>`).join('');
-                                        const first = tbody.querySelector('tr'); tbody.insertBefore(tr, first);
-                                        document.querySelectorAll('.row-index').forEach((td,i)=>td.textContent = i+1);
-                                        overlay.classList.remove('show'); addModal.classList.remove('show');
-                                        openBtn?.focus();
+                                        // show success toast then return to main menu
                                         showToast('Record created', 'success');
+                                        // small delay so user sees the toast before redirect
+                                        setTimeout(()=>{ window.location.href = '/'; }, 800);
                                 }else if(data.errors){
                                         // show field-level errors
                                         Object.entries(data.errors).forEach(([k,msg])=>{
@@ -910,7 +895,13 @@ body[data-theme="light"] .theme-toggle{ background:rgba(0,0,0,.04); color:#11182
                         else { if(document.activeElement === last){ e.preventDefault(); first.focus(); } }
                 });
         }
-</script>
+
+                function normalize_field_name(s) {
+                                // Client-side no-op: server performs robust normalization.
+                                // Keep function for compatibility if any inline scripts call it.
+                                try{ if(typeof s !== 'string') return s; return s.replace(/\\s+/g,' ').trim(); }catch(e){ return s; }
+                }
+        </script>
 </body>
 </html>
 """
@@ -928,10 +919,17 @@ def dashboard():
                         name = t.name
                         try:
                                 count = len(base.table(name).all())
-                        except Exception:
-                                count = 0
-                        tables.append({'name': name, 'id': t.id, 'count': count})
-                        total_records += count
+                                # Only add table if we have permission to access it
+                                tables.append({'name': name, 'id': t.id, 'count': count})
+                                total_records += count
+                        except Exception as e:
+                                # Skip tables we don't have permission to access
+                                error_msg = str(e).lower()
+                                if 'permission' in error_msg or 'forbidden' in error_msg or 'not found' in error_msg:
+                                        print(f'[!] Skipping table {name} (permission denied)')
+                                        continue
+                                # For other errors, still add the table with 0 count as fallback
+                                print(f'[!] Error counting records in {name}: {e}')
                 last_updated = datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')
                 return render_template_string(_DASH, tables=tables, total_records=total_records, last_updated=last_updated)
         except Exception as e:
@@ -946,7 +944,10 @@ def view_table(table_name):
                 table = base.table(table_name)
                 records = table.all()
         except Exception as e:
-                return f'Error fetching records for {table_name}: {e}', 500
+                error_msg = str(e).lower()
+                if 'permission' in error_msg or 'forbidden' in error_msg or 'not found' in error_msg:
+                        return f'Access denied to table "{table_name}". Your token may not have permission to access this table. <a href="/">Back to dashboard</a>', 403
+                return f'Error fetching records for {table_name}: {e} <a href="/">Back to dashboard</a>', 500
 
         # Determine ordered fields from schema and build metadata per field
         fields = []
@@ -958,7 +959,10 @@ def view_table(table_name):
                         for f in t.fields:
                                 # field object may contain name, type, required, options/choices
                                 fname = getattr(f, 'name', None) or getattr(f, 'id', '')
+                                # Normalize field name: strip whitespace
+                                fname = fname.strip() if isinstance(fname, str) else fname
                                 ftype = getattr(f, 'type', None) or getattr(f, 'typeName', None) or 'text'
+                                read_only = bool(getattr(f, 'read_only', False) or getattr(f, 'readOnly', False))
                                 # choices / options
                                 choices = None
                                 if hasattr(f, 'options') and f.options:
@@ -971,7 +975,10 @@ def view_table(table_name):
                                 # required flag
                                 required = bool(getattr(f, 'required', False) or getattr(f, 'isRequired', False))
                                 fields.append(fname)
-                                fields_meta.append({'name': fname, 'type': ftype, 'choices': choices, 'required': required})
+                                # Include editable flag to indicate if field can be edited
+                                is_editable = ftype not in ('autoNumber',) and not read_only
+                                client_name = normalize_field_name(fname) if isinstance(fname, str) else fname
+                                fields_meta.append({'name': fname, 'client_name': client_name, 'type': ftype, 'choices': choices, 'required': required, 'editable': is_editable})
         except Exception:
                 pass
 
@@ -982,20 +989,36 @@ def view_table(table_name):
                                 if k not in seen:
                                         seen.append(k)
                 fields = seen
-                # fallback metadata: text inputs
-                fields_meta = [{'name': n, 'type': 'text', 'choices': None, 'required': False} for n in fields]
+                # fallback metadata: text inputs, all editable
+                fields_meta = [{'name': n, 'type': 'text', 'choices': None, 'required': False, 'editable': True} for n in fields]
 
         display_records = []
+        # Render table cells. Show a single dot '.' for empty/missing values so blank cells are visible.
+        # Also ensure fields like 'X.CRS' and 'Definitions' (which are often empty) display '.' when missing.
+        def _render_cell(value, field_name=None):
+                # Return exact Airtable data:
+                # - None -> empty string (no placeholder)
+                # - list -> comma-separated
+                # - dict -> JSON string
+                # - otherwise str(value)
+                if value is None:
+                        return ''
+                if isinstance(value, list):
+                        return ', '.join(str(x) for x in value)
+                if isinstance(value, dict):
+                        try:
+                                return json.dumps(value)
+                        except Exception:
+                                return str(value)
+                return str(value)
+
         for r in records:
                 cells = []
                 for f in fields:
-                        v = r.get('fields', {}).get(f, '')
-                        if isinstance(v, list):
-                                cells.append(', '.join(str(x) for x in v))
-                        elif isinstance(v, dict):
-                                cells.append(json.dumps(v))
-                        else:
-                                cells.append(str(v))
+                        v = r.get('fields', {}).get(f, None)
+                        # Always show '.' for empty values; ensure X.CRS and Definitions appear as '.' when empty
+                        cell_text = _render_cell(v, f)
+                        cells.append(cell_text)
                 display_records.append({'id': r.get('id'), 'cells': cells})
 
         # build lightweight table list for the top tab strip (names + ids)
@@ -1007,7 +1030,7 @@ def view_table(table_name):
         except Exception:
                 pass
 
-        return render_template_string(_TABLE, table_name=table_name, fields=fields, fields_meta=fields_meta, display_records=display_records, tables=tables)
+        return render_template_string(_TABLE, table_name=table_name, fields=fields, fields_meta=fields_meta, display_records=display_records, tables=tables, records=records)
 
 
 @app.route('/add_record/<path:table_name>', methods=['GET', 'POST'])
@@ -1017,25 +1040,89 @@ def add_record(table_name):
         table = base.table(table_name)
 
         if request.method == 'POST':
-                payload = {}
-                for k, v in request.form.items():
-                        if not v:
-                                continue
-                        payload[k] = v
+                # Collect form values (skip empty)
+                raw = {k: v for k, v in request.form.items() if v is not None and v != ''}
+
+                # Build a mapping of client-safe name -> actual field name from schema
+                meta_fields = []
                 try:
-                        new = table.create(payload)
-                        return f'Record created: {new.get("id")} - <a href="/table/{table_name}">Back</a>'
+                        meta = api.base(AIRTABLE_BASE_ID).schema()
+                        t = next((x for x in meta.tables if x.name == table_name), None)
+                        if t and hasattr(t, 'fields'):
+                                for f in t.fields:
+                                        fname = getattr(f, 'name', None) or getattr(f, 'id', '')
+                                        ftype = getattr(f, 'type', None) or getattr(f, 'typeName', None) or 'text'
+                                        read_only = bool(getattr(f, 'read_only', False) or getattr(f, 'readOnly', False))
+                                        if ftype not in ('autoNumber',) and not read_only:
+                                                client_name = normalize_field_name(fname) if isinstance(fname, str) else fname
+                                                meta_fields.append({'name': fname, 'client_name': client_name})
+                except Exception:
+                        meta_fields = []
+
+                client_to_actual = { mf['client_name']: mf['name'] for mf in meta_fields }
+
+                # Map incoming form keys (which may be client-safe) to actual field names
+                mapped_payload = {}
+                for k, v in raw.items():
+                        if k in client_to_actual:
+                                mapped_payload[client_to_actual[k]] = v
+                        else:
+                                nk = normalize_field_name(k) if isinstance(k, str) else k
+                                if nk in client_to_actual:
+                                        mapped_payload[client_to_actual[nk]] = v
+                                else:
+                                        # pass-through unknown key
+                                        mapped_payload[k] = v
+
+                # Coerce using schema
+                meta_for_coerce = []
+                try:
+                        meta = api.base(AIRTABLE_BASE_ID).schema()
+                        t = next((x for x in meta.tables if x.name == table_name), None)
+                        if t and hasattr(t, 'fields'):
+                                for f in t.fields:
+                                        an = getattr(f, 'name', None) or getattr(f, 'id', '')
+                                        ftype = getattr(f, 'type', None) or getattr(f, 'typeName', None) or 'text'
+                                        choices = []
+                                        if hasattr(f, 'options') and getattr(f, 'options'):
+                                                choices = [getattr(c, 'name', c if isinstance(c, str) else '') for c in getattr(f.options, 'choices', []) or []]
+                                        required = bool(getattr(f, 'required', False) or getattr(f, 'isRequired', False))
+                                        meta_for_coerce.append({'name': an, 'type': ftype, 'choices': choices, 'required': required})
+                except Exception:
+                        meta_for_coerce = []
+
+                body, errors = coerce_payload_to_body(mapped_payload, meta_for_coerce)
+                if errors:
+                        return f'Validation failed: {errors}', 400
+                try:
+                        new = table.create(body)
+                        # Return a small success page that notifies the user and returns to main menu
+                        new_id = new.get('id')
+                        return f'''<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Success</title>
+                        <style>body{{font-family:Inter,Segoe UI,Arial,Helvetica,sans-serif;background:#f8fafc;color:#111827;margin:0;display:flex;align-items:center;justify-content:center;height:100vh}}.card{{background:#fff;padding:20px;border-radius:8px;box-shadow:0 12px 40px rgba(2,6,23,.08);text-align:center}}</style>
+                        </head><body><div class="card"><h2>Success</h2><p>Record created: {new_id}</p><p>Returning to main menu...</p></div>
+                        <script>setTimeout(function(){{window.location.href='/' }},800);</script></body></html>'''
                 except Exception as e:
+                        emsg = str(e)
+                        if 'UNKNOWN_FIELD_NAME' in emsg or 'Unknown field name' in emsg or 'unknown_field_name' in emsg.lower():
+                                return f'Error creating record: Unknown field name. Payload keys: {list(body.keys())} - Airtable error: {e}', 500
                         return f'Error creating record: {e}', 500
 
-        # Build best-effort form fields
+        # Build best-effort form fields (skip autoNumber and read-only fields)
         form_fields = []
         try:
                 meta = api.base(AIRTABLE_BASE_ID).schema()
                 t = next((x for x in meta.tables if x.name == table_name), None)
                 if t and hasattr(t, 'fields'):
                         for f in t.fields:
-                                form_fields.append({'name': f.name, 'type': 'text'})
+                                # Skip autoNumber and read-only fields
+                                fname = getattr(f, 'name', None) or getattr(f, 'id', '')
+                                # Normalize field name: strip whitespace
+                                fname = fname.strip() if isinstance(fname, str) else fname
+                                ftype = getattr(f, 'type', None) or getattr(f, 'typeName', None) or 'text'
+                                read_only = bool(getattr(f, 'read_only', False) or getattr(f, 'readOnly', False))
+                                if ftype != 'autoNumber' and not read_only:
+                                        form_fields.append({'name': fname, 'type': 'text'})
         except Exception:
                 try:
                         sample = table.all(max_records=10)
@@ -1046,84 +1133,78 @@ def add_record(table_name):
                 except Exception:
                         form_fields = [{'name': 'Name', 'type': 'text'}, {'name': 'Description', 'type': 'text'}]
 
-        form_html = ['<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Add Record</title>\n<style>\n:root{--bg:#0f1724;--fg:#e6eef8;--card:#0b1220;--muted:#9aa3b2;--border:rgba(255,255,255,.14)}\nbody[data-theme="light"]{--bg:#f8fafc;--fg:#111827;--card:#ffffff;--muted:#6b7280;--border:#e5e7eb}\nbody{font-family:Inter,Segoe UI,Arial,Helvetica,sans-serif;margin:0;background:var(--bg);color:var(--fg);padding:18px}\n.container{max-width:800px;margin:0 auto}\n.h1{font-size:22px;margin-bottom:12px}\n.form-smooth .form-row{display:flex;flex-direction:column;gap:6px;margin-bottom:10px}\n.form-smooth label{font-size:13px;color:var(--muted)}\n.form-smooth input,.form-smooth select,.form-smooth textarea{padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--fg);transition:box-shadow .18s ease, border-color .14s ease, transform .08s ease}\n.form-smooth input:focus,.form-smooth select:focus,.form-smooth textarea:focus{outline:0;border-color:#7c3aed;box-shadow:0 8px 30px rgba(124,58,237,.18)}\n.btn{background:#7c3aed;color:#fff;padding:8px 12px;border-radius:8px;border:0;cursor:pointer;transition:transform .1s ease, box-shadow .16s ease}\n.btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(124,58,237,.22)}\n.btn:disabled{opacity:.6;cursor:not-allowed}\n.link{color:#7c3aed}\n</style>\n</head><body><div class="container">']
+        form_html = ['<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Add Record</title>\n<style>\n:root{--bg:#f8fafc;--fg:#111827;--card:#ffffff;--muted:#6b7280;--border:#e5e7eb}\nbody{font-family:Inter,Segoe UI,Arial,Helvetica,sans-serif;margin:0;background:var(--bg);color:var(--fg);padding:18px}\n.container{max-width:800px;margin:0 auto}\n.h1{font-size:22px;margin-bottom:12px}\n.form-smooth .form-row{display:flex;flex-direction:column;gap:6px;margin-bottom:10px}\n.form-smooth label{font-size:13px;color:var(--muted)}\n.form-smooth input,.form-smooth select,.form-smooth textarea{padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--fg);transition:box-shadow .18s ease, border-color .14s ease, transform .08s ease}\n.form-smooth input:focus,.form-smooth select:focus,.form-smooth textarea:focus{outline:0;border-color:#7c3aed;box-shadow:0 8px 30px rgba(124,58,237,.18)}\n.btn{background:#7c3aed;color:#fff;padding:8px 12px;border-radius:8px;border:0;cursor:pointer;transition:transform .1s ease, box-shadow .16s ease}\n.btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(124,58,237,.22)}\n.btn:disabled{opacity:.6;cursor:not-allowed}\n.link{color:#7c3aed}\n</style>\n</head><body><div class="container">']
         form_html.append(f'<h1 class="h1">Add Record to {table_name}</h1>')
         form_html.append('<form method="post" class="form-smooth">')
         for f in form_fields:
                 form_html.append(f'<div class="form-row"><label>{f["name"]}</label><input name="{f["name"]}" /></div>')
         form_html.append(f'<p><button type="submit" class="btn">Create</button> <a class="link" href="/table/{table_name}">Cancel</a></p>')
-        form_html.append('</form></div><script>try{var t=localStorage.getItem("theme")||"dark";document.body.dataset.theme=t;}catch(e){}</script></body></html>')
 
-        return '\n'.join(form_html)
+        # Return the rendered simple form page
+        return ''.join(form_html)
 
 
 @app.route('/add_record_ajax/<path:table_name>', methods=['POST'])
 def add_record_ajax(table_name):
+        """AJAX endpoint to create a record for a given table.
+        Builds schema metadata (best-effort), normalizes field names, validates and coerces values,
+        and creates the record. Returns JSON with field-level errors when validation fails.
+        """
         if api is None:
                 return jsonify({'ok': False, 'error': 'Airtable API not initialized'}), 500
+
         payload = request.get_json(force=True) or {}
-        # Load schema metadata for this table to validate; best-effort
+
+        # Build meta_fields from schema when available
+        meta_fields = []
         try:
                 meta = api.base(AIRTABLE_BASE_ID).schema()
-                tmeta = next((x for x in meta.tables if x.name == table_name), None)
-                meta_fields = []
-                if tmeta and hasattr(tmeta, 'fields'):
-                        for f in tmeta.fields:
-                                fname = getattr(f, 'name', None) or getattr(f, 'id', '')
+                t = next((x for x in meta.tables if x.name == table_name), None)
+                if t and hasattr(t, 'fields'):
+                        for f in t.fields:
+                                actual_name = getattr(f, 'name', None) or getattr(f, 'id', '')
+                                # Keep actual name but store normalized mapping separately
+                                actual_name = actual_name if isinstance(actual_name, str) else actual_name
                                 ftype = getattr(f, 'type', None) or getattr(f, 'typeName', None) or 'text'
+                                read_only = bool(getattr(f, 'read_only', False) or getattr(f, 'readOnly', False))
                                 required = bool(getattr(f, 'required', False) or getattr(f, 'isRequired', False))
                                 choices = None
-                                if hasattr(f, 'options') and f.options:
+                                if hasattr(f, 'options') and getattr(f, 'options'):
                                         choices = [getattr(c, 'name', c if isinstance(c, str) else '') for c in getattr(f.options, 'choices', []) or []]
-                                meta_fields.append({'name': fname, 'type': ftype, 'required': required, 'choices': choices})
-                else:
-                        meta_fields = []
+                                if ftype not in ('autoNumber',) and not read_only:
+                                        meta_fields.append({'name': actual_name, 'type': ftype, 'required': required, 'choices': choices})
         except Exception:
                 meta_fields = []
 
         errors = {}
         body = {}
-        # Validate and coerce
-        for mf in meta_fields:
-                key = mf['name']
-                val = payload.get(key)
-                if mf.get('required') and (val is None or (isinstance(val, str) and val.strip()=='')):
-                        errors[key] = 'This field is required'
-                        continue
-                ftype = mf.get('type','text')
-                if val is None or val == '':
-                        continue
-                try:
-                        if ftype in ('number','integer','decimal'):
-                                # coerce numeric
-                                body[key] = float(val)
-                        elif ftype in ('date','datetime'):
-                                # keep as ISO-like string, server trusts format client sends
-                                body[key] = val
-                        elif ftype in ('singleSelect','select'):
-                                # expect single string matching a choice
-                                if mf.get('choices') and val not in mf['choices']:
-                                        errors[key] = 'Invalid choice'
-                                else:
-                                        body[key] = val
-                        elif ftype in ('multiSelect','multiple'):
-                                # accept comma-separated values or array
-                                if isinstance(val, list):
-                                        body[key] = val
-                                else:
-                                        body[key] = [s.strip() for s in val.split(',') if s.strip()]
-                        elif ftype in ('checkbox','boolean'):
-                                body[key] = bool(val in (True,'true','1','on','yes'))
-                        else:
-                                # default to string
-                                body[key] = str(val)
-                except Exception as e:
-                        errors[key] = 'Invalid value'
 
-        # For any payload fields not in meta, include them as strings (best-effort)
-        for k,v in payload.items():
-                if k not in body and k not in errors:
-                        body[k] = v
+        # Map client_name -> actual schema name
+        client_to_actual = {}
+        for mf in meta_fields:
+                name = mf.get('name')
+                client = mf.get('client_name') or (normalize_field_name(name) if isinstance(name, str) else name)
+                client_to_actual[client] = name
+
+        # Remap incoming payload keys (which are client-safe names) to actual schema names
+        mapped_payload = {}
+        if isinstance(payload, dict):
+                for k, v in payload.items():
+                        if k in client_to_actual:
+                                mapped_payload[client_to_actual[k]] = v
+                        else:
+                                # also try normalized lookup
+                                nk = normalize_field_name(k) if isinstance(k, str) else k
+                                if nk in client_to_actual:
+                                        mapped_payload[client_to_actual[nk]] = v
+                                else:
+                                        mapped_payload[k] = v
+        else:
+                mapped_payload = payload
+
+
+        # Coerce and validate using helper
+        body, errors = coerce_payload_to_body(mapped_payload, meta_fields)
 
         if errors:
                 return jsonify({'ok': False, 'errors': errors}), 400
@@ -1132,7 +1213,20 @@ def add_record_ajax(table_name):
                 new = base.table(table_name).create(body)
                 return jsonify({'ok': True, 'id': new.get('id')})
         except Exception as e:
-                return jsonify({'ok': False, 'error': str(e)}), 500
+                error_msg = str(e).lower()
+                error_str = str(e)
+                if 'unknown_field_name' in error_msg or 'unknown field name' in error_msg:
+                        match = re.search(r'Unknown field name[:\s]+["\']?([^"\']+)["\']?', error_str)
+                        field_info = f' ({match.group(1)})' if match else ''
+                        return jsonify({'ok': False, 'error': f'Field name not recognized{field_info}. This might indicate the field has whitespace or special characters that need correction.'}), 422
+                elif 'invalid_value_for_column' in error_msg or 'invalid_value' in error_msg:
+                        return jsonify({'ok': False, 'error': f'One or more field values are invalid. Please check your input and try again.'}), 422
+                elif 'permission' in error_msg or 'forbidden' in error_msg:
+                        return jsonify({'ok': False, 'error': 'You do not have permission to create records in this table.'}), 403
+                else:
+                        return jsonify({'ok': False, 'error': str(e)}), 500
+
+        # end of add_record_ajax
 
 
 @app.route('/update_record_ajax/<path:table_name>/<record_id>', methods=['POST'])

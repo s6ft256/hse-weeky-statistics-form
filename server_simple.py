@@ -9,6 +9,7 @@ import ssl
 import urllib3
 from flask import Flask, render_template_string, request, jsonify
 from pyairtable import Api
+from airtable_helpers import normalize_field_name, coerce_payload_to_body
 
 # Disable SSL warnings and verification for corporate proxy
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -16,17 +17,17 @@ ssl._create_default_https_context = ssl._create_unverified_context
 os.environ['AIRTABLE_VERIFY_SSL'] = '0'
 
 # Configuration
-AIRTABLE_TOKEN = os.getenv('AIRTABLE_TOKEN', 'your_token_here')
-AIRTABLE_BASE_ID = os.getenv('AIRTABLE_BASE_ID', 'your_base_id_here')
+AIRTABLE_TOKEN = os.getenv('AIRTABLE_TOKEN') or os.getenv('AIRTABLE_API_KEY')
+AIRTABLE_BASE_ID = os.getenv('AIRTABLE_BASE_ID') or os.getenv('AIRTABLE_ENTERPRISE_ID')
 
 app = Flask(__name__)
 
 # Initialize Airtable API
 try:
-    print("🔧 Initializing Airtable connection...")
+    print("Initializing Airtable connection...")
     api = Api(AIRTABLE_TOKEN)
     base = api.base(AIRTABLE_BASE_ID)
-    print("✅ Connected to Airtable successfully")
+    print("Connected to Airtable successfully")
 except Exception as e:
     print(f"❌ Failed to connect to Airtable: {e}")
     exit(1)
@@ -101,9 +102,46 @@ def create_record(table_name):
     try:
         data = request.get_json()
         table = base.table(table_name)
-        
+        # Map incoming payload keys (sometimes nested as {fields: {...}})
+        fields = data.get('fields') if isinstance(data, dict) and data.get('fields') else data
+
+        # Best-effort: build simple meta from first record or schema if available
+        meta_fields = []
+        try:
+            meta = api.base(AIRTABLE_BASE_ID).schema()
+            t = next((x for x in meta.tables if x.name == table_name), None)
+            if t and hasattr(t, 'fields'):
+                for f in t.fields:
+                    name = getattr(f, 'name', None) or getattr(f, 'id', '')
+                    ftype = getattr(f, 'type', None) or getattr(f, 'typeName', None) or 'text'
+                    choices = []
+                    if hasattr(f, 'options') and getattr(f, 'options'):
+                        choices = [getattr(c, 'name', c) for c in getattr(f.options, 'choices', []) or []]
+                    required = bool(getattr(f, 'required', False) or getattr(f, 'isRequired', False))
+                    meta_fields.append({'name': name, 'type': ftype, 'choices': choices, 'required': required})
+        except Exception:
+            meta_fields = []
+
+        # Normalize input keys -> actual field names (try normalized match)
+        mapped = {}
+        if isinstance(fields, dict):
+            for k, v in fields.items():
+                # try exact match
+                if any(normalize_field_name(k) == normalize_field_name(m['name']) for m in meta_fields if 'name' in m):
+                    matched = next((m['name'] for m in meta_fields if normalize_field_name(m['name']) == normalize_field_name(k)), None)
+                    mapped[matched or k] = v
+                else:
+                    mapped[k] = v
+        else:
+            mapped = fields
+
+        # Coerce values according to meta
+        body, errors = coerce_payload_to_body(mapped, meta_fields)
+        if errors:
+            return jsonify({'error': 'Validation failed', 'errors': errors}), 400
+
         # Create the record
-        new_record = table.create(data)
+        new_record = table.create(body)
         return jsonify(new_record)
     except Exception as e:
         return jsonify({'error': str(e)}), 500

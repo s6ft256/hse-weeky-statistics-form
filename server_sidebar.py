@@ -17,6 +17,7 @@ except ImportError:
     from flask import Flask, jsonify, request, render_template_string
 
 from pyairtable import AirtableClient
+from airtable_helpers import normalize_field_name, coerce_payload_to_body
 from pyairtable.utils import setup_logging
 
 # Initialize Flask app
@@ -30,10 +31,10 @@ setup_logging("INFO")
 try:
     client = AirtableClient()
     AIRTABLE_CONNECTED = True
-    print(f"✅ Connected to Airtable: {client}")
+    print(f"Connected to Airtable: {client}")
 except ValueError as e:
     AIRTABLE_CONNECTED = False
-    print(f"⚠️  Airtable not configured: {e}")
+    print(f"Airtable not configured: {e}")
     client = None
 
 # Server start time
@@ -755,7 +756,37 @@ def handle_records(table_name):
         elif request.method == 'POST':
             data = request.get_json()
             fields = data.get('fields', {})
-            record = table.create(fields)
+
+            # Build meta_fields for coercion
+            meta_fields = []
+            try:
+                base_id = os.getenv('AIRTABLE_BASE_ID')
+                base = client.base(base_id)
+                schema = base.schema()
+                t = next((x for x in schema.tables if x.name == table_name), None)
+                if t and hasattr(t, 'fields'):
+                    for f in t.fields:
+                        name = getattr(f, 'name', None) or getattr(f, 'id', '')
+                        ftype = getattr(f, 'type', None) or getattr(f, 'typeName', None) or 'text'
+                        choices = []
+                        if hasattr(f, 'options') and getattr(f, 'options'):
+                            choices = [getattr(c, 'name', c) for c in getattr(f.options, 'choices', []) or []]
+                        required = bool(getattr(f, 'required', False) or getattr(f, 'isRequired', False))
+                        meta_fields.append({'name': name, 'type': ftype, 'choices': choices, 'required': required})
+            except Exception:
+                meta_fields = []
+
+            # Map incoming keys using normalized comparison
+            mapped = {}
+            for k, v in (fields or {}).items():
+                matched = next((m['name'] for m in meta_fields if normalize_field_name(m['name']) == normalize_field_name(k)), None)
+                mapped[matched or k] = v
+
+            body, errors = coerce_payload_to_body(mapped, meta_fields)
+            if errors:
+                return jsonify({'success': False, 'error': 'Validation failed', 'errors': errors}), 400
+
+            record = table.create(body)
             return jsonify({
                 "success": True,
                 "record": record

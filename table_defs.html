@@ -1,0 +1,1617 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>hse_statistics_report</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png">
+<style>
+/* Theme variables */
+:root{--bg:#f3f4f6;--card:#ffffff;--fg:#111827;--muted:#6b7280;--accent:#7c3aed;--accent2:#5ce1e6;--accent3:#ffd166;--danger:#dc2626;--border:#e6e9ef;--ease:cubic-bezier(.22,.61,.36,1);--dur:220ms}
+
+/* Dark theme overrides for table views and forms */
+html[data-theme="dark"], body[data-theme="dark"]{
+        --bg:#0b1028;
+        --card:#0f1724;
+        --fg:#e6eef8;
+        --muted:#94a3b8;
+        --accent:#7c3aed;
+        --accent2:#5ce1e6;
+        --accent3:#ffd166;
+        --danger:#f87171;
+        --border: rgba(255,255,255,0.06);
+        --shadow: rgba(0,0,0,0.6);
+}
+
+/* Specific element overrides so forms, modals, tables and overlays match dark theme */
+html[data-theme="dark"], body[data-theme="dark"] .form-smooth input,
+html[data-theme="dark"], body[data-theme="dark"] .form-smooth select,
+html[data-theme="dark"], body[data-theme="dark"] .form-smooth textarea{
+        background: var(--card);
+        color: var(--fg);
+        border: 1px solid var(--border);
+}
+html[data-theme="dark"], body[data-theme="dark"] .modal{
+        background: var(--card);
+        color: var(--fg);
+        box-shadow: 0 10px 30px rgba(0,0,0,.6);
+}
+html[data-theme="dark"], body[data-theme="dark"] .overlay{
+        background: rgba(0,0,0,.6);
+}
+html[data-theme="dark"], body[data-theme="dark"] .table-wrap{
+        background: var(--card);
+        border-color: var(--border);
+        box-shadow: 0 8px 24px rgba(0,0,0,.5);
+}
+html[data-theme="dark"], body[data-theme="dark"] table thead th{ background: var(--card); color: var(--fg); border-bottom-color: var(--border); }
+html[data-theme="dark"], body[data-theme="dark"] tbody tr:hover{ background: rgba(255,255,255,0.03); }
+html[data-theme="dark"], body[data-theme="dark"] .add-bar{ background: var(--card); border-top-color: var(--border); color: var(--fg); }
+html[data-theme="dark"], body[data-theme="dark"] .theme-toggle{ background: var(--card); color: var(--fg); }
+
+/* Page layout */
+html{scroll-behavior:smooth}
+body{font-family:Inter,Segoe UI,Arial,Helvetica,sans-serif;margin:0;background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+*{-webkit-tap-highlight-color:transparent}
+:where(a,button,input,select,textarea){transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease), border-color 140ms var(--ease), box-shadow var(--dur) var(--ease), transform 120ms var(--ease)}
+/* instant theme toggle */
+body.instant-theme *{transition: none !important}
+*::-webkit-scrollbar{height:10px;width:10px}
+*::-webkit-scrollbar-thumb{background:rgba(0,0,0,.22);border-radius:8px}
+*::-webkit-scrollbar-track{background:transparent}
+:where(button,[role="button"],a,input,select,textarea):focus-visible{outline:0;box-shadow:0 0 0 2px rgba(124,58,237,.55),0 6px 18px rgba(124,58,237,.18)}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;scroll-behavior:auto !important}}
+.top-tabs{background:transparent;padding:8px 12px;border-bottom:0}
+.tabs{display:flex;gap:8px;overflow:auto;padding:6px 4px}
+.tab{padding:8px 14px;border-radius:6px;background:var(--card);color:var(--fg);font-weight:600;border:1px solid var(--border)}
+.tab.active{background:linear-gradient(180deg,color-mix(in srgb, var(--accent) 14%, var(--card) 86%), var(--card));border-color:rgba(124,58,237,.12);box-shadow:inset 0 -2px 0 rgba(124,58,237,.12)}
+.tab{transition:background var(--dur) var(--ease), color var(--dur) var(--ease), border-color 140ms var(--ease), box-shadow var(--dur) var(--ease)}
+.tab:hover{transform:translateY(-1px)}
+.page{padding:18px}
+
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+header h2{margin:0;font-size:20px;font-weight:600}
+header .muted{color:var(--muted);font-size:13px}
+/* Back link styling */
+.back-link{color:var(--accent);text-decoration:underline;margin:0 8px;padding:6px 8px;border-radius:6px}
+.back-link:hover{background:rgba(124,58,237,0.06);text-decoration:none}
+
+.toolbar{display:flex;gap:8px;align-items:center;margin:8px 0;padding:6px 0;background:transparent;border-radius:0}
+.tool{display:inline-flex;align-items:center;justify-content:center;padding:6px;width:36px;height:36px;border-radius:8px;background:transparent;color:var(--fg);border:0;cursor:pointer;font-size:0}
+        /* visually remove icon glyphs in toolbar so only the compact action controls remain */
+        .toolbar .tool .icon, .toolbar .tool svg{display:none !important}
+        /* keep hidden labels for screen-readers/fallback, but keep them visually hidden */
+        .tool .tool-label{display:none}
+body[data-theme="light"] .tool{background:transparent;color:var(--fg);border:0}
+html[data-theme="dark"], body[data-theme="dark"] .tool{background:transparent;color:var(--fg);border:0}
+.tool .icon{opacity:0.8}
+.tool svg path,.tool svg rect,.tool svg circle{fill:currentColor}
+
+/* responsive heading */
+@media(max-width:720px){ header h2{font-size:16px} .tool{padding:6px 8px} }
+
+/* Smooth form styles (apply to all forms) */
+.form-smooth .form-row{display:flex;flex-direction:column;gap:6px}
+.form-smooth .form-label{font-size:13px;color:var(--muted)}
+.form-smooth input,.form-smooth select,.form-smooth textarea{padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--fg);transition:box-shadow .18s ease, border-color .14s ease, transform .08s ease}
+.form-smooth input::placeholder,.form-smooth textarea::placeholder{color:var(--muted)}
+.form-smooth input:focus,.form-smooth select:focus,.form-smooth textarea:focus{outline:0;border-color:var(--accent);box-shadow:0 8px 30px rgba(124,58,237,.12)}
+.form-smooth button,.tool,.add-btn{transition:background .16s ease, color .12s ease, transform .08s ease, box-shadow .16s ease}
+.form-smooth button:hover,.tool:hover,.add-btn:hover{transform:translateY(-1px)}
+.form-smooth button:active,.tool:active,.add-btn:active{transform:translateY(0)}
+.field-error{color:var(--danger);font-size:12px;min-height:16px;margin-top:4px}
+
+/* Density toggle */
+body[data-density="compact"] th, body[data-density="compact"] td{padding:6px 10px}
+body[data-density="compact"] .form-smooth input, body[data-density="compact"] .form-smooth select, body[data-density="compact"] .form-smooth textarea{padding:6px 8px;border-radius:6px}
+body[data-density="compact"] .add-btn{padding:6px 10px}
+
+.table-wrap{background:var(--card);border-radius:8px;box-shadow:0 8px 24px rgba(2,6,23,.06);overflow:auto; -webkit-overflow-scrolling: touch; touch-action: pan-x pan-y;}
+table{width:100%;border-collapse:collapse}
+.hdr-sort{opacity:0.45;margin-left:8px;font-size:12px}
+.cell-trunc{max-width:none;white-space:normal;overflow:visible;text-overflow:clip;word-break:break-word;position:relative}
+/* collapsed preview for long text in cells */
+.cell-content{transition: max-height .18s ease, box-shadow .18s ease}
+.cell-content.collapsed{max-height:4.5em;overflow:hidden}
+.cell-content.expanded{max-height:none}
+.expand-btn{position:absolute;right:8px;bottom:6px;background:rgba(0,0,0,.06);border-radius:6px;padding:4px 6px;font-size:12px;cursor:pointer;color:var(--muted);border:1px solid rgba(0,0,0,.06)}
+.cell-trunc .expand-btn{background:rgba(255,255,255,0.9)}
+/* theme-aware expand button */
+html[data-theme="dark"], body[data-theme="dark"] .expand-btn{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+.sort-asc .hdr-sort{color:var(--accent)}
+.sort-desc .hdr-sort{color:var(--accent)}
+th,td{padding:12px 16px;border-bottom:1px solid var(--border);text-align:left;font-size:15px}
+thead th{position:sticky;top:0;background:var(--card);border-bottom:2px solid var(--border);color:var(--fg)}
+.row-index{width:64px;text-align:center;color:var(--muted)}
+.row-select{width:56px;text-align:center}
+tbody tr:hover{background:rgba(0,0,0,.02)}
+html[data-theme="dark"], body[data-theme="dark"] tbody tr:hover{background:rgba(255,255,255,0.02)}
+
+/* Inline editors inside grid cells reflect theme */
+#gridBody td[data-col-index] input,
+#gridBody td[data-col-index] textarea,
+#gridBody td[data-col-index] select{width:100%;box-sizing:border-box;background:var(--card);color:var(--fg);border:1px solid var(--border);border-radius:6px;padding:6px 8px}
+
+/* bottom add bar */
+.add-bar{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--border);padding:10px 18px;display:flex;justify-content:flex-start;align-items:center;gap:10px}
+.add-btn{background:var(--accent);color:var(--card);padding:8px 12px;border-radius:8px;border:0;cursor:pointer;font-weight:600}
+
+/* small modal & overlay */
+.overlay{position:fixed;left:0;top:0;right:0;bottom:0;background:rgba(0,0,0,.24);display:none;opacity:0;transition:opacity .22s ease;z-index:30;pointer-events:none}
+.overlay.show{display:block;opacity:1;pointer-events:auto}
+.modal{position:fixed;left:50%;top:48%;transform:translate(-50%,-46%);background:var(--card);color:var(--fg);padding:14px;border-radius:8px;box-shadow:0 10px 30px rgba(2,6,23,.12);display:block;opacity:0;transition:opacity .22s ease,transform .22s ease;z-index:40}
+.modal.show{opacity:1;transform:translate(-50%,-50%)}
+
+./* Banner shared styles (like dashboard) */
+.banner{height:320px;background:linear-gradient(180deg,var(--bg),var(--card));display:flex;align-items:center;justify-content:center;padding:24px 18px;border-bottom:1px solid rgba(255,255,255,.03);position:relative;box-sizing:border-box}
+.banner{transition:background 240ms var(--ease)}
+.hero{max-width:1100px;width:100%;background:var(--card);padding:20px;border-radius:14px;box-shadow:0 12px 40px var(--shadow), 0 0 0 1px var(--border);text-align:center;position:relative;min-height:220px;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto}
+.hero::after{content:"";position:absolute;inset:-32px;background:radial-gradient(ellipse at 50% -10%, rgba(124,58,237,.16), rgba(124,58,237,0) 60%), radial-gradient(ellipse at 10% 50%, rgba(59,130,246,.12), rgba(59,130,246,0) 50%), radial-gradient(ellipse at 90% 50%, rgba(234,179,8,.12), rgba(234,179,8,0) 50%);filter:blur(26px);z-index:-1;pointer-events:none}
+.logo{width:220px;height:220px;background-size:contain;background-repeat:no-repeat;background-position:center;margin:0 auto 8px;flex:0 0 auto}
+@media (max-width: 800px){ .logo{width:140px;height:140px} .banner{height:240px} }
+
+/* Tool accent hover */
+.tool:hover{background:rgba(124,58,237,.08); border-color: rgba(124,58,237,.25)}
+
+/* Mobile/touch improvements */
+/* Avoid the 300ms delay on some browsers and ensure taps are delivered */
+button,a,tr,td{touch-action:manipulation}
+</style>
+</head>
+<body>
+        <div class="banner">
+                <div class="hero">
+                        <div class="logo" style="background-image:url('https://trojanconstruction.group/storage/subsidiaries/August2022/PG0Hzw1iVnUOQAiyYYuS.png')"></div>
+                </div>
+        </div>
+        <div class="top-tabs">
+                <div style="display:flex;align-items:center;gap:8px;padding:8px 6px;">
+                        <button id="tabsLeft" aria-label="Scroll tabs left" style="background:transparent;border:0;cursor:pointer">‹</button>
+                        <div class="tabs-wrap" style="flex:1;overflow:hidden">
+                          <div class="tabs" id="tabsList">
+                          
+                                <div class="tab active" data-name="Definitions" onclick="location.href='/table/Definitions'">
+                                  <div style="display:flex;align-items:center;gap:8px;min-width:0">
+                                    <div style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Definitions</div>
+                                    <div style="background:rgba(0,0,0,.06);padding:4px 8px;border-radius:999px;font-size:12px;margin-left:6px"></div>
+                                  </div>
+                                </div>
+                          
+                                <div class="tab " data-name="1.Project Information" onclick="location.href='/table/1.Project%20Information'">
+                                  <div style="display:flex;align-items:center;gap:8px;min-width:0">
+                                    <div style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">1.Project Information</div>
+                                    <div style="background:rgba(0,0,0,.06);padding:4px 8px;border-radius:999px;font-size:12px;margin-left:6px"></div>
+                                  </div>
+                                </div>
+                          
+                                <div class="tab " data-name="2.MAIN REGISTER" onclick="location.href='/table/2.MAIN%20REGISTER'">
+                                  <div style="display:flex;align-items:center;gap:8px;min-width:0">
+                                    <div style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">2.MAIN REGISTER</div>
+                                    <div style="background:rgba(0,0,0,.06);padding:4px 8px;border-radius:999px;font-size:12px;margin-left:6px"></div>
+                                  </div>
+                                </div>
+                          
+                                <div class="tab " data-name="3a.Incident Tracker  " onclick="location.href='/table/3a.Incident%20Tracker%20%20'">
+                                  <div style="display:flex;align-items:center;gap:8px;min-width:0">
+                                    <div style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">3a.Incident Tracker  </div>
+                                    <div style="background:rgba(0,0,0,.06);padding:4px 8px;border-radius:999px;font-size:12px;margin-left:6px"></div>
+                                  </div>
+                                </div>
+                          
+                                <div class="tab " data-name="3b.Injury Details" onclick="location.href='/table/3b.Injury%20Details'">
+                                  <div style="display:flex;align-items:center;gap:8px;min-width:0">
+                                    <div style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">3b.Injury Details</div>
+                                    <div style="background:rgba(0,0,0,.06);padding:4px 8px;border-radius:999px;font-size:12px;margin-left:6px"></div>
+                                  </div>
+                                </div>
+                          
+                                <div class="tab " data-name="4a.Induction Register" onclick="location.href='/table/4a.Induction%20Register'">
+                                  <div style="display:flex;align-items:center;gap:8px;min-width:0">
+                                    <div style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">4a.Induction Register</div>
+                                    <div style="background:rgba(0,0,0,.06);padding:4px 8px;border-radius:999px;font-size:12px;margin-left:6px"></div>
+                                  </div>
+                                </div>
+                          
+                                <div class="tab " data-name="4b.Training &amp; comptency Registe" onclick="location.href='/table/4b.Training%20%26%20comptency%20Registe'">
+                                  <div style="display:flex;align-items:center;gap:8px;min-width:0">
+                                    <div style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">4b.Training &amp; comptency Registe</div>
+                                    <div style="background:rgba(0,0,0,.06);padding:4px 8px;border-radius:999px;font-size:12px;margin-left:6px"></div>
+                                  </div>
+                                </div>
+                          
+                                <div class="tab " data-name="5.Observation Register" onclick="location.href='/table/5.Observation%20Register'">
+                                  <div style="display:flex;align-items:center;gap:8px;min-width:0">
+                                    <div style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">5.Observation Register</div>
+                                    <div style="background:rgba(0,0,0,.06);padding:4px 8px;border-radius:999px;font-size:12px;margin-left:6px"></div>
+                                  </div>
+                                </div>
+                          
+                                <div class="tab " data-name="6.NCR Tracker " onclick="location.href='/table/6.NCR%20Tracker%20'">
+                                  <div style="display:flex;align-items:center;gap:8px;min-width:0">
+                                    <div style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">6.NCR Tracker </div>
+                                    <div style="background:rgba(0,0,0,.06);padding:4px 8px;border-radius:999px;font-size:12px;margin-left:6px"></div>
+                                  </div>
+                                </div>
+                          
+                                <div class="tab " data-name="7.Events&amp; Engagement" onclick="location.href='/table/7.Events%26%20Engagement'">
+                                  <div style="display:flex;align-items:center;gap:8px;min-width:0">
+                                    <div style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">7.Events&amp; Engagement</div>
+                                    <div style="background:rgba(0,0,0,.06);padding:4px 8px;border-radius:999px;font-size:12px;margin-left:6px"></div>
+                                  </div>
+                                </div>
+                          
+                                <div class="tab " data-name="X.CRS" onclick="location.href='/table/X.CRS'">
+                                  <div style="display:flex;align-items:center;gap:8px;min-width:0">
+                                    <div style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">X.CRS</div>
+                                    <div style="background:rgba(0,0,0,.06);padding:4px 8px;border-radius:999px;font-size:12px;margin-left:6px"></div>
+                                  </div>
+                                </div>
+                          
+                          </div>
+                        </div>
+                        <button id="tabsRight" aria-label="Scroll tabs right" style="background:transparent;border:0;cursor:pointer">›</button>
+                </div>
+        </div>
+
+        <div class="page">
+                <header>
+                        <div>
+                                <h2>Definitions</h2>
+                                <div class="muted">2 columns • 58 records</div>
+                        </div>
+                        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end">
+                                <button class="theme-toggle" aria-label="Toggle theme" style="margin-right:6px"><span id="themeIcon" class="theme-icon"></span><span id="themeLabel" class="theme-label"></span></button>
+                                <a href="/" class="back-link">Back</a>
+                                <button class="add-btn" id="openAddBtn">+ Add</button>
+                        </div>
+                </header>
+
+                <div class="toolbar">
+                        <div class="tool" id="hideFieldsBtn" role="button" aria-label="Hide fields"><span class="icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 5C7 5 3.2 8.4 1.5 12c1.7 3.6 5.5 7 10.5 7s8.8-3.4 10.5-7C20.8 8.4 17 5 12 5z" fill="currentColor"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg></span><span class="tool-label">Hide fields</span></div>
+                        <div class="tool" id="filterBtn" role="button" aria-label="Filter"><span class="icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5h18v2L13 14v5l-2 1v-6L3 7V5z" fill="currentColor"/></svg></span><span class="tool-label">Filter</span></div>
+                        <div class="tool" id="groupBtn" role="button" aria-label="Group"><span class="icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="8" height="6" rx="1.2" fill="currentColor"/><rect x="13" y="5" width="8" height="6" rx="1.2" fill="currentColor"/><rect x="3" y="13" width="8" height="6" rx="1.2" fill="currentColor"/></svg></span><span class="tool-label">Group</span></div>
+                        <div class="tool" id="sortBtn" role="button" aria-label="Sort"><span class="icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 10h6v2H7v-2zM7 6h10v2H7V6zM7 14h4v2H7v-2z" fill="currentColor"/></svg></span><span class="tool-label">Sort</span></div>
+                </div>
+
+                                <div class="overlay" id="overlay"></div>
+
+                                <!-- Hide fields modal (persistent) -->
+                                <div class="modal" id="fieldModal">
+                                        <h3>Hide fields</h3>
+                                        <div id="fieldList"></div>
+                                        <div style="margin-top:12px"><button id="applyHide" class="tool" aria-label="Apply"><span class="icon" aria-hidden="true">✓</span><span class="tool-label">Apply</span></button> <button id="cancelHide" class="tool" aria-label="Cancel"><span class="icon" aria-hidden="true">✕</span><span class="tool-label">Cancel</span></button></div>
+                                </div>
+
+                                                                   <div class="modal" id="filterModal">
+                                                                           <h3>Filter</h3>
+                                                                           <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
+                                                                                   <select id="filterFieldSelect"></select>
+                                                                                   <select id="filterOpSelect"><option value="contains">contains</option><option value="equals">equals</option></select>
+                                                                                   <input id="filterValueInput" placeholder="value" style="flex:1;padding:6px;border:1px solid #e6e9ef;border-radius:6px">
+                                                                           </div>
+                                                                           <div style="margin-top:12px"><button id="applyFilterModal" class="tool" aria-label="Apply filter"><span class="icon" aria-hidden="true">✓</span><span class="tool-label">Apply</span></button> <button id="clearFilterModal" class="tool" aria-label="Clear filter"><span class="icon" aria-hidden="true">↺</span><span class="tool-label">Clear</span></button> <button id="cancelFilter" class="tool" aria-label="Cancel filter"><span class="icon" aria-hidden="true">✕</span><span class="tool-label">Cancel</span></button></div>
+                                                                   </div>
+
+                                <!-- Filter modal (single-condition builder) -->
+                                <div class="modal" id="filterModal">
+                                        <h3>Filter</h3>
+                                        <div style="display:flex;gap:8px;align-items:center">
+                                                <select id="filterFieldSelect"></select>
+                                                <select id="filterOpSelect"><option value="contains">contains</option><option value="equals">equals</option><option value="starts">starts with</option></select>
+                                                <input id="filterInput" placeholder="value">
+                                        </div>
+                                        <div style="margin-top:12px"><button id="applyFilterBtn" class="tool" aria-label="Apply filter"><span class="icon" aria-hidden="true">✓</span><span class="tool-label">Apply</span></button> <button id="cancelFilterBtn" class="tool" aria-label="Cancel filter"><span class="icon" aria-hidden="true">✕</span><span class="tool-label">Cancel</span></button></div>
+                                </div>
+
+                                <!-- Add Record modal -->
+                                                                                                                                <div class="modal" id="addRecordModal">
+                                        <h3>Add record</h3>
+                                                                                                                                                                <form id="addRecordForm" class="form-smooth">
+                                          <div id="addFormFields" style="display:flex;flex-direction:column;gap:8px;margin-top:8px"></div>
+                                          <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+                                            <button type="button" id="submitAdd" class="tool" aria-label="Create record"><span class="icon" aria-hidden="true">✓</span><span class="tool-label">Create</span></button>
+                                            <button type="button" id="cancelAdd" class="tool" aria-label="Cancel add"><span class="icon" aria-hidden="true">✕</span><span class="tool-label">Cancel</span></button>
+                                          </div>
+                                        </form>
+                                </div>
+
+                <div class="table-wrap">
+                        <table id="gridTable">
+                                <thead>
+                                        <tr>
+                                                <th class="row-select"><input type="checkbox" id="select-all"></th>
+                                                <th class="row-index">#</th>
+                                                <th data-col-index="0">Term  <span class="hdr-sort">⇅</span></th><th data-col-index="1">Definitions <span class="hdr-sort">⇅</span></th>
+                                        </tr>
+                                </thead>
+                                                <tbody id="gridBody">
+                                                        
+                                                                
+                                                                        <tr data-id="rec1sbn8S0h3u9mRe">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">1</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Sub-Contractor Man-hours</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Total hours worked by subcontractor  personnel on-site. exluding trojan holding affiliates  </div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="rec2D9kvHdmYmi9NT">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">2</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Waste Recycled</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Total quantity of waste that has been recycled.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="rec3GoFDm3EoBWrfo">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">3</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Blood Donation Liters</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Total liters of blood donated as part of company initiatives.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="rec6WWT7Qysq7Xb15">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">4</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">HSE Meeting</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Total meetings focused specifically on health, safety, and environmental topics.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="rec6i3pO8qpPuRtpP">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">5</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Permanent Partial Disability (PPD)</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Any work-related injury, which results in the complete loss, or
+permanent loss of use, of any part of the body or any permanent
+impairment of function of parts of the body, regardless of any preexisting disability of the injured member or impaired body function</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="rec7PU9uWDgmcYMPK">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">6</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Hazardous Waste Disposal - Liquid (l)</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Total volume of liquid hazardous waste disposed of, measured in liters.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="rec9nUPrbrpYoOvYh">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">7</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Fatalities (F)</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Work-Related Fatality is a death resulting from a work-related injury or illness, regardless of the time intervening between injury and death</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recBJkiBuxmlQagKj">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">8</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Lost Workdays Injuries</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;"> A single injury  which has resulted in
+a work day being lost, excluding fatalities</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recBfJDP0ZkRbpRdv">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">9</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Environmental Incident - Major</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Significant environmental incidents that pose serious threats to the environment.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recCX01bn8PbOvTDl">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">10</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Total Recordable Accidents</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">All work related OSH accidents </div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recDs0zIOrHqFENlS">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">11</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Total Reportable Incidents (TRI)</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Total incidents that must be reported to regulatory bodies.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recEurIoM1yrlLyUE">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">12</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Hazardous Waste Disposal - Solid (tonnes)</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Total weight of solid hazardous waste disposed of, measured in tonnes.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recHUDaR7u26q5VXV">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">13</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Equipment/Property Damages</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Total incidents of damage to equipment or property, excluding serious dangerous occurrences.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recHxHmBQ2sNCf75j">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">14</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Serious Dangerous Occurrence</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Significant incidents that could have resulted in serious injury or damage, as defined by Schecule A of   ADOSH   Mechanism 11.0</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recIJpx77VTsjeDng">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">15</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Restricted Work Day Case (RWDC)</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Restricted workday case (RWDC) is a work-related injury or illness that results in limitations on work activity that prevent an individual from doing any task of his/her normal job or from doing all of the job for any part of the day</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recKNLo8LZlou4PoQ">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">16</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">NCR </div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Non complaince report </div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recM1ZmvBfUHN7ERU">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">17</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Trojan Holding Affiliate Manhour</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Man-hours contributed by the Trojan Holding affiliate to the project.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recM6OU55ss86eJSm">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">18</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Waste Reduction Rating</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Comparison of Expected Waste / Waste generated  against 0.009 x BUA </div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recMvO4w86qWDK4uJ">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">19</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Lost Workday Case (LWDC)</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">A work-related injury or illness that results in an injured person
+temporarily unable to perform any regular job or restricted work
+activity on a subsequent scheduled workday or shift, supported by a
+medical report from an approved medical practitioner.
+Note:
+(a) Lost Time Injury (LTI) vs. Lost Work Day Case (LWDC): A lost
+time injury is a reporting requirement and is a collection of a
+number of different consequences that can occur following an
+incident, such as a fatality, permanent disability etc. A lost
+Work Day Case is a single injury or illness which has resulted in
+a work day being lost, excluding fatalities.
+(b) If a LWDC transforms into Fatality or Permanent Total
+Disability, it will no longer be considered as LWDC. Incident
+Severity, Statistics and KPIs shall be updated accordingly for
+severity of injury</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recP47dLEymVR7qBO">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">20</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Serious Injury</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Severe injuries as defined in Scchedule B of ADOSH Mechanism 11.0</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recPRx1cT47pqtgUN">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">21</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Blood Donation Person</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Total number of individuals who donated blood.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recQz9LQXvqVbXXNK">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">22</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Environmental Incident - Moderate</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Environmental incidents with moderate impact requiring attention.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recREUJaq2C6uQlUo">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">23</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">LTISR (Lost Time Injury Severity Rate)</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Total number of days lost due to Lost Time Injuries per million hours worked.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recRWeMeedo7bQ6HB">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">24</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Committee Meetings</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Total number of health and safety committee meetings conducted.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recS8NZKj3rG2KEUu">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">25</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Safety Observations closed</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Total safety observations that have been addressed and closed.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recSDFeRcS8LyUH1s">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">26</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">PMC</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Project Managmeent Consultant</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recSuuUOHafYqzpVr">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">27</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Total Training Hours</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Hours spent on training , TBT and Induction excluded </div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recSwZqdRHoB1GkxR">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">28</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;"> LTI</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Any absence from work resulting from work-related Fatalities,
+Permanent Total Disabilities, Permanent Partial Disabilities and Lost Workday Cases</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recWaaFkYGI5zkmSR">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">29</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Client</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">The developer / client for construction work is the person / entity who finances and/or commissions the construction work and:  may engage a project manager / client representative to plan and manage and monitor the project / development on their behalf; and appoints a principal contractor to manage, supervise and perform the construction work.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recY5mK0r8biXW7oW">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">30</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Management Walks</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Total number of management-led site inspections or safety walks.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recZl20rEMB6FQux8">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">31</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Medical Treatment Case (MTC)</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Cases requiring medical treatment beyond first aid.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recaHgk6ccZie609d">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">32</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Waste Generated</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Total quantity of waste produced during the project.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recakKzcimIUptLSB">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">33</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Reports Submitted on time</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Percentage of required reports submitted within the specified timeframe.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recb8D7vNE7IHO8Zq">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">34</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">LTIFR (Lost Time Injury Frequency Rate)</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Total number of Lost Time Injuries per million hours worked.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recbnwjD2gOKXP9vi">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">35</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">SC</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Supervision/Engineering Consultant </div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="receZ0hSRQv3rB1Hc">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">36</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">First Aid cases (FAC)</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Number of cases where first aid was administered.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recfYxU0tTf9VfX83">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">37</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Fuel Consumption</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Total fuel consumed by all site-related equipment and vehicles, measured in liters.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recfuUA7NQUy2HPi5">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">38</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Avg. No. of Training Hours per Employee</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Average training hours completed by each employee over a specific period.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recgDMxWnlvux2ZvK">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">39</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Trojan Holding Affiliate Manpower</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Total number of workers from the Trojan Holding affiliate on-site.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recgGbsVzcT6MitvB">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">40</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Sub-Contractor Manpower</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Total number of workers employed by subcontractors  on-site excluding  trojan holding affiliates.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recgnZhEWaVmxB5Lz">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">41</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Non-Hazardous Waste Disposal (l)</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Total volume of non-hazardous waste disposed of, measured in liters.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recgvpgES02fSXQe0">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">42</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Near Miss</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Incidents that could have resulted in injury or damage but did not.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="rechX8uKcskQrWhJ4">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">43</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Contractor Manpower</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Total number of workers employed by the contractor on-site.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="reciX0VemogmEFvqi">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">44</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Stop Work Notices</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Notices issued to suspend the acitvity to prevent exposure to  critical hazard and rectify them.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="reckoM4mtW3HINZab">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">45</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Safety Observations raised</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Total safety observations noted during inspections or regular work by the HSE team </div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recmGrhMQvl8Om6Y0">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">46</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Security Incidents</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">security-related incidents on the project site.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recmVZFsPaugO2fd1">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">47</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Fire Incidents</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Total number of fire-related incidents, excluding serious dangerous occurrences.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recn640aIn7LpDP3f">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">48</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Management Meetings</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Total number of meetings held by management regarding health and safety.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recokRdeg6Y1wJ3AL">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">49</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Non-Hazardous Waste Disposal (tonnes)</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Total weight of non-hazardous waste disposed of, measured in tonnes.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recrUbkZxeam2EMT8">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">50</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Environmental Incident - Minor</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Minor environmental incidents that do not have serious impacts.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recs1Ra1YYZBxCg3D">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">51</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Awards</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Safety or environmental award presentation held </div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recs6uD5wr5t9kAAX">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">52</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">AFR (Accident Frequency Rate)</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Total number of accidents per million hours worked.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recsWSBLs3ihF8o5X">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">53</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Contractor Man-hours</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Total hours worked by contractor personnel on-site.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recuFD9uMczM29W2I">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">54</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Serious Occupational Illness / Disease</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Severe work-related health issues that do not result in lost workdays, as defined by  Schedule C of ADOSH Mechanism 11.0</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recweetvhho2XPvqX">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">55</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Permanent Total Disability (PTD)</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Any work-related injury which permanently incapacitates an employee
+and results in termination of employment;</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="recwyEJOBfb3nAIfJ">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">56</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Lost workdays </div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">The total number of scheduled workdays or shift lost as a result of Occupational Injury / Illness excluding the incident day.
+a) Lost Workdays calculations should consider all occupational
+injuries and illness resulting in days away from work, which are
+supported by a medical report from an approved medical
+practitioner.
+b) Total number of Lost Workdays shall be limited to 180
+scheduled working days. It is not required to keep track of the
+number of days away from work if the injury or illness resulted
+in more than 180 scheduled working days away from work.
+c) In cases where employment is terminated after an
+Injury/illness occurred (other than Fatality or Permanent Total
+Disability), this would include any previously scheduled
+workdays lost that were planned prior to termination, or an
+estimate must be made of the total number of workdays that
+would have been lost had the employee not been terminated.
+d) In case of Death (Fatality) or Permanent Total Disability, No
+Lost Workday shall be recorded.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="reczJiTIpj9uOgZui">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">57</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Drills</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Total number of emergency drills conducted.</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                                        <tr data-id="reczUJep6Qpz0yi5k">
+                                                                                <td class="row-select"><input type="checkbox" class="row-checkbox"></td>
+                                                                                <td class="row-index">58</td>
+                                                                                
+                                                                                        <td data-col-index="0" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;">Lost Workdays Occupational Illness</div>
+                                                                                        </td>
+                                                                                
+                                                                                        <td data-col-index="1" class="cell-trunc">
+                                                                                                <div class="cell-content" style="white-space:pre-wrap;word-break:break-word;"> A single injury or illness which has resulted in
+a work day being lost, excluding fatalities</div>
+                                                                                        </td>
+                                                                                
+                                                                        </tr>
+                                                                
+                                                        
+
+                                                        <!-- inline add-row like Airtable's plus at bottom-left -->
+                                                        <tr class="add-row" onclick="location.href='/add_record/Definitions'" style="cursor:pointer">
+                                                                <td class="row-select" style="text-align:center;font-size:18px;color:var(--accent)">＋</td>
+                                                                <td class="row-index">&nbsp;</td>
+                                                                <td>&nbsp;</td><td>&nbsp;</td>
+                                                        </tr>
+                                                </tbody>
+                        </table>
+                </div>
+
+        </div>
+
+        <div class="add-bar">
+                <button class="add-btn" onclick="location.href='/add_record/Definitions'">+ Add record</button>
+                <div class="muted">Selected: <span id="selectedCount">0</span></div>
+        </div>
+        <div style="padding:10px 18px;text-align:center;color:var(--muted);font-size:12px;font-weight:700">&copy; 2025 HSE TROJAN CONSTRUCTION GROUP &nbsp;·&nbsp; Developed by Elius</div>
+
+<script>
+        // Initialize theme from localStorage and wire theme-toggle buttons
+        (function(){
+                const KEY='theme';
+                const saved = localStorage.getItem(KEY) || 'light';
+                document.body.dataset.theme = saved;
+                const toggles = Array.from(document.querySelectorAll('.theme-toggle'));
+                function iconSvg(t){
+                    return t==='dark'
+                      ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>'
+                      : '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.8 1.42-1.42zM1 13h3v-2H1v2zm10-9h2V1h-2v3zm7.04 2.46l1.79-1.8-1.41-1.41-1.8 1.79 1.42 1.42zM17 13h3v-2h-3v2zm-5 8h2v-3h-2v3zm-7.66-2.34l1.41 1.41 1.8-1.79-1.42-1.42-1.79 1.8zM20 20l1.41 1.41 1.41-1.41-1.41-1.41L20 20zM12 6a6 6 0 100 12A6 6 0 0012 6z"/></svg>';
+                }
+                function render(){
+                        const t = document.body.dataset.theme;
+                        toggles.forEach(btn=>{
+                            const label = btn.querySelector('#themeLabel, [data-role="themeLabel"], .theme-label');
+                            const icon = btn.querySelector('#themeIcon, [data-role="themeIcon"], .theme-icon');
+                            if(label) label.textContent = t==='dark'?'Dark':'Light';
+                            if(icon) icon.innerHTML = iconSvg(t);
+                        });
+                }
+                function toggleTheme(){
+                        const next = document.body.dataset.theme==='dark'?'light':'dark';
+                        document.body.classList.add('theme-transition');
+                        document.body.dataset.theme = next;
+                        try{ localStorage.setItem(KEY,next); }catch(e){}
+                        render();
+                        setTimeout(()=> document.body.classList.remove('theme-transition'), 350);
+                }
+                toggles.forEach(btn=>{
+                    btn.addEventListener('pointerdown', (e)=>{ e.preventDefault(); toggleTheme(); });
+                    btn.addEventListener('touchstart', (e)=>{ e.preventDefault(); toggleTheme(); }, {passive:false});
+                    btn.addEventListener('click', (e)=>{ e.preventDefault(); toggleTheme(); });
+                });
+                render();
+        })();        // Density toggle persistence (comfortable/compact)
+        (function(){
+                const KEY='density';
+                const saved = localStorage.getItem(KEY) || 'comfortable';
+                document.body.dataset.density = saved==='compact'?'compact':'';
+                document.getElementById('densityToggle')?.addEventListener('click', ()=>{
+                        const curr = document.body.dataset.density==='compact'?'comfortable':'compact';
+                        document.body.dataset.density = curr==='compact'?'compact':''; localStorage.setItem(KEY, curr);
+                });
+        })();
+
+        const TABLE_NAME = "Definitions";
+        const FIELDS = ["Term ", "Definitions"];
+        const RECORDS = [{"cells": ["Sub-Contractor Man-hours", "Total hours worked by subcontractor  personnel on-site. exluding trojan holding affiliates  "], "id": "rec1sbn8S0h3u9mRe"}, {"cells": ["Waste Recycled", "Total quantity of waste that has been recycled."], "id": "rec2D9kvHdmYmi9NT"}, {"cells": ["Blood Donation Liters", "Total liters of blood donated as part of company initiatives."], "id": "rec3GoFDm3EoBWrfo"}, {"cells": ["HSE Meeting", "Total meetings focused specifically on health, safety, and environmental topics."], "id": "rec6WWT7Qysq7Xb15"}, {"cells": ["Permanent Partial Disability (PPD)", "Any work-related injury, which results in the complete loss, or\npermanent loss of use, of any part of the body or any permanent\nimpairment of function of parts of the body, regardless of any preexisting disability of the injured member or impaired body function"], "id": "rec6i3pO8qpPuRtpP"}, {"cells": ["Hazardous Waste Disposal - Liquid (l)", "Total volume of liquid hazardous waste disposed of, measured in liters."], "id": "rec7PU9uWDgmcYMPK"}, {"cells": ["Fatalities (F)", "Work-Related Fatality is a death resulting from a work-related injury or illness, regardless of the time intervening between injury and death"], "id": "rec9nUPrbrpYoOvYh"}, {"cells": ["Lost Workdays Injuries", " A single injury  which has resulted in\na work day being lost, excluding fatalities"], "id": "recBJkiBuxmlQagKj"}, {"cells": ["Environmental Incident - Major", "Significant environmental incidents that pose serious threats to the environment."], "id": "recBfJDP0ZkRbpRdv"}, {"cells": ["Total Recordable Accidents", "All work related OSH accidents "], "id": "recCX01bn8PbOvTDl"}, {"cells": ["Total Reportable Incidents (TRI)", "Total incidents that must be reported to regulatory bodies."], "id": "recDs0zIOrHqFENlS"}, {"cells": ["Hazardous Waste Disposal - Solid (tonnes)", "Total weight of solid hazardous waste disposed of, measured in tonnes."], "id": "recEurIoM1yrlLyUE"}, {"cells": ["Equipment/Property Damages", "Total incidents of damage to equipment or property, excluding serious dangerous occurrences."], "id": "recHUDaR7u26q5VXV"}, {"cells": ["Serious Dangerous Occurrence", "Significant incidents that could have resulted in serious injury or damage, as defined by Schecule A of   ADOSH   Mechanism 11.0"], "id": "recHxHmBQ2sNCf75j"}, {"cells": ["Restricted Work Day Case (RWDC)", "Restricted workday case (RWDC) is a work-related injury or illness that results in limitations on work activity that prevent an individual from doing any task of his/her normal job or from doing all of the job for any part of the day"], "id": "recIJpx77VTsjeDng"}, {"cells": ["NCR ", "Non complaince report "], "id": "recKNLo8LZlou4PoQ"}, {"cells": ["Trojan Holding Affiliate Manhour", "Man-hours contributed by the Trojan Holding affiliate to the project."], "id": "recM1ZmvBfUHN7ERU"}, {"cells": ["Waste Reduction Rating", "Comparison of Expected Waste / Waste generated  against 0.009 x BUA "], "id": "recM6OU55ss86eJSm"}, {"cells": ["Lost Workday Case (LWDC)", "A work-related injury or illness that results in an injured person\ntemporarily unable to perform any regular job or restricted work\nactivity on a subsequent scheduled workday or shift, supported by a\nmedical report from an approved medical practitioner.\nNote:\n(a) Lost Time Injury (LTI) vs. Lost Work Day Case (LWDC): A lost\ntime injury is a reporting requirement and is a collection of a\nnumber of different consequences that can occur following an\nincident, such as a fatality, permanent disability etc. A lost\nWork Day Case is a single injury or illness which has resulted in\na work day being lost, excluding fatalities.\n(b) If a LWDC transforms into Fatality or Permanent Total\nDisability, it will no longer be considered as LWDC. Incident\nSeverity, Statistics and KPIs shall be updated accordingly for\nseverity of injury"], "id": "recMvO4w86qWDK4uJ"}, {"cells": ["Serious Injury", "Severe injuries as defined in Scchedule B of ADOSH Mechanism 11.0"], "id": "recP47dLEymVR7qBO"}, {"cells": ["Blood Donation Person", "Total number of individuals who donated blood."], "id": "recPRx1cT47pqtgUN"}, {"cells": ["Environmental Incident - Moderate", "Environmental incidents with moderate impact requiring attention."], "id": "recQz9LQXvqVbXXNK"}, {"cells": ["LTISR (Lost Time Injury Severity Rate)", "Total number of days lost due to Lost Time Injuries per million hours worked."], "id": "recREUJaq2C6uQlUo"}, {"cells": ["Committee Meetings", "Total number of health and safety committee meetings conducted."], "id": "recRWeMeedo7bQ6HB"}, {"cells": ["Safety Observations closed", "Total safety observations that have been addressed and closed."], "id": "recS8NZKj3rG2KEUu"}, {"cells": ["PMC", "Project Managmeent Consultant"], "id": "recSDFeRcS8LyUH1s"}, {"cells": ["Total Training Hours", "Hours spent on training , TBT and Induction excluded "], "id": "recSuuUOHafYqzpVr"}, {"cells": [" LTI", "Any absence from work resulting from work-related Fatalities,\nPermanent Total Disabilities, Permanent Partial Disabilities and Lost Workday Cases"], "id": "recSwZqdRHoB1GkxR"}, {"cells": ["Client", "The developer / client for construction work is the person / entity who finances and/or commissions the construction work and:  may engage a project manager / client representative to plan and manage and monitor the project / development on their behalf; and appoints a principal contractor to manage, supervise and perform the construction work."], "id": "recWaaFkYGI5zkmSR"}, {"cells": ["Management Walks", "Total number of management-led site inspections or safety walks."], "id": "recY5mK0r8biXW7oW"}, {"cells": ["Medical Treatment Case (MTC)", "Cases requiring medical treatment beyond first aid."], "id": "recZl20rEMB6FQux8"}, {"cells": ["Waste Generated", "Total quantity of waste produced during the project."], "id": "recaHgk6ccZie609d"}, {"cells": ["Reports Submitted on time", "Percentage of required reports submitted within the specified timeframe."], "id": "recakKzcimIUptLSB"}, {"cells": ["LTIFR (Lost Time Injury Frequency Rate)", "Total number of Lost Time Injuries per million hours worked."], "id": "recb8D7vNE7IHO8Zq"}, {"cells": ["SC", "Supervision/Engineering Consultant "], "id": "recbnwjD2gOKXP9vi"}, {"cells": ["First Aid cases (FAC)", "Number of cases where first aid was administered."], "id": "receZ0hSRQv3rB1Hc"}, {"cells": ["Fuel Consumption", "Total fuel consumed by all site-related equipment and vehicles, measured in liters."], "id": "recfYxU0tTf9VfX83"}, {"cells": ["Avg. No. of Training Hours per Employee", "Average training hours completed by each employee over a specific period."], "id": "recfuUA7NQUy2HPi5"}, {"cells": ["Trojan Holding Affiliate Manpower", "Total number of workers from the Trojan Holding affiliate on-site."], "id": "recgDMxWnlvux2ZvK"}, {"cells": ["Sub-Contractor Manpower", "Total number of workers employed by subcontractors  on-site excluding  trojan holding affiliates."], "id": "recgGbsVzcT6MitvB"}, {"cells": ["Non-Hazardous Waste Disposal (l)", "Total volume of non-hazardous waste disposed of, measured in liters."], "id": "recgnZhEWaVmxB5Lz"}, {"cells": ["Near Miss", "Incidents that could have resulted in injury or damage but did not."], "id": "recgvpgES02fSXQe0"}, {"cells": ["Contractor Manpower", "Total number of workers employed by the contractor on-site."], "id": "rechX8uKcskQrWhJ4"}, {"cells": ["Stop Work Notices", "Notices issued to suspend the acitvity to prevent exposure to  critical hazard and rectify them."], "id": "reciX0VemogmEFvqi"}, {"cells": ["Safety Observations raised", "Total safety observations noted during inspections or regular work by the HSE team "], "id": "reckoM4mtW3HINZab"}, {"cells": ["Security Incidents", "security-related incidents on the project site."], "id": "recmGrhMQvl8Om6Y0"}, {"cells": ["Fire Incidents", "Total number of fire-related incidents, excluding serious dangerous occurrences."], "id": "recmVZFsPaugO2fd1"}, {"cells": ["Management Meetings", "Total number of meetings held by management regarding health and safety."], "id": "recn640aIn7LpDP3f"}, {"cells": ["Non-Hazardous Waste Disposal (tonnes)", "Total weight of non-hazardous waste disposed of, measured in tonnes."], "id": "recokRdeg6Y1wJ3AL"}, {"cells": ["Environmental Incident - Minor", "Minor environmental incidents that do not have serious impacts."], "id": "recrUbkZxeam2EMT8"}, {"cells": ["Awards", "Safety or environmental award presentation held "], "id": "recs1Ra1YYZBxCg3D"}, {"cells": ["AFR (Accident Frequency Rate)", "Total number of accidents per million hours worked."], "id": "recs6uD5wr5t9kAAX"}, {"cells": ["Contractor Man-hours", "Total hours worked by contractor personnel on-site."], "id": "recsWSBLs3ihF8o5X"}, {"cells": ["Serious Occupational Illness / Disease", "Severe work-related health issues that do not result in lost workdays, as defined by  Schedule C of ADOSH Mechanism 11.0"], "id": "recuFD9uMczM29W2I"}, {"cells": ["Permanent Total Disability (PTD)", "Any work-related injury which permanently incapacitates an employee\nand results in termination of employment;"], "id": "recweetvhho2XPvqX"}, {"cells": ["Lost workdays ", "The total number of scheduled workdays or shift lost as a result of Occupational Injury / Illness excluding the incident day.\na) Lost Workdays calculations should consider all occupational\ninjuries and illness resulting in days away from work, which are\nsupported by a medical report from an approved medical\npractitioner.\nb) Total number of Lost Workdays shall be limited to 180\nscheduled working days. It is not required to keep track of the\nnumber of days away from work if the injury or illness resulted\nin more than 180 scheduled working days away from work.\nc) In cases where employment is terminated after an\nInjury/illness occurred (other than Fatality or Permanent Total\nDisability), this would include any previously scheduled\nworkdays lost that were planned prior to termination, or an\nestimate must be made of the total number of workdays that\nwould have been lost had the employee not been terminated.\nd) In case of Death (Fatality) or Permanent Total Disability, No\nLost Workday shall be recorded."], "id": "recwyEJOBfb3nAIfJ"}, {"cells": ["Drills", "Total number of emergency drills conducted."], "id": "reczJiTIpj9uOgZui"}, {"cells": ["Lost Workdays Occupational Illness", " A single injury or illness which has resulted in\na work day being lost, excluding fatalities"], "id": "reczUJep6Qpz0yi5k"}];
+        // Raw Airtable records (exact data from API)
+        const RECORDS_RAW = [{"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Total hours worked by subcontractor  personnel on-site. exluding trojan holding affiliates  ", "Term ": "Sub-Contractor Man-hours"}, "id": "rec1sbn8S0h3u9mRe"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Total quantity of waste that has been recycled.", "Term ": "Waste Recycled"}, "id": "rec2D9kvHdmYmi9NT"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Total liters of blood donated as part of company initiatives.", "Term ": "Blood Donation Liters"}, "id": "rec3GoFDm3EoBWrfo"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Total meetings focused specifically on health, safety, and environmental topics.", "Term ": "HSE Meeting"}, "id": "rec6WWT7Qysq7Xb15"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Any work-related injury, which results in the complete loss, or\npermanent loss of use, of any part of the body or any permanent\nimpairment of function of parts of the body, regardless of any preexisting disability of the injured member or impaired body function", "Term ": "Permanent Partial Disability (PPD)"}, "id": "rec6i3pO8qpPuRtpP"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Total volume of liquid hazardous waste disposed of, measured in liters.", "Term ": "Hazardous Waste Disposal - Liquid (l)"}, "id": "rec7PU9uWDgmcYMPK"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Work-Related Fatality is a death resulting from a work-related injury or illness, regardless of the time intervening between injury and death", "Term ": "Fatalities (F)"}, "id": "rec9nUPrbrpYoOvYh"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": " A single injury  which has resulted in\na work day being lost, excluding fatalities", "Term ": "Lost Workdays Injuries"}, "id": "recBJkiBuxmlQagKj"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Significant environmental incidents that pose serious threats to the environment.", "Term ": "Environmental Incident - Major"}, "id": "recBfJDP0ZkRbpRdv"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "All work related OSH accidents ", "Term ": "Total Recordable Accidents"}, "id": "recCX01bn8PbOvTDl"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Total incidents that must be reported to regulatory bodies.", "Term ": "Total Reportable Incidents (TRI)"}, "id": "recDs0zIOrHqFENlS"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Total weight of solid hazardous waste disposed of, measured in tonnes.", "Term ": "Hazardous Waste Disposal - Solid (tonnes)"}, "id": "recEurIoM1yrlLyUE"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Total incidents of damage to equipment or property, excluding serious dangerous occurrences.", "Term ": "Equipment/Property Damages"}, "id": "recHUDaR7u26q5VXV"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Significant incidents that could have resulted in serious injury or damage, as defined by Schecule A of   ADOSH   Mechanism 11.0", "Term ": "Serious Dangerous Occurrence"}, "id": "recHxHmBQ2sNCf75j"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Restricted workday case (RWDC) is a work-related injury or illness that results in limitations on work activity that prevent an individual from doing any task of his/her normal job or from doing all of the job for any part of the day", "Term ": "Restricted Work Day Case (RWDC)"}, "id": "recIJpx77VTsjeDng"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Non complaince report ", "Term ": "NCR "}, "id": "recKNLo8LZlou4PoQ"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Man-hours contributed by the Trojan Holding affiliate to the project.", "Term ": "Trojan Holding Affiliate Manhour"}, "id": "recM1ZmvBfUHN7ERU"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Comparison of Expected Waste / Waste generated  against 0.009 x BUA ", "Term ": "Waste Reduction Rating"}, "id": "recM6OU55ss86eJSm"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "A work-related injury or illness that results in an injured person\ntemporarily unable to perform any regular job or restricted work\nactivity on a subsequent scheduled workday or shift, supported by a\nmedical report from an approved medical practitioner.\nNote:\n(a) Lost Time Injury (LTI) vs. Lost Work Day Case (LWDC): A lost\ntime injury is a reporting requirement and is a collection of a\nnumber of different consequences that can occur following an\nincident, such as a fatality, permanent disability etc. A lost\nWork Day Case is a single injury or illness which has resulted in\na work day being lost, excluding fatalities.\n(b) If a LWDC transforms into Fatality or Permanent Total\nDisability, it will no longer be considered as LWDC. Incident\nSeverity, Statistics and KPIs shall be updated accordingly for\nseverity of injury", "Term ": "Lost Workday Case (LWDC)"}, "id": "recMvO4w86qWDK4uJ"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Severe injuries as defined in Scchedule B of ADOSH Mechanism 11.0", "Term ": "Serious Injury"}, "id": "recP47dLEymVR7qBO"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Total number of individuals who donated blood.", "Term ": "Blood Donation Person"}, "id": "recPRx1cT47pqtgUN"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Environmental incidents with moderate impact requiring attention.", "Term ": "Environmental Incident - Moderate"}, "id": "recQz9LQXvqVbXXNK"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Total number of days lost due to Lost Time Injuries per million hours worked.", "Term ": "LTISR (Lost Time Injury Severity Rate)"}, "id": "recREUJaq2C6uQlUo"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Total number of health and safety committee meetings conducted.", "Term ": "Committee Meetings"}, "id": "recRWeMeedo7bQ6HB"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Total safety observations that have been addressed and closed.", "Term ": "Safety Observations closed"}, "id": "recS8NZKj3rG2KEUu"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Project Managmeent Consultant", "Term ": "PMC"}, "id": "recSDFeRcS8LyUH1s"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Hours spent on training , TBT and Induction excluded ", "Term ": "Total Training Hours"}, "id": "recSuuUOHafYqzpVr"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Any absence from work resulting from work-related Fatalities,\nPermanent Total Disabilities, Permanent Partial Disabilities and Lost Workday Cases", "Term ": " LTI"}, "id": "recSwZqdRHoB1GkxR"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "The developer / client for construction work is the person / entity who finances and/or commissions the construction work and:  may engage a project manager / client representative to plan and manage and monitor the project / development on their behalf; and appoints a principal contractor to manage, supervise and perform the construction work.", "Term ": "Client"}, "id": "recWaaFkYGI5zkmSR"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Total number of management-led site inspections or safety walks.", "Term ": "Management Walks"}, "id": "recY5mK0r8biXW7oW"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Cases requiring medical treatment beyond first aid.", "Term ": "Medical Treatment Case (MTC)"}, "id": "recZl20rEMB6FQux8"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Total quantity of waste produced during the project.", "Term ": "Waste Generated"}, "id": "recaHgk6ccZie609d"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Percentage of required reports submitted within the specified timeframe.", "Term ": "Reports Submitted on time"}, "id": "recakKzcimIUptLSB"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Total number of Lost Time Injuries per million hours worked.", "Term ": "LTIFR (Lost Time Injury Frequency Rate)"}, "id": "recb8D7vNE7IHO8Zq"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Supervision/Engineering Consultant ", "Term ": "SC"}, "id": "recbnwjD2gOKXP9vi"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Number of cases where first aid was administered.", "Term ": "First Aid cases (FAC)"}, "id": "receZ0hSRQv3rB1Hc"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Total fuel consumed by all site-related equipment and vehicles, measured in liters.", "Term ": "Fuel Consumption"}, "id": "recfYxU0tTf9VfX83"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Average training hours completed by each employee over a specific period.", "Term ": "Avg. No. of Training Hours per Employee"}, "id": "recfuUA7NQUy2HPi5"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Total number of workers from the Trojan Holding affiliate on-site.", "Term ": "Trojan Holding Affiliate Manpower"}, "id": "recgDMxWnlvux2ZvK"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Total number of workers employed by subcontractors  on-site excluding  trojan holding affiliates.", "Term ": "Sub-Contractor Manpower"}, "id": "recgGbsVzcT6MitvB"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Total volume of non-hazardous waste disposed of, measured in liters.", "Term ": "Non-Hazardous Waste Disposal (l)"}, "id": "recgnZhEWaVmxB5Lz"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Incidents that could have resulted in injury or damage but did not.", "Term ": "Near Miss"}, "id": "recgvpgES02fSXQe0"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Total number of workers employed by the contractor on-site.", "Term ": "Contractor Manpower"}, "id": "rechX8uKcskQrWhJ4"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Notices issued to suspend the acitvity to prevent exposure to  critical hazard and rectify them.", "Term ": "Stop Work Notices"}, "id": "reciX0VemogmEFvqi"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Total safety observations noted during inspections or regular work by the HSE team ", "Term ": "Safety Observations raised"}, "id": "reckoM4mtW3HINZab"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "security-related incidents on the project site.", "Term ": "Security Incidents"}, "id": "recmGrhMQvl8Om6Y0"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Total number of fire-related incidents, excluding serious dangerous occurrences.", "Term ": "Fire Incidents"}, "id": "recmVZFsPaugO2fd1"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Total number of meetings held by management regarding health and safety.", "Term ": "Management Meetings"}, "id": "recn640aIn7LpDP3f"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Total weight of non-hazardous waste disposed of, measured in tonnes.", "Term ": "Non-Hazardous Waste Disposal (tonnes)"}, "id": "recokRdeg6Y1wJ3AL"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Minor environmental incidents that do not have serious impacts.", "Term ": "Environmental Incident - Minor"}, "id": "recrUbkZxeam2EMT8"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Safety or environmental award presentation held ", "Term ": "Awards"}, "id": "recs1Ra1YYZBxCg3D"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Total number of accidents per million hours worked.", "Term ": "AFR (Accident Frequency Rate)"}, "id": "recs6uD5wr5t9kAAX"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Total hours worked by contractor personnel on-site.", "Term ": "Contractor Man-hours"}, "id": "recsWSBLs3ihF8o5X"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Severe work-related health issues that do not result in lost workdays, as defined by  Schedule C of ADOSH Mechanism 11.0", "Term ": "Serious Occupational Illness / Disease"}, "id": "recuFD9uMczM29W2I"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Any work-related injury which permanently incapacitates an employee\nand results in termination of employment;", "Term ": "Permanent Total Disability (PTD)"}, "id": "recweetvhho2XPvqX"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "The total number of scheduled workdays or shift lost as a result of Occupational Injury / Illness excluding the incident day.\na) Lost Workdays calculations should consider all occupational\ninjuries and illness resulting in days away from work, which are\nsupported by a medical report from an approved medical\npractitioner.\nb) Total number of Lost Workdays shall be limited to 180\nscheduled working days. It is not required to keep track of the\nnumber of days away from work if the injury or illness resulted\nin more than 180 scheduled working days away from work.\nc) In cases where employment is terminated after an\nInjury/illness occurred (other than Fatality or Permanent Total\nDisability), this would include any previously scheduled\nworkdays lost that were planned prior to termination, or an\nestimate must be made of the total number of workdays that\nwould have been lost had the employee not been terminated.\nd) In case of Death (Fatality) or Permanent Total Disability, No\nLost Workday shall be recorded.", "Term ": "Lost workdays "}, "id": "recwyEJOBfb3nAIfJ"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": "Total number of emergency drills conducted.", "Term ": "Drills"}, "id": "reczJiTIpj9uOgZui"}, {"createdTime": "2025-10-13T09:15:22.000Z", "fields": {"Definitions": " A single injury or illness which has resulted in\na work day being lost, excluding fatalities", "Term ": "Lost Workdays Occupational Illness"}, "id": "reczUJep6Qpz0yi5k"}];
+        // Field metadata from server (type, choices, required)
+        window.FIELDS_META = [{"choices": null, "client_name": "Term", "editable": true, "name": "Term ", "required": false, "type": "multilineText"}, {"choices": null, "client_name": "Definitions", "editable": true, "name": "Definitions", "required": false, "type": "multilineText"}];
+
+        // Helper: localStorage keys per table
+        const HIDDEN_KEY = 'hidden_cols_' + TABLE_NAME;
+
+        // Apply hidden columns from storage
+        function loadHidden(){
+                try{ const v = JSON.parse(localStorage.getItem(HIDDEN_KEY)); return Array.isArray(v)?v:[] }catch(e){return []}
+        }
+        function saveHidden(arr){ localStorage.setItem(HIDDEN_KEY, JSON.stringify(arr)); }
+        function applyHidden(){
+                const hidden = loadHidden();
+                document.querySelectorAll('thead th[data-col-index]').forEach(th=>{ const i = +th.dataset.colIndex; th.style.display = hidden.includes(i) ? 'none' : ''; });
+                document.querySelectorAll('tbody td[data-col-index]').forEach(td=>{ const i = +td.dataset.colIndex; td.style.display = hidden.includes(i) ? 'none' : ''; });
+        }
+
+        // Select-all behavior + selected count
+        // Add sticky header shadow on scroll
+        (function(){
+                const thead = document.querySelector('#gridTable thead');
+                const wrap = document.querySelector('.table-wrap');
+                if(!thead || !wrap) return;
+                wrap.addEventListener('scroll', ()=>{
+                        if(wrap.scrollTop>4) thead.classList.add('stuck'); else thead.classList.remove('stuck');
+                });
+        })();
+        document.getElementById('select-all')?.addEventListener('change', (e)=>{
+                const checked = e.target.checked;
+                document.querySelectorAll('.row-checkbox').forEach(cb=>cb.checked = checked);
+                updateSelectedCount();
+        });
+        function updateSelectedCount(){ document.getElementById('selectedCount').textContent = document.querySelectorAll('.row-checkbox:checked').length; }
+        document.addEventListener('change', (e)=>{ if(e.target && e.target.classList && e.target.classList.contains('row-checkbox')) updateSelectedCount(); });
+
+        // Field modal: persist hidden columns
+        const overlayEl = document.getElementById('overlay');
+        const fieldModal = document.getElementById('fieldModal');
+        const fieldList = document.getElementById('fieldList');
+        document.getElementById('hideFieldsBtn')?.addEventListener('click', ()=>{
+                fieldList.innerHTML = '';
+                const hidden = loadHidden();
+                FIELDS.forEach((f,i)=>{
+                        const id = 'chk_'+i;
+                        const div = document.createElement('div');
+                        div.innerHTML = `<label style="font-size:14px"><input type="checkbox" id="${id}" data-idx="${i}" ${hidden.includes(i)?'':''}> ${f}</label>`;
+                        fieldList.appendChild(div);
+                });
+                overlayEl.classList.add('show'); fieldModal.classList.add('show');
+        });
+        document.getElementById('cancelHide')?.addEventListener('click', ()=>{ overlayEl.classList.remove('show'); fieldModal.classList.remove('show'); });
+        document.getElementById('applyHide')?.addEventListener('click', ()=>{
+                const checks = Array.from(fieldList.querySelectorAll('input[type=checkbox]'));
+                const hidden = [];
+                checks.forEach(ch=>{ const idx = +ch.dataset.idx; if(!ch.checked) hidden.push(idx); });
+                saveHidden(hidden);
+                applyHidden();
+                overlayEl.classList.remove('show'); fieldModal.classList.remove('show');
+        });
+
+        // Filter modal
+        const filterModal = document.getElementById('filterModal');
+        const filterFieldSelect = document.getElementById('filterFieldSelect');
+        const filterOpSelect = document.getElementById('filterOpSelect') || document.getElementById('filterOpSelect');
+        const filterValueInput = document.getElementById('filterValueInput') || document.getElementById('filterInput');
+        document.getElementById('filterBtn')?.addEventListener('click', ()=>{
+                filterFieldSelect.innerHTML = '';
+                FIELDS.forEach((f,i)=>{ const opt = document.createElement('option'); opt.value = i; opt.textContent = f; filterFieldSelect.appendChild(opt); });
+                overlayEl.classList.add('show'); filterModal.classList.add('show');
+        });
+        document.getElementById('cancelFilter')?.addEventListener('click', ()=>{ overlayEl.classList.remove('show'); filterModal.classList.remove('show'); });
+        document.getElementById('applyFilterModal')?.addEventListener('click', ()=>{
+                const idx = +filterFieldSelect.value; const op = filterOpSelect.value; const val = (filterValueInput.value||'').toLowerCase();
+                if(val===''){ alert('Enter a value'); return; }
+                document.querySelectorAll('#gridBody tr').forEach(tr=>{
+                        if(tr.classList.contains('add-row')) return; // keep add row
+                        const cell = tr.querySelector('[data-col-index="'+idx+'"]'); const txt = (cell?.textContent||'').toLowerCase();
+                        let ok = false;
+                        if(op==='contains') ok = txt.indexOf(val)!==-1;
+                        else if(op==='equals') ok = txt === val;
+                        else if(op==='starts') ok = txt.startsWith(val);
+                        tr.style.display = ok ? '' : 'none';
+                });
+                overlayEl.classList.remove('show'); filterModal.classList.remove('show');
+        });
+        document.getElementById('clearFilterModal')?.addEventListener('click', ()=>{ document.querySelectorAll('#gridBody tr').forEach(tr=>tr.style.display=''); overlayEl.classList.remove('show'); filterModal.classList.remove('show'); });
+
+        // Sortable headers (click header to toggle asc/desc)
+        let sortState = {idx:null, dir:1};
+        function clearSortIndicators(){ document.querySelectorAll('.hdr-sort').forEach(s=>s.textContent='⇅'); document.querySelectorAll('thead th').forEach(th=>th.classList.remove('sort-asc','sort-desc')); }
+        document.querySelectorAll('thead th[data-col-index]').forEach(th=>{
+                th.style.cursor = 'pointer';
+                th.addEventListener('click', ()=>{
+                        const idx = +th.dataset.colIndex;
+                        if(sortState.idx===idx) sortState.dir = -sortState.dir; else { sortState.idx=idx; sortState.dir=1; }
+                        const tbody = document.getElementById('gridBody');
+                        const rows = Array.from(tbody.querySelectorAll('tr')).filter(r=>r.style.display!=='none' && !r.classList.contains('add-row'));
+                        rows.sort((a,b)=>{
+                                const av = (a.querySelector('[data-col-index="'+idx+'"]')?.textContent||'').toLowerCase();
+                                const bv = (b.querySelector('[data-col-index="'+idx+'"]')?.textContent||'').toLowerCase();
+                                if(av<bv) return -1*sortState.dir; if(av>bv) return 1*sortState.dir; return 0;
+                        });
+                        rows.forEach(r=>tbody.appendChild(r));
+                        // renumber
+                        document.querySelectorAll('.row-index').forEach((td,i)=>td.textContent = i+1);
+                        clearSortIndicators();
+                        const s = th.querySelector('.hdr-sort'); if(s) s.textContent = sortState.dir===1 ? '↑' : '↓';
+                        th.classList.add(sortState.dir===1 ? 'sort-asc' : 'sort-desc');
+                });
+        });
+
+        // tooltips (show full text on hover) — do not force truncation; allow cells to wrap
+        document.querySelectorAll('tbody td').forEach(td=>{
+                if(td.classList.contains('row-select') || td.classList.contains('row-index')) return;
+                const txt = (td.textContent||'').trim();
+                td.title = txt;
+        });
+
+        // Inline editing: click a cell to edit
+        (function(){
+                const meta = window.FIELDS_META || [];
+                function fieldMetaByIndex(i){ return meta[i] || {name: window.FIELDS[i] || '', type: 'text'}; }
+                document.querySelectorAll('#gridBody tr').forEach(tr=>{
+                        const rid = tr.dataset.id;
+                        if(!rid) return;
+                        Array.from(tr.querySelectorAll('td[data-col-index]')).forEach(td=>{
+                                td.addEventListener('click', (e)=>{
+                                        // avoid editing if click on a checkbox or selection
+                                        if(e.target && (e.target.tagName==='INPUT' || e.target.tagName==='BUTTON' || e.target.tagName==='A')) return;
+                                        const idx = +td.dataset.colIndex;
+                                        const fm = meta[idx] || {name: window.FIELDS[idx], type:'text'};
+                                        // create editor
+                                        let editor;
+                                        const cur = td.textContent.trim();
+                                        if(fm.type && fm.type.indexOf('date')!==-1){
+                                                editor = document.createElement('input'); editor.type='date'; editor.value = cur;
+                                        }else if(fm.type && (fm.type.indexOf('number')!==-1 || fm.type==='integer' || fm.type==='decimal')){
+                                                editor = document.createElement('input'); editor.type='number'; editor.value = cur;
+                                        }else if(fm.choices && fm.choices.length){
+                                                editor = document.createElement('select'); const empty = document.createElement('option'); empty.value=''; empty.textContent='--'; editor.appendChild(empty); fm.choices.forEach(c=>{ const o=document.createElement('option'); o.value=c; o.textContent=c; if(c===cur) o.selected=true; editor.appendChild(o); });
+                                        }else if(fm.type && (fm.type.toLowerCase().indexOf('multiline')!==-1 || fm.type.toLowerCase().indexOf('long')!==-1 || fm.type.toLowerCase().indexOf('rich')!==-1)){
+                                                // prefer textarea for long/multiline fields
+                                                editor = document.createElement('textarea'); editor.rows = 3; editor.value = cur; editor.style.resize='vertical';
+                                        }else{
+                                                editor = document.createElement('input'); editor.type='text'; editor.value = cur;
+                                        }
+                                        editor.style.width='100%'; editor.style.boxSizing='border-box';
+                                        td.innerHTML=''; td.appendChild(editor); editor.focus();
+                                        function finish(save){
+                                                const newVal = editor.value;
+                                                if(!save){ td.textContent = cur; return; }
+                                                const payload = {fields: {}}; payload.fields[fm.name] = newVal;
+                                                fetch(`/update_record_ajax/${encodeURIComponent(TABLE_NAME)}/${encodeURIComponent(rid)}`, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload)})
+                                                .then(r=>r.json()).then(data=>{
+                                                        if(data.ok){ td.textContent = newVal; showToast('Saved', 'success'); }
+                                                        else{ td.textContent = cur; showToast('Save failed', 'error'); }
+                                                }).catch(err=>{ console.error(err); td.textContent = cur; showToast('Save failed', 'error'); });
+                                        }
+                                        editor.addEventListener('blur', ()=> finish(true));
+                                        editor.addEventListener('keydown', (ev)=>{ if(ev.key==='Enter'){ ev.preventDefault(); editor.blur(); } else if(ev.key==='Escape'){ ev.preventDefault(); td.textContent = cur; } });
+                                });
+                        });
+                });
+        })();
+
+        // Double-click a row to view the exact Airtable record JSON in a modal
+        (function(){
+                // create raw modal elements
+                let rawOverlay = document.getElementById('rawOverlay');
+                let rawModal = document.getElementById('rawModal');
+                if(!rawOverlay){
+                        rawOverlay = document.createElement('div'); rawOverlay.id = 'rawOverlay'; rawOverlay.style.cssText = 'position:fixed;left:0;top:0;right:0;bottom:0;background:rgba(0,0,0,.36);display:none;z-index:120;'; document.body.appendChild(rawOverlay);
+                }
+                if(!rawModal){
+                        rawModal = document.createElement('div'); rawModal.id = 'rawModal'; rawModal.style.cssText = 'position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);min-width:320px;max-width:90%;max-height:80%;overflow:auto;background:#fff;padding:12px;border-radius:8px;box-shadow:0 12px 40px rgba(2,6,23,.12);display:none;z-index:130;font-family:monospace;font-size:13px;color:#111827';
+                        const closeBtn = document.createElement('button'); closeBtn.className='tool'; closeBtn.setAttribute('aria-label','Close'); closeBtn.style.marginBottom='8px'; closeBtn.innerHTML = '<span class="icon" aria-hidden="true">✕</span><span class="tool-label">Close</span>'; closeBtn.addEventListener('click', ()=>{ rawOverlay.style.display='none'; rawModal.style.display='none'; });
+                        const pre = document.createElement('pre'); pre.id = '__raw_json'; pre.style.whiteSpace='pre-wrap'; pre.style.wordBreak='break-word'; pre.style.margin=0; pre.style.padding='6px'; rawModal.appendChild(closeBtn); rawModal.appendChild(pre); document.body.appendChild(rawModal);
+                }
+
+                function showRawForId(id){
+                        if(!id) return;
+                        const rec = (RECORDS_RAW || []).find(r=>r && (r.id===id || r.recordId===id));
+                        const pre = document.getElementById('__raw_json');
+                        if(!rec){
+                                if(pre) pre.textContent = 'Record not found.';
+                        }else{
+                                if(pre) pre.textContent = JSON.stringify(rec, null, 2);
+                        }
+                        rawOverlay.style.display='block'; rawModal.style.display='block';
+                }
+
+                // double-click handler on rows
+                document.addEventListener('dblclick', (e)=>{
+                        const tr = e.target && e.target.closest && e.target.closest('#gridBody tr');
+                        if(!tr) return;
+                        const rid = tr.dataset && tr.dataset.id;
+                        if(!rid) return;
+                        showRawForId(rid);
+                });
+
+                // click on overlay closes modal
+                rawOverlay.addEventListener('click', ()=>{ rawOverlay.style.display='none'; rawModal.style.display='none'; });
+        })();
+
+        // apply persisted hidden columns on load
+        applyHidden();
+        updateSelectedCount();
+
+        // Add expand/collapse buttons for long cell content
+        (function(){
+                const rows = document.querySelectorAll('#gridBody tr');
+                rows.forEach(tr=>{
+                        Array.from(tr.querySelectorAll('.cell-content')).forEach(div=>{
+                                // collapse by default if content is large
+                                if(div.scrollHeight > div.clientHeight + 12 || div.textContent.split('
+').length > 3 || div.textContent.length > 180){
+                                        div.classList.add('collapsed');
+                                        const btn = document.createElement('button'); btn.className='expand-btn'; btn.textContent='Expand';
+                                        btn.addEventListener('click', (e)=>{ e.stopPropagation(); const d=div; if(d.classList.contains('collapsed')){ d.classList.remove('collapsed'); d.classList.add('expanded'); btn.textContent='Collapse'; } else { d.classList.remove('expanded'); d.classList.add('collapsed'); btn.textContent='Expand'; } });
+                                        // place the button inside the cell container
+                                        const parentTd = div.closest('td'); if(parentTd) parentTd.appendChild(btn);
+                                }
+                        });
+                });
+        })();
+
+        // Tabs scroll controls
+        (function(){
+                const tabsList = document.getElementById('tabsList');
+                const left = document.getElementById('tabsLeft');
+                const right = document.getElementById('tabsRight');
+                left?.addEventListener('click', ()=>{ tabsList.scrollBy({left:-220, behavior:'smooth'}); });
+                right?.addEventListener('click', ()=>{ tabsList.scrollBy({left:220, behavior:'smooth'}); });
+        })();
+
+        // Add-record modal wiring
+        (function(){
+                const openBtn = document.getElementById('openAddBtn');
+                const addModal = document.getElementById('addRecordModal');
+                const overlay = document.getElementById('overlay');
+                const addForm = document.getElementById('addRecordForm');
+                const fieldsContainer = document.getElementById('addFormFields');
+                const submitBtn = document.getElementById('submitAdd');
+                const cancelBtn = document.getElementById('cancelAdd');
+
+                function buildForm(){
+                        fieldsContainer.innerHTML = '';
+                        // fields_meta provided by server for type mapping
+                        const meta = window.FIELDS_META || [];
+                        FIELDS.forEach((f,i)=>{
+                                const m = meta.find(x=>x.name===f) || {name:f,client_name:(typeof f==='string'?f.replace(/\s+/g,' ').trim():f),type:'text',choices:null,required:false,editable:true};
+                                // Skip non-editable fields (autoNumber, read-only, etc.)
+                                if(m.editable === false) return;
+                                const wrapper = document.createElement('div');
+                                wrapper.style.display = 'flex'; wrapper.style.flexDirection='column'; wrapper.style.gap='6px'; wrapper.dataset.field = f;
+                                const label = document.createElement('label'); label.textContent = f + (m.required ? ' *' : ''); label.style.fontSize='13px';
+                                let input;
+                                if(m.type && (m.type.indexOf('date')!==-1)){
+                                        input = document.createElement('input'); input.type='date';
+                                }else if(m.type && (m.type.indexOf('time')!==-1)){
+                                        input = document.createElement('input'); input.type='time';
+                                }else if(m.type && (m.type.indexOf('number')!==-1 || m.type==='integer' || m.type==='decimal')){
+                                        input = document.createElement('input'); input.type='number';
+                                }else if(m.choices && m.choices.length && (m.type && (m.type.indexOf('multi')!==-1 || m.type==='multiSelect'))){
+                                        // multi-select -> allow multiple checkboxes
+                                        input = document.createElement('div'); input.className='multi-select';
+                                        m.choices.forEach(ch=>{ const cb = document.createElement('label'); cb.style.display='inline-flex'; cb.style.alignItems='center'; cb.style.gap='6px'; cb.innerHTML = `<input type="checkbox" name="${f}" value="${ch}"> ${ch}`; input.appendChild(cb); });
+                                }else if(m.choices && m.choices.length){
+                                        input = document.createElement('select'); const emptyOpt = document.createElement('option'); emptyOpt.value=''; emptyOpt.textContent='-- choose --'; input.appendChild(emptyOpt); m.choices.forEach(ch=>{ const o = document.createElement('option'); o.value = ch; o.textContent = ch; input.appendChild(o); });
+                                }else if(m.type && (m.type.indexOf('attach')!==-1 || m.type.indexOf('file')!==-1)){
+                                        input = document.createElement('input'); input.type='file'; input.multiple = false;
+                                }else if(m.type && (m.type==='checkbox' || m.type==='boolean')){
+                                        input = document.createElement('input'); input.type='checkbox';
+                                }else if(m.type && (m.type.toLowerCase().indexOf('multiline')!==-1 || m.type.toLowerCase().indexOf('long')!==-1 || m.type.toLowerCase().indexOf('rich')!==-1)){
+                                        input = document.createElement('textarea'); input.rows = 4; input.style.resize='vertical';
+                                }else{
+                                        input = document.createElement('input'); input.type='text';
+                                }
+                                // use client-safe name (normalized) for form input keys
+                                input.name = m.client_name || f;
+                                input.style.padding='8px'; input.style.border='1px solid #e6e9ef'; input.style.borderRadius='6px';
+                                const err = document.createElement('div'); err.className='field-error'; err.style.color='crimson'; err.style.fontSize='12px'; err.style.minHeight='16px'; err.style.marginTop='4px';
+                                wrapper.appendChild(label); wrapper.appendChild(input); wrapper.appendChild(err);
+                                fieldsContainer.appendChild(wrapper);
+                        });
+                        // small helper to trap focus inside modal
+                        trapFocus(addModal);
+                }
+
+                openBtn?.addEventListener('click', ()=>{
+                        // expose fields_meta to client JS
+                        window.FIELDS_META = [{"choices": null, "client_name": "Term", "editable": true, "name": "Term ", "required": false, "type": "multilineText"}, {"choices": null, "client_name": "Definitions", "editable": true, "name": "Definitions", "required": false, "type": "multilineText"}];
+                        buildForm(); overlay.classList.add('show'); addModal.classList.add('show');
+                        // focus first input
+                        setTimeout(()=>{ const first = addModal.querySelector('input,select,textarea'); if(first) first.focus(); }, 60);
+                });
+                cancelBtn?.addEventListener('click', ()=>{ overlay.classList.remove('show'); addModal.classList.remove('show'); });
+
+                // Escape closes modal and returns focus
+                document.addEventListener('keydown', (e)=>{
+                        if(e.key==='Escape'){
+                                if(addModal.classList.contains('show')){ overlay.classList.remove('show'); addModal.classList.remove('show'); openBtn?.focus(); }
+                        }
+                });
+
+                submitBtn?.addEventListener('click', async ()=>{
+                        const formData = {};
+                        Array.from(addForm.elements).forEach(el=>{ if(el.name) formData[el.name]=el.value; });
+                        submitBtn.disabled = true; submitBtn.textContent = 'Creating...';
+                        try{
+                                // clear previous field errors
+                                Array.from(addForm.querySelectorAll('.field-error')).forEach(d=>d.textContent='');
+                                const res = await fetch(`/add_record_ajax/${encodeURIComponent(TABLE_NAME)}`, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(formData)});
+                                const data = await res.json();
+                                if(data.ok){
+                                        // show success toast then return to main menu
+                                        showToast('Record created', 'success');
+                                        // small delay so user sees the toast before redirect
+                                        setTimeout(()=>{ window.location.href = '/'; }, 800);
+                                }else if(data.errors){
+                                        // show field-level errors
+                                        Object.entries(data.errors).forEach(([k,msg])=>{
+                                                const wrapper = fieldsContainer.querySelector(`div[data-field] [name='${CSS.escape(k)}']`)?.parentElement || fieldsContainer.querySelector(`div[data-field='${k}'] .field-error`);
+                                                if(wrapper){
+                                                        const errEl = wrapper.querySelector ? wrapper.querySelector('.field-error') : null;
+                                                        if(errEl) errEl.textContent = msg;
+                                                }
+                                        });
+                                        showToast('Validation failed', 'error');
+                                }else{
+                                        showToast('Error creating record', 'error');
+                                }
+                        }catch(err){ console.error(err); showToast('Request failed', 'error'); }
+                        submitBtn.disabled=false; submitBtn.textContent='Create';
+                });
+        })();
+
+        // Simple toast helper
+        function showToast(msg, level){
+                let t = document.getElementById('__toast');
+                if(!t){ t = document.createElement('div'); t.id='__toast'; t.style.position='fixed'; t.style.right='18px'; t.style.bottom='18px'; t.style.padding='12px 16px'; t.style.borderRadius='8px'; t.style.boxShadow='0 6px 18px rgba(0,0,0,.18)'; t.style.color='#fff'; t.style.zIndex=9999; document.body.appendChild(t); }
+                t.style.background = level==='success' ? '#16a34a' : '#dc2626'; t.textContent = msg; t.style.opacity=0; t.style.transform='translateY(8px)';
+                requestAnimationFrame(()=>{ t.style.transition='transform .28s ease, opacity .28s ease'; t.style.opacity=1; t.style.transform='translateY(0)'; });
+                setTimeout(()=>{ t.style.opacity=0; t.style.transform='translateY(8px)'; }, 2400);
+        }
+
+        // Focus trap helper (simple)
+        function trapFocus(modal){
+                if(!modal) return;
+                const focusable = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [tabindex]';
+                const nodes = Array.from(modal.querySelectorAll(focusable));
+                if(!nodes.length) return;
+                const first = nodes[0], last = nodes[nodes.length-1];
+                modal.addEventListener('keydown', (e)=>{
+                        if(e.key !== 'Tab') return;
+                        if(e.shiftKey){ if(document.activeElement === first){ e.preventDefault(); last.focus(); } }
+                        else { if(document.activeElement === last){ e.preventDefault(); first.focus(); } }
+                });
+        }
+
+                function normalize_field_name(s) {
+                                // Client-side no-op: server performs robust normalization.
+                                // Keep function for compatibility if any inline scripts call it.
+                                try{ if(typeof s !== 'string') return s; return s.replace(/\s+/g,' ').trim(); }catch(e){ return s; }
+                }
+        </script>
+</body>
+</html>

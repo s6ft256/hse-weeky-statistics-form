@@ -111,9 +111,6 @@ body{transition: background-color .28s var(--ease), color .28s var(--ease)}
 .theme-toggle:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(2,6,23,.18)}
 .theme-toggle .theme-icon{display:inline-flex;width:18px;height:18px}
 .theme-toggle .theme-label{font-size:13px}
-/* About floating button */
-.about-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:999px;border:0;background:var(--card);color:var(--fg);cursor:pointer;box-shadow:0 8px 26px rgba(2,6,23,.08);position:fixed;right:120px;bottom:18px;z-index:999;transition:transform .18s ease, box-shadow .18s ease}
-.about-btn:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(2,6,23,.12)}
 .banner{height:460px;background:linear-gradient(180deg,rgba(11,20,40,.95),rgba(16,24,37,.98));display:flex;align-items:center;justify-content:center;padding:32px 18px;border-bottom:1px solid rgba(255,255,255,.03);position:relative;box-sizing:border-box}
 .hero{max-width:1100px;width:100%;background:linear-gradient(180deg,var(--card),rgba(0,0,0,.04));padding:22px;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.12), 0 0 0 1px var(--border);text-align:center;position:relative;min-height:300px;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto}
 .hero::after{content:"";position:absolute;inset:-44px;background:radial-gradient(ellipse at 50% -10%, rgba(124,58,237,.4), rgba(124,58,237,0) 60%), radial-gradient(ellipse at 10% 50%, rgba(59,130,246,.22), rgba(59,130,246,0) 50%), radial-gradient(ellipse at 90% 50%, rgba(234,179,8,.22), rgba(234,179,8,0) 50%);filter:blur(34px);z-index:-1;pointer-events:none}
@@ -169,13 +166,6 @@ a.card{text-decoration:none}
 .card{opacity:1}
 /* small copyright/footer */
 .site-footer{color:var(--muted);font-size:12px;margin-top:12px;text-align:center;font-weight:700}
-/* About modal and overlay */
-.overlay{position:fixed;inset:0;background:rgba(2,6,23,.48);backdrop-filter:blur(2px);display:none;opacity:0;transition:opacity .18s linear;z-index:998}
-.overlay.show{display:block;opacity:1}
-.modal{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(.98);background:var(--card);color:var(--fg);padding:18px;border-radius:12px;box-shadow:0 20px 60px rgba(2,6,23,.4);max-width:720px;width:calc(100% - 48px);z-index:999;opacity:0;transition:opacity .18s var(--ease),transform .18s var(--ease)}
-.modal.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
-.modal h3{margin:0 0 8px 0;font-size:18px}
-.modal a{color:var(--accent);font-weight:600}
 </style>
 </head>
 <body>
@@ -188,7 +178,6 @@ a.card{text-decoration:none}
 
                                 <div class="container">
                                         <div style="display:flex;justify-content:flex-end;margin-top:8px">
-                                                <button class="about-btn" aria-label="About">About</button>
                                                 <button class="theme-toggle" aria-label="Toggle theme"><span id="themeIcon" class="theme-icon"></span><span id="themeLabel" class="theme-label"></span></button>
                                         </div>
                                         <div class="report-title" style="margin-top:18px;margin-bottom:18px;text-align:center">
@@ -256,74 +245,41 @@ a.card{text-decoration:none}
                                                                                 }
                                                                                 function render(){
                                                                                         const t = document.body.dataset.theme;
-                                                                                        toggles.forEach(btn=>{
+                                                                                        FIELDS.forEach((f,i)=>{
                                                                                             const label = btn.querySelector('#themeLabel, [data-role="themeLabel"], .theme-label');
                                                                                             const icon = btn.querySelector('#themeIcon, [data-role="themeIcon"], .theme-icon');
                                                                                             if(label) label.textContent = t==='dark'?'Dark':'Light';
                                                                                             if(icon) icon.innerHTML = iconSvg(t);
                                                                                         });
-                                                                                }
+                                                                                                const label = document.createElement('label'); label.textContent = f + (m.required ? ' *' : ''); label.style.fontSize='13px';
                                                                                 function toggleTheme(){
+                                                                                                const uid = 'fld_' + i + '_' + Math.random().toString(36).slice(2,7);
                                                                                         const next = document.body.dataset.theme==='dark'?'light':'dark';
-                                                                                        // animate theme transition by toggling a helper class
+                                                                                                        editor = document.createElement('input'); editor.type='date'; editor.value = cur;
                                                                                         document.body.classList.add('theme-transition');
-                                                                                        document.body.dataset.theme = next;
+                                                                                                        editor = document.createElement('input'); editor.type='time'; editor.value = cur;
                                                                                         try{ localStorage.setItem(KEY,next); }catch(e){}
-                                                                                        render();
+                                                                                                        editor = document.createElement('input'); editor.type='number'; editor.value = cur;
                                                                                         // remove transition class after animation completes
-                                                                                        setTimeout(()=> document.body.classList.remove('theme-transition'), 350);
-                                                                                }
-                                                                                toggles.forEach(btn=>{
+                                                                                                        // multi-select -> allow multiple checkboxes, give each checkbox a unique id
+                                                                                                        input = document.createElement('div'); input.className='multi-select';
+                                                                                                        m.choices.forEach((ch,ci)=>{ const cbId = uid + '_opt_' + ci; const cbWrap = document.createElement('div'); cbWrap.style.display='inline-flex'; cbWrap.style.alignItems='center'; cbWrap.style.gap='6px'; const cb = document.createElement('input'); cb.type='checkbox'; cb.name = m.client_name || f; cb.value = ch; cb.id = cbId; const lab = document.createElement('label'); lab.htmlFor = cbId; lab.textContent = ' ' + ch; cbWrap.appendChild(cb); cbWrap.appendChild(lab); input.appendChild(cbWrap); });
                                                                                     btn.addEventListener('pointerdown', (e)=>{ e.preventDefault(); toggleTheme(); });
-                                                                                    btn.addEventListener('touchstart', (e)=>{ e.preventDefault(); toggleTheme(); }, {passive:false});
+                                                                                                        input = document.createElement('select'); input.id = uid; const emptyOpt = document.createElement('option'); emptyOpt.value=''; emptyOpt.textContent='-- choose --'; input.appendChild(emptyOpt); m.choices.forEach(ch=>{ const o = document.createElement('option'); o.value = ch; o.textContent = ch; input.appendChild(o); });
                                                                                     btn.addEventListener('click', (e)=>{ e.preventDefault(); toggleTheme(); });
-                                                                                });
+                                                                                                        input = document.createElement('input'); input.type='file'; input.id = uid; input.multiple = false;
                                                                                 render();
-                                                                        })();
+                                                                                                        input = document.createElement('input'); input.type='checkbox'; input.id = uid;
                                                                         
-                                                                                                                                                                                                                                                                                                // About modal (dashboard)
-                                                                                                                                                                                                                                                                                                (function(){
-                                                                                                                                                                                                                                                                                                                                const aboutBtn = document.querySelector('.about-btn');
-                                                                                                                                                                                                                                                                                                                                if(!aboutBtn) return;
-                                                                                                                                                                                                                                                                                                                                const overlay = document.createElement('div'); overlay.className='overlay'; overlay.id='aboutOverlay';
-                                                                                                                                                                                                                                                                                                                                const modal = document.createElement('div'); modal.className='modal'; modal.id='aboutModal';
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                modal.innerHTML = `
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <h3>About this website</h3>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div style="max-width:520px;line-height:1.4;color:var(--muted)">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <p>It’s a Flask-based web server that provides a REST API + interactive UI for managing Airtable data.</p>
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <p>The UI is a dashboard where users can create, read, update, delete (CRUD) records in Airtable tables, with an emphasis on protecting the schema (i.e. users cannot modify table structures or change fields).</p>
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <p>It uses an Airtable Personal Access Token (PAT) + Base ID to connect to Airtable.</p>
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <p>It has a permissions model: allowed operations include viewing tables, creating/editing/deleting records; disallowed are creating/deleting tables or altering schema.</p>
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <p>It has a REST API (endpoints GET /api/tables, etc.) and a web frontend.</p>
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <p>It is designed with production considerations in mind (SSL support, error handling).</p>
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <p>The tech stack: Python (3.13.8), Flask, uses pyairtable library to interface with Airtable REST API.</p>
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <p>Visit the repository that includes documentation: Quickstart, server guide, permissions.</p>
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <p><a href="https://github.com/s6ft256/hse-weeky-statistics-form.git" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">Source code</a></p>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div style="margin-top:10px;color:var(--muted);font-size:12px">developed by Elius @2025 HSE TROJAN CONTRACTING GROUP</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div style="margin-top:12px;text-align:right"><button class="tool" id="closeAbout">Close</button></div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                `;
-                                                                                                                                                                                                                                                                                                                                document.body.appendChild(overlay); document.body.appendChild(modal);
-                                                                                                                                                                                                                                                                                                                                aboutBtn.addEventListener('click', ()=>{ overlay.classList.add('show'); modal.classList.add('show'); });
-                                                                                                                                                                                                                                                                                                                                document.getElementById('closeAbout')?.addEventListener('click', ()=>{ overlay.classList.remove('show'); modal.classList.remove('show'); });
-                                                                                                                                                                                                                                                                                                                                overlay.addEventListener('click', ()=>{ overlay.classList.remove('show'); modal.classList.remove('show'); });
-                                                                                                                                                                                                                                                                                                })();
-
-                                                                        (function(){
+                                                                                                        input = document.createElement('textarea'); input.id = uid; input.rows = 4; input.style.resize='vertical';
                                                                                 const searchEl = document.getElementById('tableSearch');
-                                                                                const grid = document.getElementById('tableGrid');
+                                                                                                        input = document.createElement('input'); input.type='text'; input.id = uid;
                                                                                 const cards = Array.from(grid.querySelectorAll('.card'));
                                                                                 const visibleEl = document.getElementById('visibleCount');
                                                                                 const pageSize = 24;
                                                                                 let currentPage = 1;
+                                                                                                // link label to input when possible
+                                                                                                if(input.id) label.htmlFor = input.id;
 
                                                                                 function animateCount(){
                                                                                         visibleEl.classList.add('anim');
@@ -526,7 +482,7 @@ html[data-theme="dark"], body[data-theme="dark"] tbody tr:hover{background:rgba(
 .modal{position:fixed;left:50%;top:48%;transform:translate(-50%,-46%);background:var(--card);color:var(--fg);padding:14px;border-radius:8px;box-shadow:0 10px 30px rgba(2,6,23,.12);display:block;opacity:0;transition:opacity .22s ease,transform .22s ease;z-index:40}
 .modal.show{opacity:1;transform:translate(-50%,-50%)}
 
-./* Banner shared styles (like dashboard) */
+/* Banner shared styles (like dashboard) */
 .banner{height:320px;background:linear-gradient(180deg,var(--bg),var(--card));display:flex;align-items:center;justify-content:center;padding:24px 18px;border-bottom:1px solid rgba(255,255,255,.03);position:relative;box-sizing:border-box}
 .banner{transition:background 240ms var(--ease)}
 .hero{max-width:1100px;width:100%;background:var(--card);padding:20px;border-radius:14px;box-shadow:0 12px 40px var(--shadow), 0 0 0 1px var(--border);text-align:center;position:relative;min-height:220px;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto}
@@ -596,22 +552,11 @@ html[data-theme="dark"], body[data-theme="dark"] tbody tr:hover{background:rgba(
                                                                            <h3>Filter</h3>
                                                                            <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
                                                                                    <select id="filterFieldSelect"></select>
-                                                                                   <select id="filterOpSelect"><option value="contains">contains</option><option value="equals">equals</option></select>
+                                                                                   <select id="filterOpSelect"><option value="contains">contains</option><option value="equals">equals</option><option value="starts">starts with</option></select>
                                                                                    <input id="filterValueInput" placeholder="value" style="flex:1;padding:6px;border:1px solid #e6e9ef;border-radius:6px">
                                                                            </div>
                                                                            <div style="margin-top:12px"><button id="applyFilterModal" class="tool" aria-label="Apply filter"><span class="icon" aria-hidden="true">✓</span><span class="tool-label">Apply</span></button> <button id="clearFilterModal" class="tool" aria-label="Clear filter"><span class="icon" aria-hidden="true">↺</span><span class="tool-label">Clear</span></button> <button id="cancelFilter" class="tool" aria-label="Cancel filter"><span class="icon" aria-hidden="true">✕</span><span class="tool-label">Cancel</span></button></div>
                                                                    </div>
-
-                                <!-- Filter modal (single-condition builder) -->
-                                <div class="modal" id="filterModal">
-                                        <h3>Filter</h3>
-                                        <div style="display:flex;gap:8px;align-items:center">
-                                                <select id="filterFieldSelect"></select>
-                                                <select id="filterOpSelect"><option value="contains">contains</option><option value="equals">equals</option><option value="starts">starts with</option></select>
-                                                <input id="filterInput" placeholder="value">
-                                        </div>
-                                        <div style="margin-top:12px"><button id="applyFilterBtn" class="tool" aria-label="Apply filter"><span class="icon" aria-hidden="true">✓</span><span class="tool-label">Apply</span></button> <button id="cancelFilterBtn" class="tool" aria-label="Cancel filter"><span class="icon" aria-hidden="true">✕</span><span class="tool-label">Cancel</span></button></div>
-                                </div>
 
                                 <!-- Add Record modal -->
                                                                                                                                 <div class="modal" id="addRecordModal">
@@ -713,10 +658,13 @@ html[data-theme="dark"], body[data-theme="dark"] tbody tr:hover{background:rgba(
                 const KEY='density';
                 const saved = localStorage.getItem(KEY) || 'comfortable';
                 document.body.dataset.density = saved==='compact'?'compact':'';
-                document.getElementById('densityToggle')?.addEventListener('click', ()=>{
-                        const curr = document.body.dataset.density==='compact'?'comfortable':'compact';
-                        document.body.dataset.density = curr==='compact'?'compact':''; localStorage.setItem(KEY, curr);
-                });
+                const dToggle = document.getElementById('densityToggle');
+                if(dToggle){
+                        dToggle.addEventListener('click', ()=>{
+                                const curr = document.body.dataset.density==='compact'?'comfortable':'compact';
+                                document.body.dataset.density = curr==='compact'?'compact':''; localStorage.setItem(KEY, curr);
+                        });
+                }
         })();
 
         const TABLE_NAME = {{ table_name|tojson | safe }};
@@ -751,11 +699,16 @@ html[data-theme="dark"], body[data-theme="dark"] tbody tr:hover{background:rgba(
                         if(wrap.scrollTop>4) thead.classList.add('stuck'); else thead.classList.remove('stuck');
                 });
         })();
-        document.getElementById('select-all')?.addEventListener('change', (e)=>{
-                const checked = e.target.checked;
-                document.querySelectorAll('.row-checkbox').forEach(cb=>cb.checked = checked);
-                updateSelectedCount();
-        });
+        (function(){
+                const selAll = document.getElementById('select-all');
+                if(selAll){
+                        selAll.addEventListener('change', (e)=>{
+                                const checked = e.target.checked;
+                                document.querySelectorAll('.row-checkbox').forEach(cb=>cb.checked = checked);
+                                updateSelectedCount();
+                        });
+                }
+        })();
         function updateSelectedCount(){ document.getElementById('selectedCount').textContent = document.querySelectorAll('.row-checkbox:checked').length; }
         document.addEventListener('change', (e)=>{ if(e.target && e.target.classList && e.target.classList.contains('row-checkbox')) updateSelectedCount(); });
 
@@ -763,7 +716,7 @@ html[data-theme="dark"], body[data-theme="dark"] tbody tr:hover{background:rgba(
         const overlayEl = document.getElementById('overlay');
         const fieldModal = document.getElementById('fieldModal');
         const fieldList = document.getElementById('fieldList');
-        document.getElementById('hideFieldsBtn')?.addEventListener('click', ()=>{
+        (function(){ const btn = document.getElementById('hideFieldsBtn'); if(btn){ btn.addEventListener('click', ()=>{
                 fieldList.innerHTML = '';
                 const hidden = loadHidden();
                 FIELDS.forEach((f,i)=>{
@@ -773,34 +726,34 @@ html[data-theme="dark"], body[data-theme="dark"] tbody tr:hover{background:rgba(
                         fieldList.appendChild(div);
                 });
                 overlayEl.classList.add('show'); fieldModal.classList.add('show');
-        });
-        document.getElementById('cancelHide')?.addEventListener('click', ()=>{ overlayEl.classList.remove('show'); fieldModal.classList.remove('show'); });
-        document.getElementById('applyHide')?.addEventListener('click', ()=>{
+        }); }} )();
+        (function(){ const btn = document.getElementById('cancelHide'); if(btn){ btn.addEventListener('click', ()=>{ overlayEl.classList.remove('show'); fieldModal.classList.remove('show'); }); } })();
+        (function(){ const btn = document.getElementById('applyHide'); if(btn){ btn.addEventListener('click', ()=>{
                 const checks = Array.from(fieldList.querySelectorAll('input[type=checkbox]'));
                 const hidden = [];
                 checks.forEach(ch=>{ const idx = +ch.dataset.idx; if(!ch.checked) hidden.push(idx); });
                 saveHidden(hidden);
                 applyHidden();
                 overlayEl.classList.remove('show'); fieldModal.classList.remove('show');
-        });
+        }); } })();
 
         // Filter modal
         const filterModal = document.getElementById('filterModal');
         const filterFieldSelect = document.getElementById('filterFieldSelect');
         const filterOpSelect = document.getElementById('filterOpSelect') || document.getElementById('filterOpSelect');
         const filterValueInput = document.getElementById('filterValueInput') || document.getElementById('filterInput');
-        document.getElementById('filterBtn')?.addEventListener('click', ()=>{
+        (function(){ const btn = document.getElementById('filterBtn'); if(btn){ btn.addEventListener('click', ()=>{
                 filterFieldSelect.innerHTML = '';
                 FIELDS.forEach((f,i)=>{ const opt = document.createElement('option'); opt.value = i; opt.textContent = f; filterFieldSelect.appendChild(opt); });
                 overlayEl.classList.add('show'); filterModal.classList.add('show');
-        });
-        document.getElementById('cancelFilter')?.addEventListener('click', ()=>{ overlayEl.classList.remove('show'); filterModal.classList.remove('show'); });
-        document.getElementById('applyFilterModal')?.addEventListener('click', ()=>{
+        }); } })();
+        (function(){ const btn = document.getElementById('cancelFilter'); if(btn){ btn.addEventListener('click', ()=>{ overlayEl.classList.remove('show'); filterModal.classList.remove('show'); }); } })();
+        (function(){ const btn = document.getElementById('applyFilterModal'); if(btn){ btn.addEventListener('click', ()=>{
                 const idx = +filterFieldSelect.value; const op = filterOpSelect.value; const val = (filterValueInput.value||'').toLowerCase();
                 if(val===''){ alert('Enter a value'); return; }
                 document.querySelectorAll('#gridBody tr').forEach(tr=>{
                         if(tr.classList.contains('add-row')) return; // keep add row
-                        const cell = tr.querySelector('[data-col-index="'+idx+'"]'); const txt = (cell?.textContent||'').toLowerCase();
+                        const cell = tr.querySelector('[data-col-index="'+idx+'"]'); const txt = ((cell && cell.textContent) || '').toLowerCase();
                         let ok = false;
                         if(op==='contains') ok = txt.indexOf(val)!==-1;
                         else if(op==='equals') ok = txt === val;
@@ -808,8 +761,8 @@ html[data-theme="dark"], body[data-theme="dark"] tbody tr:hover{background:rgba(
                         tr.style.display = ok ? '' : 'none';
                 });
                 overlayEl.classList.remove('show'); filterModal.classList.remove('show');
-        });
-        document.getElementById('clearFilterModal')?.addEventListener('click', ()=>{ document.querySelectorAll('#gridBody tr').forEach(tr=>tr.style.display=''); overlayEl.classList.remove('show'); filterModal.classList.remove('show'); });
+        }); } })();
+        (function(){ const btn = document.getElementById('clearFilterModal'); if(btn){ btn.addEventListener('click', ()=>{ document.querySelectorAll('#gridBody tr').forEach(tr=>tr.style.display=''); overlayEl.classList.remove('show'); filterModal.classList.remove('show'); }); } })();
 
         // Sortable headers (click header to toggle asc/desc)
         let sortState = {idx:null, dir:1};
@@ -822,8 +775,10 @@ html[data-theme="dark"], body[data-theme="dark"] tbody tr:hover{background:rgba(
                         const tbody = document.getElementById('gridBody');
                         const rows = Array.from(tbody.querySelectorAll('tr')).filter(r=>r.style.display!=='none' && !r.classList.contains('add-row'));
                         rows.sort((a,b)=>{
-                                const av = (a.querySelector('[data-col-index="'+idx+'"]')?.textContent||'').toLowerCase();
-                                const bv = (b.querySelector('[data-col-index="'+idx+'"]')?.textContent||'').toLowerCase();
+                                const aCell = a.querySelector('[data-col-index="'+idx+'"]');
+                                const bCell = b.querySelector('[data-col-index="'+idx+'"]');
+                                const av = ((aCell && aCell.textContent) || '').toLowerCase();
+                                const bv = ((bCell && bCell.textContent) || '').toLowerCase();
                                 if(av<bv) return -1*sortState.dir; if(av>bv) return 1*sortState.dir; return 0;
                         });
                         rows.forEach(r=>tbody.appendChild(r));
@@ -834,8 +789,6 @@ html[data-theme="dark"], body[data-theme="dark"] tbody tr:hover{background:rgba(
                         th.classList.add(sortState.dir===1 ? 'sort-asc' : 'sort-desc');
                 });
         });
-
-        // tooltips (show full text on hover) — do not force truncation; allow cells to wrap
         document.querySelectorAll('tbody td').forEach(td=>{
                 if(td.classList.contains('row-select') || td.classList.contains('row-index')) return;
                 const txt = (td.textContent||'').trim();
@@ -849,7 +802,7 @@ html[data-theme="dark"], body[data-theme="dark"] tbody tr:hover{background:rgba(
                 document.querySelectorAll('#gridBody tr').forEach(tr=>{
                         const rid = tr.dataset.id;
                         if(!rid) return;
-                        Array.from(tr.querySelectorAll('td[data-col-index]')).forEach(td=>{
+                                        input = document.createElement('input'); input.type='text'; input.id = uid;
                                 td.addEventListener('click', (e)=>{
                                         // avoid editing if click on a checkbox or selection
                                         if(e.target && (e.target.tagName==='INPUT' || e.target.tagName==='BUTTON' || e.target.tagName==='A')) return;
@@ -938,7 +891,7 @@ html[data-theme="dark"], body[data-theme="dark"] tbody tr:hover{background:rgba(
                 rows.forEach(tr=>{
                         Array.from(tr.querySelectorAll('.cell-content')).forEach(div=>{
                                 // collapse by default if content is large
-                                if(div.scrollHeight > div.clientHeight + 12 || div.textContent.split('\n').length > 3 || div.textContent.length > 180){
+                                if(div.scrollHeight > div.clientHeight + 12 || div.textContent.split('\\n').length > 3 || div.textContent.length > 180){
                                         div.classList.add('collapsed');
                                         const btn = document.createElement('button'); btn.className='expand-btn'; btn.textContent='Expand';
                                         btn.addEventListener('click', (e)=>{ e.stopPropagation(); const d=div; if(d.classList.contains('collapsed')){ d.classList.remove('collapsed'); d.classList.add('expanded'); btn.textContent='Collapse'; } else { d.classList.remove('expanded'); d.classList.add('collapsed'); btn.textContent='Expand'; } });
@@ -954,8 +907,8 @@ html[data-theme="dark"], body[data-theme="dark"] tbody tr:hover{background:rgba(
                 const tabsList = document.getElementById('tabsList');
                 const left = document.getElementById('tabsLeft');
                 const right = document.getElementById('tabsRight');
-                left?.addEventListener('click', ()=>{ tabsList.scrollBy({left:-220, behavior:'smooth'}); });
-                right?.addEventListener('click', ()=>{ tabsList.scrollBy({left:220, behavior:'smooth'}); });
+                if(left){ left.addEventListener('click', ()=>{ tabsList.scrollBy({left:-220, behavior:'smooth'}); }); }
+                if(right){ right.addEventListener('click', ()=>{ tabsList.scrollBy({left:220, behavior:'smooth'}); }); }
         })();
 
         // Add-record modal wiring
@@ -1012,23 +965,23 @@ html[data-theme="dark"], body[data-theme="dark"] tbody tr:hover{background:rgba(
                         trapFocus(addModal);
                 }
 
-                openBtn?.addEventListener('click', ()=>{
+                if(openBtn){ openBtn.addEventListener('click', ()=>{
                         // expose fields_meta to client JS
                         window.FIELDS_META = {{ fields_meta|tojson | safe }};
                         buildForm(); overlay.classList.add('show'); addModal.classList.add('show');
                         // focus first input
                         setTimeout(()=>{ const first = addModal.querySelector('input,select,textarea'); if(first) first.focus(); }, 60);
-                });
-                cancelBtn?.addEventListener('click', ()=>{ overlay.classList.remove('show'); addModal.classList.remove('show'); });
+                }); }
+                if(cancelBtn){ cancelBtn.addEventListener('click', ()=>{ overlay.classList.remove('show'); addModal.classList.remove('show'); }); }
 
                 // Escape closes modal and returns focus
                 document.addEventListener('keydown', (e)=>{
                         if(e.key==='Escape'){
-                                if(addModal.classList.contains('show')){ overlay.classList.remove('show'); addModal.classList.remove('show'); openBtn?.focus(); }
+                                if(addModal.classList.contains('show')){ overlay.classList.remove('show'); addModal.classList.remove('show'); if(openBtn){ openBtn.focus(); } }
                         }
                 });
 
-                submitBtn?.addEventListener('click', async ()=>{
+                if(submitBtn){ submitBtn.addEventListener('click', async ()=>{
                         const formData = {};
                         Array.from(addForm.elements).forEach(el=>{ if(el.name) formData[el.name]=el.value; });
                         submitBtn.disabled = true; submitBtn.textContent = 'Creating...';
@@ -1045,7 +998,8 @@ html[data-theme="dark"], body[data-theme="dark"] tbody tr:hover{background:rgba(
                                 }else if(data.errors){
                                         // show field-level errors
                                         Object.entries(data.errors).forEach(([k,msg])=>{
-                                                const wrapper = fieldsContainer.querySelector(`div[data-field] [name='${CSS.escape(k)}']`)?.parentElement || fieldsContainer.querySelector(`div[data-field='${k}'] .field-error`);
+                                                const targetInput = fieldsContainer.querySelector(`div[data-field] [name='${CSS.escape(k)}']`);
+                                                const wrapper = (targetInput && targetInput.parentElement) || fieldsContainer.querySelector(`div[data-field='${k}'] .field-error`);
                                                 if(wrapper){
                                                         const errEl = wrapper.querySelector ? wrapper.querySelector('.field-error') : null;
                                                         if(errEl) errEl.textContent = msg;
@@ -1057,7 +1011,7 @@ html[data-theme="dark"], body[data-theme="dark"] tbody tr:hover{background:rgba(
                                 }
                         }catch(err){ console.error(err); showToast('Request failed', 'error'); }
                         submitBtn.disabled=false; submitBtn.textContent='Create';
-                });
+                }); }
         })();
 
         // Simple toast helper
@@ -1327,9 +1281,10 @@ def add_record(table_name):
         form_html.append('<div id="successMsg" style="display:none;padding:10px;border-radius:6px;background:#10b981;color:#fff;margin-bottom:12px;text-align:center;font-weight:600">Success</div>')
         # Use AJAX submit so we can show a simple inline success message
         form_html.append(f'<form id="addForm" method="post" class="form-smooth">')
-        for f in form_fields:
-                # use data-name attributes safe for JSON keys; names may contain spaces
-                form_html.append(f'<div class="form-row"><label>{f["name"]}</label><input name="{f["name"]}" /></div>')
+        for idx, f in enumerate(form_fields):
+                # generate a unique id for each input; names may contain spaces
+                fid = f"fld_{idx}"
+                form_html.append(f'<div class="form-row"><label for="{fid}">{f["name"]}</label><input id="{fid}" name="{f["name"]}" autocomplete="on" /></div>')
         form_html.append(f'<p><button type="submit" class="btn">Create</button> <a class="link" href="/table/{table_name}">Cancel</a></p>')
         # script to intercept submit and call AJAX endpoint; on success show inline message then redirect back to table
         js_template = '''<script>

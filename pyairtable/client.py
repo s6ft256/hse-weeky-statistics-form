@@ -11,7 +11,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
 
 from pyairtable.api import Api, Table
-from pyairtable.api.types import RecordDict, WritableFields
+from pyairtable.api.types import (RecordDict, WritableFields, UpdateRecordDict, RecordDeletedDict)
 from pyairtable.formulas import Formula
 
 
@@ -45,7 +45,10 @@ class AirtableClient:
         - AIRTABLE_TOKEN: Your Personal Access Token
         - AIRTABLE_BASE_ID: Your base ID
     """
-    
+    # Narrow instance attribute types so the type-checker knows these are strings after init
+    token: str
+    base_id: str
+
     def __init__(
         self,
         token: Optional[str] = None,
@@ -104,7 +107,11 @@ class AirtableClient:
                 "Airtable base_id is required. Provide 'base_id' parameter or set "
                 "AIRTABLE_BASE_ID environment variable."
             )
-        
+
+        # Tell the type-checker these are non-None strings from here on
+        assert self.token is not None
+        assert self.base_id is not None
+
         # Initialize the underlying API client
         self._api = Api(
             api_key=self.token,
@@ -198,31 +205,6 @@ class AirtableClient:
         Retrieve records from a table with optional filtering and sorting.
         
         This method automatically handles pagination and returns all matching records.
-        
-        Args:
-            table_name: Name or ID of the table.
-            filters: Optional formula string or Formula object to filter records.
-                Example: "AND({Status} = 'Active', {Age} > 21)"
-            fields: List of field names to retrieve. If None, returns all fields.
-            sort: List of tuples (field_name, direction) where direction is 'asc' or 'desc'.
-                Example: [("Name", "asc"), ("Created", "desc")]
-            max_records: Maximum number of records to return. If None, returns all.
-            view: Name of the view to use for filtering.
-        
-        Returns:
-            List of record dictionaries with 'id', 'fields', and 'createdTime' keys.
-        
-        Example:
-            >>> # Get all records
-            >>> records = client.get_records("Users")
-            
-            >>> # Get filtered records
-            >>> active_users = client.get_records(
-            ...     "Users",
-            ...     filters="{Status} = 'Active'",
-            ...     fields=["Name", "Email"],
-            ...     sort=[("Name", "asc")]
-            ... )
         """
         table = self._get_table(table_name)
         
@@ -250,29 +232,6 @@ class AirtableClient:
         data: WritableFields,
         typecast: bool = False,
     ) -> RecordDict:
-        """
-        Create a new record in the specified table.
-        
-        Args:
-            table_name: Name or ID of the table.
-            data: Dictionary of field names to values. Field names must match
-                the table schema.
-            typecast: If True, Airtable will attempt to convert string values
-                to the appropriate field type. Default: False.
-        
-        Returns:
-            The created record with 'id', 'fields', and 'createdTime'.
-        
-        Raises:
-            requests.HTTPError: If the API request fails (e.g., invalid field names).
-        
-        Example:
-            >>> record = client.create_record(
-            ...     "Users",
-            ...     {"Name": "Alice", "Email": "alice@example.com", "Age": 30}
-            ... )
-            >>> print(record["id"])  # recXXXXXXXXXXXXXX
-        """
         table = self._get_table(table_name)
         
         logger.info(f"Creating record in {table_name}: {data}")
@@ -289,37 +248,6 @@ class AirtableClient:
         replace: bool = False,
         typecast: bool = False,
     ) -> RecordDict:
-        """
-        Update an existing record.
-        
-        Args:
-            table_name: Name or ID of the table.
-            record_id: ID of the record to update (starts with 'rec').
-            data: Dictionary of field names to values. Only provided fields will
-                be updated unless replace=True.
-            replace: If True, replaces all fields in the record (unspecified fields
-                will be cleared). If False, only updates provided fields. Default: False.
-            typecast: If True, Airtable will attempt to convert string values
-                to the appropriate field type. Default: False.
-        
-        Returns:
-            The updated record with 'id', 'fields', and 'createdTime'.
-        
-        Raises:
-            requests.HTTPError: If the API request fails (e.g., record not found).
-        
-        Example:
-            >>> # Partial update (preserves other fields)
-            >>> updated = client.update_record("Users", "recXXX", {"Status": "Active"})
-            
-            >>> # Full replacement (clears unspecified fields)
-            >>> replaced = client.update_record(
-            ...     "Users",
-            ...     "recXXX",
-            ...     {"Name": "Bob", "Email": "bob@example.com"},
-            ...     replace=True
-            ... )
-        """
         table = self._get_table(table_name)
         
         logger.info(
@@ -340,24 +268,7 @@ class AirtableClient:
         self,
         table_name: str,
         record_id: str,
-    ) -> Dict[str, Any]:
-        """
-        Delete a record from the table.
-        
-        Args:
-            table_name: Name or ID of the table.
-            record_id: ID of the record to delete (starts with 'rec').
-        
-        Returns:
-            Dictionary with 'id' and 'deleted' (True) keys.
-        
-        Raises:
-            requests.HTTPError: If the API request fails (e.g., record not found).
-        
-        Example:
-            >>> result = client.delete_record("Users", "recXXX")
-            >>> print(result)  # {'id': 'recXXX', 'deleted': True}
-        """
+    ) -> RecordDeletedDict:
         table = self._get_table(table_name)
         
         logger.info(f"Deleting record {record_id} from {table_name}")
@@ -372,30 +283,6 @@ class AirtableClient:
         records: List[WritableFields],
         typecast: bool = False,
     ) -> List[RecordDict]:
-        """
-        Create multiple records in a single batch operation.
-        
-        This method automatically handles batching per Airtable's API limits
-        (max 10 records per request).
-        
-        Args:
-            table_name: Name or ID of the table.
-            records: List of dictionaries, each representing a record to create.
-            typecast: If True, Airtable will attempt to convert string values
-                to the appropriate field type. Default: False.
-        
-        Returns:
-            List of created records with 'id', 'fields', and 'createdTime'.
-        
-        Example:
-            >>> records = [
-            ...     {"Name": "Alice", "Status": "Active"},
-            ...     {"Name": "Bob", "Status": "Inactive"},
-            ...     {"Name": "Carol", "Status": "Active"},
-            ... ]
-            >>> created = client.batch_create("Users", records)
-            >>> print(len(created))  # 3
-        """
         table = self._get_table(table_name)
         
         logger.info(f"Batch creating {len(records)} records in {table_name}")
@@ -407,34 +294,10 @@ class AirtableClient:
     def batch_update(
         self,
         table_name: str,
-        updates: List[Dict[str, Any]],
+        updates: List[UpdateRecordDict],
         replace: bool = False,
         typecast: bool = False,
     ) -> List[RecordDict]:
-        """
-        Update multiple records in a single batch operation.
-        
-        This method automatically handles batching per Airtable's API limits
-        (max 10 records per request).
-        
-        Args:
-            table_name: Name or ID of the table.
-            updates: List of dictionaries with 'id' and 'fields' keys.
-                Example: [{"id": "recXXX", "fields": {"Status": "Active"}}]
-            replace: If True, replaces all fields in each record. Default: False.
-            typecast: If True, Airtable will attempt to convert string values
-                to the appropriate field type. Default: False.
-        
-        Returns:
-            List of updated records with 'id', 'fields', and 'createdTime'.
-        
-        Example:
-            >>> updates = [
-            ...     {"id": "recXXX", "fields": {"Status": "Active"}},
-            ...     {"id": "recYYY", "fields": {"Status": "Inactive"}},
-            ... ]
-            >>> updated = client.batch_update("Users", updates)
-        """
         table = self._get_table(table_name)
         
         logger.info(f"Batch updating {len(updates)} records in {table_name}")
@@ -451,24 +314,7 @@ class AirtableClient:
         self,
         table_name: str,
         record_ids: List[str],
-    ) -> List[Dict[str, Any]]:
-        """
-        Delete multiple records in a single batch operation.
-        
-        This method automatically handles batching per Airtable's API limits
-        (max 10 records per request).
-        
-        Args:
-            table_name: Name or ID of the table.
-            record_ids: List of record IDs to delete.
-        
-        Returns:
-            List of dictionaries with 'id' and 'deleted' (True) keys.
-        
-        Example:
-            >>> result = client.batch_delete("Users", ["recXXX", "recYYY", "recZZZ"])
-            >>> print(len(result))  # 3
-        """
+    ) -> List[RecordDeletedDict]:
         table = self._get_table(table_name)
         
         logger.info(f"Batch deleting {len(record_ids)} records from {table_name}")
@@ -482,23 +328,6 @@ class AirtableClient:
         table_name: str,
         record_id: str,
     ) -> RecordDict:
-        """
-        Retrieve a single record by its ID.
-        
-        Args:
-            table_name: Name or ID of the table.
-            record_id: ID of the record to retrieve (starts with 'rec').
-        
-        Returns:
-            Record dictionary with 'id', 'fields', and 'createdTime' keys.
-        
-        Raises:
-            requests.HTTPError: If the record is not found.
-        
-        Example:
-            >>> record = client.get_record("Users", "recXXX")
-            >>> print(record["fields"]["Name"])
-        """
         table = self._get_table(table_name)
         
         logger.info(f"Fetching record {record_id} from {table_name}")
@@ -509,7 +338,8 @@ class AirtableClient:
     
     def __repr__(self) -> str:
         """String representation of the client."""
-        base_preview = f"{self.base_id[:8]}..." if len(self.base_id) > 8 else self.base_id
+        base = self.base_id or ""
+        base_preview = f"{base[:8]}..." if len(base) > 8 else base
         return f"<AirtableClient base={base_preview}>"
 
 
